@@ -11,7 +11,7 @@ public class Bus : MonoBehaviour
     internal Rigidbody Rb;
     public Transform gateTransform;
 
-    public void Start()
+    public void Init()
     {
         CurrentSize = capacity;
         Rb = GetComponent<Rigidbody>();

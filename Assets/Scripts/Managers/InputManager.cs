@@ -48,10 +48,11 @@ public class InputManager : MonoBehaviour
                 {
                     TryMoveBusToSlot(clickedSlot);
                 }
+
                 return;
             }
         }
-        
+
         DeselectBus();
     }
 
