@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 public class LevelManager : Singelton<LevelManager>
 {
     private List<Level> _levels;
-    
-    
     private int _levelNumber;
     public Action OnLevelComplete;
     public Action OnLevelRestart;

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,8 +6,6 @@ public class GameManager : Singelton<GameManager>
 {
     private List<Slot> _slots = new();
     private List<Passenger> _passengers = new();
-    private Transform _spawnPointBus;
-    private Transform _spawnPointPassenger;
 
     public void Init(List<Slot> slots, List<Passenger> passengers)
     {
@@ -22,95 +19,109 @@ public class GameManager : Singelton<GameManager>
         {
             selectedBus.AssignSlot(clickedSlot);
             clickedSlot.AssignBus(selectedBus);
+            CheckForMerging(clickedSlot, out Bus finalBus);
+            BoardPassengersToBus(finalBus);
             return true;
         }
 
-        if (clickedSlot.isLocked)
-        {
-            Debug.Log("Cannot place bus. Slot is locked.");
-            return false;
-        }
-
-        Debug.Log("Cannot place bus. Slot is already filled.");
         return false;
     }
 
-
-    public void UnlockSlot(int slotIndex)
+    private void CheckForMerging(Slot clickedSlot, out Bus remainingBus)
     {
-        if (slotIndex >= 0 && slotIndex < _slots.Count)
+        var (leftSlot, rightSlot) = GetAdjacentSlots(clickedSlot);
+        if (leftSlot?.CurrentBus != null && clickedSlot.CurrentBus != null &&
+            leftSlot.CurrentBus.busColor == clickedSlot.CurrentBus.busColor &&
+            leftSlot.CurrentBus.capacity == clickedSlot.CurrentBus.capacity)
         {
-            _slots[slotIndex].UnlockSlot();
-            Debug.Log($"Slot {slotIndex} is now unlocked.");
+            remainingBus = TryMergeBuses(leftSlot.CurrentBus, clickedSlot.CurrentBus, leftSlot, clickedSlot);
+        }
+        else if (rightSlot?.CurrentBus != null && clickedSlot.CurrentBus != null &&
+                 rightSlot.CurrentBus.busColor == clickedSlot.CurrentBus.busColor &&
+                 rightSlot.CurrentBus.capacity == clickedSlot.CurrentBus.capacity)
+        {
+            remainingBus = TryMergeBuses(clickedSlot.CurrentBus, rightSlot.CurrentBus, clickedSlot, rightSlot);
         }
         else
         {
-            Debug.LogError("Invalid slot index.");
+            remainingBus = clickedSlot.CurrentBus;
         }
     }
 
-    public void StartBoarding()
+    private (Slot leftSlot, Slot rightSlot) GetAdjacentSlots(Slot currentSlot)
     {
-        StartCoroutine(BoardPassengersCoroutine());
+        int currentIndex = _slots.IndexOf(currentSlot);
+        if (currentIndex == -1)
+        {
+            return (null, null);
+        }
+
+        Slot leftSlot = currentIndex > 0 ? _slots[currentIndex - 1] : null;
+        Slot rightSlot = currentIndex < _slots.Count - 1 ? _slots[currentIndex + 1] : null;
+        return (leftSlot, rightSlot);
     }
 
-    private IEnumerator BoardPassengersCoroutine()
+
+    private Bus TryMergeBuses(Bus leftBus, Bus rightBus, Slot leftSlot, Slot rightSlot)
     {
-        var boardingCount = new Dictionary<Passenger, bool>();
-        foreach (var passenger in _passengers)
+        if (leftBus.busColor == rightBus.busColor && leftBus.capacity == rightBus.capacity)
         {
-            var boarded = false;
-            var boardingCompleted = false;
-            foreach (var slot in _slots.Where(slot =>
-                         slot.CurrentBus != null && slot.CurrentBus.busColor == passenger.passengerColor &&
-                         slot.CurrentBus.Capacity > 0))
+            leftBus.CurrentSize += rightBus.CurrentSize;
+            leftBus.capacity += rightBus.capacity;
+            NotifyPassengersOfNewBus(leftSlot.CurrentBus);
+            Destroy(rightBus.gameObject);
+            rightSlot.ClearSlot();
+            leftSlot.AssignBus(leftBus);
+            return leftBus;
+        }
+
+        return leftBus;
+    }
+
+    private void NotifyPassengersOfNewBus(Bus newBus)
+    {
+        var passengersToRedirect = _passengers.Where(p => p.IsBoarding && p.passengerColor == newBus.busColor).ToList();
+        Debug.Log(passengersToRedirect.Count);
+        foreach (var passenger in passengersToRedirect)
+        {
+            passenger.UpdateBusAfterMerge(newBus);
+        }
+    }
+
+    private void BoardPassengersToBus(Bus bus)
+    {
+        var matchingPassengers = _passengers
+            .Where(p => p.passengerColor == bus.busColor)
+            .ToList();
+
+
+        foreach (var passenger in matchingPassengers)
+        {
+            if (bus.CurrentSize > 0)
             {
-                passenger.TryBoardBus(slot, hasBoarded =>
+                passenger.TryBoardBus(bus, hasBoarded =>
                 {
                     if (hasBoarded)
                     {
-                        boarded = true;
-                        Debug.Log(
-                            $"Passenger \"{passenger.name}:{passenger.passengerColor}\" successfully boarded the bus.");
+                        _passengers.Remove(passenger);
                         Destroy(passenger.gameObject);
+                        CheckLevelCompletion();
                     }
-
-                    boardingCompleted = true;
-                    boardingCount[passenger] = true;
                 });
-                boardingCount.Add(passenger, true);
-                if (boarded) break;
-            }
-
-            if (!boarded)
-            {
-                Debug.Log($"Passenger \"{passenger.name}:{passenger.passengerColor}\" couldn't board!");
+                if (bus.CurrentSize <= 0)
+                {
+                    break;
+                }
             }
         }
-
-        yield return new WaitUntil(() => HasBoardingCompleted(boardingCount));
-        CheckLevelCompletion();
     }
-
-    private bool HasBoardingCompleted(Dictionary<Passenger, bool> boardingCount)
-    {
-        return boardingCount.All(keyValuePair => keyValuePair.Value);
-    }
-
 
     private void CheckLevelCompletion()
     {
-        var allBoarded = _passengers.TrueForAll(p => p.hasBoarded);
-        if (allBoarded)
+        if (_passengers.Count == 0)
         {
-            Debug.Log("Level Complete!");
             UIManager.Instance.ShowLevelCompleteUI();
             Invoke(nameof(LevelComplete), 2f);
-        }
-        else
-        {
-            Debug.Log("Level Failed!");
-            UIManager.Instance.ShowLevelFailedUI();
         }
     }
 
@@ -118,60 +129,4 @@ public class GameManager : Singelton<GameManager>
     {
         LevelManager.Instance.OnLevelComplete?.Invoke();
     }
-
-
-    // private Vector3 GetRandomPositionBus()
-    // {
-    //     return _spawnPointBus.position + new Vector3(Random.Range(-10f, 10f), 10, 0); 
-    // }
-    //
-    // private Vector3 GetRandomPositionPassenger()
-    // {
-    //     return _spawnPointPassenger.position + new Vector3(9, 0, Random.Range(-10f, 10f)); 
-    // }
-    //
-    // private Colors GetRandomColor()
-    // {
-    //     return (Colors)Random.Range(0, Enum.GetValues(typeof(Colors)).Length);
-    // }
-    //
-    //
-    // private Vector3 GetSlotPosition(int index)
-    // {
-    //     float xOffset = 2.0f; 
-    //     return new Vector3(index * xOffset, 0, 0); 
-    // }
-    //
-    //
-    //
-    // void InitializeSlots()
-    // {
-    //     foreach (Slot slot in slots)
-    //     {
-    //         slot.ClearSlot();
-    //     }
-    // }
-    //
-    // void InitializePile()
-    // {
-    //     for (int i = 0; i < 10; i++)
-    //     {
-    //         GameObject busGO = Instantiate(busPrefab, GetRandomPositionBus(), Quaternion.identity);
-    //         var bus = busGO.GetComponent<Bus>();
-    //         bus.SetBus(2, GetRandomColor());
-    //         pileBuses.Add(bus);
-    //     }
-    // }
-    //
-    //
-    // void SpawnPassengers()
-    // {
-    //     for (int i = 0; i < _totalPassengers; i++)
-    //     {
-    //         GameObject newPassenger = Instantiate(passengerPrefab, GetRandomPositionPassenger(), Quaternion.identity);
-    //         var passenger = newPassenger.GetComponent<Passenger>();
-    //         passenger.SetPassenger(GetRandomColor());
-    //         _passengers.Add(passenger);
-    //     }
-    // }
 }

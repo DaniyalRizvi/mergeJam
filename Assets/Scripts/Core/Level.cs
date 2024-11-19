@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    public List<BusType> busTypes;
     private List<Slot> _slots;
     private List<Passenger> _passengers;
     
@@ -23,4 +25,12 @@ public class Level : MonoBehaviour
     {
         gameObject.SetActive(state);
     }
+}
+
+
+[Serializable]
+public class BusType
+{
+    public int capacity;
+    public Colors colors;
 }

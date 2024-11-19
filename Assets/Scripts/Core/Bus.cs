@@ -1,18 +1,19 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Bus : MonoBehaviour
 {
-    public int currentSize;
+    [FormerlySerializedAs("currentSize")] public int capacity;
     public Colors busColor;
     public bool isMergable = true;
-    internal int Capacity;
+    internal int CurrentSize;
     private Slot _assignedSlot;
     internal Rigidbody Rb;
     public Transform gateTransform;
 
     public void Start()
     {
-        Capacity = currentSize;
+        CurrentSize = capacity;
         Rb = GetComponent<Rigidbody>();
         UpdateVisual();
     }
@@ -24,13 +25,13 @@ public class Bus : MonoBehaviour
 
     public bool CanMergeWith(Bus otherBus)
     {
-        return otherBus.busColor == busColor && otherBus.currentSize == currentSize && _assignedSlot != null && otherBus._assignedSlot != null;
+        return otherBus.busColor == busColor && otherBus.capacity == capacity && _assignedSlot != null && otherBus._assignedSlot != null;
     }
 
     public void MergeWith(Bus otherBus)
     {
-        currentSize *= 2;
-        Capacity = currentSize;
+        capacity *= 2;
+        CurrentSize = capacity;
         UpdateVisual();
         Destroy(otherBus.gameObject);
     }

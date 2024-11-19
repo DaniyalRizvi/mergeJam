@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class Passenger : MonoBehaviour
 {
     public Colors passengerColor;
     public bool hasBoarded;
+    internal bool IsBoarding;
+    private Bus _selectedBus;
 
     private void Start()
     {
@@ -18,37 +19,71 @@ public class Passenger : MonoBehaviour
         GetComponent<Renderer>().material.color = passengerColor.GetColor();
     }
 
-    public void TryBoardBus(Slot slot, Action<bool> onComplete)
+    public void TryBoardBus(Bus bus, Action<bool> onComplete)
     {
-        StartCoroutine(TryBoardBus(slot, 5f, onComplete));
+        if(IsBoarding)
+            return;
+        StartCoroutine(TryBoardBus(bus, 5f, onComplete));
     }
 
-    private IEnumerator TryBoardBus(Slot slot, float speed, Action<bool> onComplete)
+    public void UpdateBusAfterMerge(Bus bus)
     {
-        if (slot.CurrentBus.Capacity > 0)
+        _selectedBus = bus;
+    }
+
+    private IEnumerator TryBoardBus(Bus bus, float speed, Action<bool> onComplete)
+    {
+        hasBoarded = false;
+        if (bus.CurrentSize > 0)
         {
-            Debug.Log("Passenger boarded the bus!");
-            slot.CurrentBus.Capacity--;
-            hasBoarded = true;
+            _selectedBus = bus;
+            _selectedBus.CurrentSize--;
         }
         else
         {
-            Debug.Log("Bus is full!");
             onComplete?.Invoke(hasBoarded);
             yield break;
         }
-        Transform gateTransform = slot.CurrentBus.gateTransform;
-        yield return StartCoroutine(MoveToPosition(gateTransform.position, speed));
-        yield return StartCoroutine(MoveToPosition(slot.CurrentBus.transform.GetChild(0).position, speed));
+
+        IsBoarding = true;
+        while (true)
+        {
+            if (_selectedBus)
+            {
+                if (Vector3.Distance(transform.position, _selectedBus.gateTransform.position) > 0.1f)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, _selectedBus.gateTransform.position,
+                        speed * Time.deltaTime);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            yield return null;
+        }
+
+        while (true)
+        {
+            if (_selectedBus)
+            {
+                if (Vector3.Distance(transform.position, _selectedBus.transform.GetChild(0).position) > 0.1f)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position,
+                        _selectedBus.transform.GetChild(0).position, speed * Time.deltaTime);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            yield return null;
+        }
+
+        hasBoarded = true;
         onComplete?.Invoke(hasBoarded);
     }
 
-    private IEnumerator MoveToPosition(Vector3 targetPosition, float speed)
-    {
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-            yield return null; 
-        }
-    }
 }

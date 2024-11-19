@@ -25,7 +25,7 @@ public class UIManager : Singelton<UIManager>
 
     private void OnGoButtonPressed()
     {
-        GameManager.Instance.StartBoarding();  
+        // GameManager.Instance. StartBoarding();  
     }
 
     

@@ -27,51 +27,34 @@ public class InputManager : MonoBehaviour
     {
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = Camera.main!.ScreenPointToRay(mousePosition);
-        if (Physics.Raycast(ray, out var hit))
+        if (Physics.Raycast(ray, out var hit) && hit.collider != null)
         {
-            if (hit.collider != null)
+            Bus clickedBus = hit.collider.GetComponent<Bus>();
+            Slot clickedSlot = hit.collider.GetComponent<Slot>();
+            if (clickedBus != null)
             {
-                Bus clickedBus = hit.collider.GetComponent<Bus>();
-                Slot clickedSlot = hit.collider.GetComponent<Slot>();
-                if (clickedBus != null)
-                {
-                    SelectBus(clickedBus);
-                }
-                else if (clickedSlot != null)
-                {
+                DeselectBus();
+                SelectBus(clickedBus);
+                return;
+            }
 
-                    if (_selectedBus != null)
-                    {
-                        TryMoveBusToSlot(clickedSlot);
-                    }
-                }
-                else
-                {
-                    if (_selectedBus)
-                    {
-                        Destroy(_selectedBus.GetComponent<Outline>());
-                        _selectedBus = null;
-                    }
-                }
-            }
-            else
+            if (clickedSlot != null)
             {
-                if (_selectedBus)
+                if (clickedSlot.isLocked)
                 {
-                    Destroy(_selectedBus.GetComponent<Outline>());
-                    _selectedBus = null;
+                    clickedSlot.UnlockSlot();
                 }
+                else if (_selectedBus != null)
+                {
+                    TryMoveBusToSlot(clickedSlot);
+                }
+                return;
             }
         }
-        else
-        {
-            if (_selectedBus)
-            {
-                Destroy(_selectedBus.GetComponent<Outline>());
-                _selectedBus = null;
-            }
-        }
+        
+        DeselectBus();
     }
+
 
     void SelectBus(Bus bus)
     {
@@ -89,24 +72,25 @@ public class InputManager : MonoBehaviour
 
     void TryMoveBusToSlot(Slot clickedSlot)
     {
-        
-        bool placedInSlot = GameManager.Instance.PlaceBusInSlot(_selectedBus,clickedSlot);
+        bool placedInSlot = GameManager.Instance.PlaceBusInSlot(_selectedBus, clickedSlot);
 
         if (placedInSlot)
         {
-            if (_selectedBus)
-            {
-                Destroy(_selectedBus.GetComponent<Outline>());
-                _selectedBus = null;
-            }
+            DeselectBus();
             Debug.Log("Bus successfully moved to a slot.");
         }
         else
         {
             Debug.Log("No available slots for this bus.");
         }
+    }
 
-        
-        _selectedBus = null;
+    void DeselectBus()
+    {
+        if (_selectedBus)
+        {
+            Destroy(_selectedBus.GetComponent<Outline>());
+            _selectedBus = null;
+        }
     }
 }

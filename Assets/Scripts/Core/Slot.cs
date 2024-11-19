@@ -1,16 +1,17 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 
 public class Slot : MonoBehaviour
 {
     internal Bus CurrentBus;
     private Transform _referencePoint;
-
-
     public bool isLocked;
 
     private void Awake()
     {
         _referencePoint = transform.GetChild(0);
+        name = $"{name} {transform.GetSiblingIndex()}";
     }
 
     public bool IsEmpty => CurrentBus == null;
@@ -18,7 +19,7 @@ public class Slot : MonoBehaviour
 
     public void UnlockSlot()
     {
-        isLocked = false;
+        isLocked = false; 
     }
 
     public void AssignBus(Bus bus)
