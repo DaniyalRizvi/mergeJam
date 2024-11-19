@@ -17,6 +17,7 @@ public class GameManager : Singelton<GameManager>
     {
         if (clickedSlot.IsEmpty && !clickedSlot.isLocked)
         {
+            selectedBus.transform.localScale = new Vector3(10, 3, 4);
             selectedBus.AssignSlot(clickedSlot);
             clickedSlot.AssignBus(selectedBus);
             CheckForMerging(clickedSlot, out Bus finalBus);

@@ -439,14 +439,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155484308}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.2588186, z: -0, w: 0.965926}
+  m_LocalRotation: {x: -0, y: -0.13052504, z: -0, w: 0.99144506}
   m_LocalPosition: {x: 0, y: 0, z: -15}
   m_LocalScale: {x: 10, y: 0.1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1091686470}
   m_Father: {fileID: 834863454}
-  m_LocalEulerAnglesHint: {x: 0, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -15, z: 0}
 --- !u!54 &155484310
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -673,14 +673,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272091569}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.2588186, z: -0, w: 0.965926}
+  m_LocalRotation: {x: -0, y: -0.13052504, z: -0, w: 0.99144506}
   m_LocalPosition: {x: -1, y: 0, z: 15}
   m_LocalScale: {x: 10, y: 0.1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2088364195}
   m_Father: {fileID: 834863454}
-  m_LocalEulerAnglesHint: {x: 0, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -15, z: 0}
 --- !u!54 &272091571
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -854,7 +854,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.000000014901161, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 14.5, z: 0}
-  m_LocalScale: {x: 10, y: 3, z: 4}
+  m_LocalScale: {x: 3.3333333, y: 1, z: 1.3333334}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1644499357}
@@ -899,7 +899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44ba034a7c5de54eaf3c50851503209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSize: 2
+  capacity: 2
   busColor: 3
   isMergable: 1
   gateTransform: {fileID: 112693205}
@@ -1513,14 +1513,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980913762}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.2588186, z: -0, w: 0.965926}
+  m_LocalRotation: {x: -0, y: -0.13052504, z: -0, w: 0.99144506}
   m_LocalPosition: {x: 0, y: 0, z: -7.5}
   m_LocalScale: {x: 10, y: 0.1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 333674622}
   m_Father: {fileID: 834863454}
-  m_LocalEulerAnglesHint: {x: 0, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -15, z: 0}
 --- !u!54 &980913764
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2514,14 +2514,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458354068}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.2588186, z: -0, w: 0.965926}
+  m_LocalRotation: {x: -0, y: -0.13052504, z: -0, w: 0.99144506}
   m_LocalPosition: {x: 0, y: 0, z: 7.5}
   m_LocalScale: {x: 10, y: 0.1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1357789046}
   m_Father: {fileID: 834863454}
-  m_LocalEulerAnglesHint: {x: 0, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -15, z: 0}
 --- !u!54 &1458354070
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2662,14 +2662,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481018512}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.2588186, z: -0, w: 0.965926}
+  m_LocalRotation: {x: -0, y: -0.13052504, z: -0, w: 0.99144506}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 0.1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1974203026}
   m_Father: {fileID: 834863454}
-  m_LocalEulerAnglesHint: {x: 0, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -15, z: 0}
 --- !u!54 &1481018514
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3632,7 +3632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44ba034a7c5de54eaf3c50851503209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSize: 2
+  capacity: 2
   busColor: 3
   isMergable: 1
   gateTransform: {fileID: 3631695392495579280}
@@ -4074,7 +4074,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.000000014901161, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 5.5}
-  m_LocalScale: {x: 10, y: 3, z: 4}
+  m_LocalScale: {x: 3.3333333, y: 1, z: 1.3333334}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2695944906074708596}
@@ -4134,7 +4134,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: -6}
-  m_LocalScale: {x: 10, y: 3, z: 4}
+  m_LocalScale: {x: 3.3333333, y: 1, z: 1.3333334}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2468315282833036848}
@@ -4182,7 +4182,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.000000014901161, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: -0}
-  m_LocalScale: {x: 10, y: 3, z: 4}
+  m_LocalScale: {x: 3.3333333, y: 1, z: 1.3333334}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3294133311149942874}
@@ -4280,7 +4280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44ba034a7c5de54eaf3c50851503209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSize: 2
+  capacity: 2
   busColor: 0
   isMergable: 1
   gateTransform: {fileID: 8394284731601230278}
@@ -4315,7 +4315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44ba034a7c5de54eaf3c50851503209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSize: 2
+  capacity: 2
   busColor: 2
   isMergable: 1
   gateTransform: {fileID: 8901459333261453228}
@@ -4352,7 +4352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44ba034a7c5de54eaf3c50851503209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSize: 2
+  capacity: 2
   busColor: 1
   isMergable: 1
   gateTransform: {fileID: 8980329585872169960}
@@ -4622,7 +4622,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.000000014901161, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 8.25, z: -0.25}
-  m_LocalScale: {x: 10, y: 3, z: 4}
+  m_LocalScale: {x: 3.3333333, y: 1, z: 1.3333334}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7759488860309094668}

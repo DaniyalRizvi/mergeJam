@@ -12,7 +12,17 @@ public class Level : MonoBehaviour
     public void Init()
     {
         InitLevel();
+        InitBuses();
         GameManager.Instance.Init(_slots, _passengers);
+    }
+
+    private void InitBuses()
+    {
+        busTypes.Shuffle();
+        foreach (var busType in busTypes)
+        {
+            
+        }
     }
 
     private void InitLevel()
