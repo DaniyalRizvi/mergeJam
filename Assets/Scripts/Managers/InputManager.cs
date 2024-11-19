@@ -32,12 +32,12 @@ public class InputManager : MonoBehaviour
             if (hit.collider != null)
             {
                 Bus clickedBus = hit.collider.GetComponent<Bus>();
+                Slot clickedSlot = hit.collider.GetComponent<Slot>();
                 if (clickedBus != null)
                 {
                     SelectBus(clickedBus);
                 }
-                Slot clickedSlot = hit.collider.GetComponent<Slot>();
-                if (clickedSlot != null)
+                else if (clickedSlot != null)
                 {
 
                     if (_selectedBus != null)
@@ -45,15 +45,31 @@ public class InputManager : MonoBehaviour
                         TryMoveBusToSlot(clickedSlot);
                     }
                 }
+                else
+                {
+                    if (_selectedBus)
+                    {
+                        Destroy(_selectedBus.GetComponent<Outline>());
+                        _selectedBus = null;
+                    }
+                }
             }
             else
             {
-                _selectedBus = null;
+                if (_selectedBus)
+                {
+                    Destroy(_selectedBus.GetComponent<Outline>());
+                    _selectedBus = null;
+                }
             }
         }
         else
         {
-            _selectedBus = null;
+            if (_selectedBus)
+            {
+                Destroy(_selectedBus.GetComponent<Outline>());
+                _selectedBus = null;
+            }
         }
     }
 
@@ -68,6 +84,7 @@ public class InputManager : MonoBehaviour
             return;
         }
         _selectedBus = bus;
+        _selectedBus.gameObject.AddComponent<Outline>();
     }
 
     void TryMoveBusToSlot(Slot clickedSlot)
@@ -77,7 +94,11 @@ public class InputManager : MonoBehaviour
 
         if (placedInSlot)
         {
-            _selectedBus = null;
+            if (_selectedBus)
+            {
+                Destroy(_selectedBus.GetComponent<Outline>());
+                _selectedBus = null;
+            }
             Debug.Log("Bus successfully moved to a slot.");
         }
         else

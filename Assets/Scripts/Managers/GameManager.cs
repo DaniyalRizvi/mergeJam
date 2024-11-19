@@ -1,19 +1,21 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : Singelton<GameManager>
 {
-    private List<Slot> _slots = new(); 
-    private List<Passenger> _passengers = new(); 
+    private List<Slot> _slots = new();
+    private List<Passenger> _passengers = new();
     private Transform _spawnPointBus;
     private Transform _spawnPointPassenger;
-    
+
     public void Init(List<Slot> slots, List<Passenger> passengers)
     {
         _slots = slots;
         _passengers = passengers;
     }
-    
+
     public bool PlaceBusInSlot(Bus selectedBus, Slot clickedSlot)
     {
         if (clickedSlot.IsEmpty && !clickedSlot.isLocked)
@@ -32,7 +34,8 @@ public class GameManager : Singelton<GameManager>
         Debug.Log("Cannot place bus. Slot is already filled.");
         return false;
     }
-    
+
+
     public void UnlockSlot(int slotIndex)
     {
         if (slotIndex >= 0 && slotIndex < _slots.Count)
@@ -45,34 +48,59 @@ public class GameManager : Singelton<GameManager>
             Debug.LogError("Invalid slot index.");
         }
     }
-    
+
     public void StartBoarding()
     {
-        foreach (Passenger passenger in _passengers)
+        StartCoroutine(BoardPassengersCoroutine());
+    }
+
+    private IEnumerator BoardPassengersCoroutine()
+    {
+        var boardingCount = new Dictionary<Passenger, bool>();
+        foreach (var passenger in _passengers)
         {
-            bool boarded = false;
-            foreach (Slot slot in _slots)
+            var boarded = false;
+            var boardingCompleted = false;
+            foreach (var slot in _slots.Where(slot =>
+                         slot.CurrentBus != null && slot.CurrentBus.busColor == passenger.passengerColor &&
+                         slot.CurrentBus.Capacity > 0))
             {
-                if (slot != null && passenger.TryBoardBus(slot)) 
+                passenger.TryBoardBus(slot, hasBoarded =>
                 {
-                    boarded = true;
-                    Destroy(passenger.gameObject);
-                    break;
-                }
+                    if (hasBoarded)
+                    {
+                        boarded = true;
+                        Debug.Log(
+                            $"Passenger \"{passenger.name}:{passenger.passengerColor}\" successfully boarded the bus.");
+                        Destroy(passenger.gameObject);
+                    }
+
+                    boardingCompleted = true;
+                    boardingCount[passenger] = true;
+                });
+                boardingCount.Add(passenger, true);
+                if (boarded) break;
             }
 
             if (!boarded)
             {
-                Debug.Log($"Passenger \"{passenger.name} {passenger.passengerColor}\" couldn't board!");
+                Debug.Log($"Passenger \"{passenger.name}:{passenger.passengerColor}\" couldn't board!");
             }
         }
 
-        CheckLevelCompletion(); 
+        yield return new WaitUntil(() => HasBoardingCompleted(boardingCount));
+        CheckLevelCompletion();
     }
-    
+
+    private bool HasBoardingCompleted(Dictionary<Passenger, bool> boardingCount)
+    {
+        return boardingCount.All(keyValuePair => keyValuePair.Value);
+    }
+
+
     private void CheckLevelCompletion()
     {
-        bool allBoarded = _passengers.TrueForAll(p => p.hasBoarded); 
+        var allBoarded = _passengers.TrueForAll(p => p.hasBoarded);
         if (allBoarded)
         {
             Debug.Log("Level Complete!");
@@ -82,7 +110,7 @@ public class GameManager : Singelton<GameManager>
         else
         {
             Debug.Log("Level Failed!");
-            UIManager.Instance.ShowLevelFailedUI(); 
+            UIManager.Instance.ShowLevelFailedUI();
         }
     }
 
@@ -91,7 +119,7 @@ public class GameManager : Singelton<GameManager>
         LevelManager.Instance.OnLevelComplete?.Invoke();
     }
 
-    
+
     // private Vector3 GetRandomPositionBus()
     // {
     //     return _spawnPointBus.position + new Vector3(Random.Range(-10f, 10f), 10, 0); 
@@ -146,6 +174,4 @@ public class GameManager : Singelton<GameManager>
     //         _passengers.Add(passenger);
     //     }
     // }
-
-
 }

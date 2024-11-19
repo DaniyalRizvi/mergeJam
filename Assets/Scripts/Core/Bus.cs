@@ -8,6 +8,7 @@ public class Bus : MonoBehaviour
     internal int Capacity;
     private Slot _assignedSlot;
     internal Rigidbody Rb;
+    public Transform gateTransform;
 
     public void Start()
     {
@@ -36,6 +37,10 @@ public class Bus : MonoBehaviour
 
     public void AssignSlot(Slot clickedSlot)
     {
+        if (_assignedSlot != null)
+        {
+            _assignedSlot.CurrentBus = null;
+        }
         _assignedSlot = clickedSlot;
     }
 }

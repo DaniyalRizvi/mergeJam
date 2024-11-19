@@ -25,7 +25,6 @@ public class UIManager : Singelton<UIManager>
 
     private void OnGoButtonPressed()
     {
-        Debug.Log("Go button pressed, starting boarding.");
         GameManager.Instance.StartBoarding();  
     }
 
@@ -33,14 +32,12 @@ public class UIManager : Singelton<UIManager>
     public void ShowLevelCompleteUI()
     {
         _levelCompleteUI.SetActive(true);  
-        Debug.Log("Level Complete!");
     }
 
     
     public void ShowLevelFailedUI()
     {
         _levelFailedUI.SetActive(true);  
-        Debug.Log("Level Failed!");
     }
 
     
@@ -48,7 +45,6 @@ public class UIManager : Singelton<UIManager>
     {
         _levelCompleteUI.SetActive(false);
         _levelFailedUI.SetActive(false);
-        Debug.Log("UI reset.");
     }
 
     public void RestartLevel()
