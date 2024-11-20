@@ -34,10 +34,10 @@ public class Passenger : MonoBehaviour
     private IEnumerator TryBoardBus(Bus bus, float speed, Action<bool> onComplete)
     {
         hasBoarded = false;
-        if (bus.CurrentSize > 0)
+        if (bus.currentSize > 0)
         {
             _selectedBus = bus;
-            _selectedBus.CurrentSize--;
+            _selectedBus.currentSize--;
         }
         else
         {

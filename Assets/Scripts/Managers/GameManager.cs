@@ -67,7 +67,7 @@ public class GameManager : Singelton<GameManager>
     {
         if (leftBus.busColor == rightBus.busColor && leftBus.capacity == rightBus.capacity)
         {
-            leftBus.CurrentSize += rightBus.CurrentSize;
+            leftBus.currentSize += rightBus.currentSize;
             leftBus.capacity += rightBus.capacity;
             NotifyPassengersOfNewBus(leftSlot.CurrentBus);
             Destroy(rightBus.gameObject);
@@ -98,7 +98,7 @@ public class GameManager : Singelton<GameManager>
 
         foreach (var passenger in matchingPassengers)
         {
-            if (bus.CurrentSize > 0)
+            if (bus.currentSize > 0)
             {
                 passenger.TryBoardBus(bus, hasBoarded =>
                 {
@@ -109,7 +109,7 @@ public class GameManager : Singelton<GameManager>
                         CheckLevelCompletion();
                     }
                 });
-                if (bus.CurrentSize <= 0)
+                if (bus.currentSize <= 0)
                 {
                     break;
                 }
