@@ -9,6 +9,7 @@ public class Level : MonoBehaviour
     [Min(2.5f)]
     public float range;
     public List<BusType> busTypes;
+    public List<Colors> colors;
     private List<Slot> _slots;
     private List<Passenger> _passengers;
     
@@ -16,7 +17,7 @@ public class Level : MonoBehaviour
     {
         InitLevel();
         InitBuses();
-        GameManager.Instance.Init(_slots, _passengers);
+        GameManager.Instance.Init(_slots, _passengers, this);
     }
 
     private void InitBuses()

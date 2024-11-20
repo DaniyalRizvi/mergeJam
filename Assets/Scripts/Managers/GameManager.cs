@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,29 +7,17 @@ public class GameManager : Singelton<GameManager>
 {
     private List<Slot> _slots = new();
     private List<Passenger> _passengers = new();
+    private Level _level;
 
-    public void Init(List<Slot> slots, List<Passenger> passengers)
+    public void Init(List<Slot> slots, List<Passenger> passengers, Level level)
     {
         _slots = slots;
         _passengers = passengers;
+        _level = level;
     }
 
-    public bool PlaceBusInSlot(Bus selectedBus, Slot clickedSlot)
-    {
-        if (clickedSlot.IsEmpty && !clickedSlot.isLocked)
-        {
-            selectedBus.transform.localScale = new Vector3(10, 3, 4);
-            selectedBus.AssignSlot(clickedSlot);
-            clickedSlot.AssignBus(selectedBus);
-            CheckForMerging(clickedSlot, out Bus finalBus);
-            BoardPassengersToBus(finalBus);
-            return true;
-        }
 
-        return false;
-    }
-
-    private void CheckForMerging(Slot clickedSlot, out Bus remainingBus)
+    public void CheckForMerging(Slot clickedSlot, out Bus remainingBus)
     {
         var (leftSlot, rightSlot) = GetAdjacentSlots(clickedSlot);
         if (leftSlot?.CurrentBus != null && clickedSlot.CurrentBus != null &&
@@ -36,12 +25,14 @@ public class GameManager : Singelton<GameManager>
             leftSlot.CurrentBus.capacity == clickedSlot.CurrentBus.capacity)
         {
             remainingBus = TryMergeBuses(leftSlot.CurrentBus, clickedSlot.CurrentBus, leftSlot, clickedSlot);
+            clickedSlot.CurrentBus = null;
         }
         else if (rightSlot?.CurrentBus != null && clickedSlot.CurrentBus != null &&
                  rightSlot.CurrentBus.busColor == clickedSlot.CurrentBus.busColor &&
                  rightSlot.CurrentBus.capacity == clickedSlot.CurrentBus.capacity)
         {
             remainingBus = TryMergeBuses(clickedSlot.CurrentBus, rightSlot.CurrentBus, clickedSlot, rightSlot);
+            clickedSlot.CurrentBus = null;
         }
         else
         {
@@ -73,6 +64,12 @@ public class GameManager : Singelton<GameManager>
             Destroy(rightBus.gameObject);
             rightSlot.ClearSlot();
             leftSlot.AssignBus(leftBus);
+            if (!_level.colors.Contains(leftSlot.CurrentBus.busColor))
+            {
+                // TODO : Implement Animation For Bus Leaving
+                Destroy(leftSlot.CurrentBus.gameObject);
+                leftSlot.ClearSlot();
+            }
             return leftBus;
         }
 
@@ -129,5 +126,47 @@ public class GameManager : Singelton<GameManager>
     private void LevelComplete()
     {
         LevelManager.Instance.OnLevelComplete?.Invoke();
+    }
+
+    public void PlaceBusInSlot(Bus selectedBus)
+    {
+        var clickedSlot = _slots.FirstOrDefault(slot => slot.isEmpty && !slot.isLocked);
+        if (clickedSlot != null)
+        {
+            selectedBus.transform.localScale = new Vector3(10, 3, 4);
+            selectedBus.AssignSlot(clickedSlot);
+            clickedSlot.AssignBus(selectedBus);
+            CheckForMerging(clickedSlot, out Bus finalBus);
+            BoardPassengersToBus(finalBus);
+            InputManager.Instance.DeselectBus();
+        }
+
+        StartCoroutine(nameof(CheckLooseCondition));
+    }
+
+    public void PlaceBusInSlot(Bus selectedBus, Slot clickedSlot)
+    {
+        if (clickedSlot.isEmpty && !clickedSlot.isLocked)
+        {
+            selectedBus.transform.localScale = new Vector3(10, 3, 4);
+            selectedBus.AssignSlot(clickedSlot);
+            clickedSlot.AssignBus(selectedBus);
+            CheckForMerging(clickedSlot, out Bus finalBus);
+            BoardPassengersToBus(finalBus);
+            InputManager.Instance.DeselectBus();
+        }
+
+        StartCoroutine(nameof(CheckLooseCondition));
+    }
+
+    private IEnumerator CheckLooseCondition()
+    {
+        var isSlotEmpty = _slots.Any(slot => slot.isEmpty);
+        if (!isSlotEmpty)
+        {
+            yield return new WaitUntil(() => _passengers.Where(p => p.IsBoarding).All(p => p.hasBoarded));
+            if(_passengers.Count>0)
+                UIManager.Instance.ShowLevelFailedUI();
+        }
     }
 }

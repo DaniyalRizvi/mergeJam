@@ -14,7 +14,7 @@ public class Slot : MonoBehaviour
         name = $"{name} {transform.GetSiblingIndex()}";
     }
 
-    public bool IsEmpty => CurrentBus == null;
+    public bool isEmpty => CurrentBus == null;
 
 
     public void UnlockSlot()

@@ -10,7 +10,7 @@ public class Bus : MonoBehaviour
         set
         {
             _capacity = value;
-            if (_assignedSlot != null)
+            if (AssignedSlot != null)
                 capacityText.SetText(value.ToString());
         }
     }
@@ -23,7 +23,7 @@ public class Bus : MonoBehaviour
         set
         {
             _currentSize = value;
-            if (_assignedSlot != null)
+            if (AssignedSlot != null)
                 currentSizeText.SetText(value.ToString());
         }
     }
@@ -34,7 +34,7 @@ public class Bus : MonoBehaviour
     public bool isMergable = true;
     public Transform gateTransform;
     internal Rigidbody Rb;
-    private Slot _assignedSlot;
+    internal Slot AssignedSlot;
     public TMP_Text capacityText;
     public TMP_Text currentSizeText;
 
@@ -52,7 +52,7 @@ public class Bus : MonoBehaviour
 
     public bool CanMergeWith(Bus otherBus)
     {
-        return otherBus.busColor == busColor && otherBus.capacity == capacity && _assignedSlot != null && otherBus._assignedSlot != null;
+        return otherBus.busColor == busColor && otherBus.capacity == capacity && AssignedSlot != null && otherBus.AssignedSlot != null;
     }
 
     public void MergeWith(Bus otherBus)
@@ -65,11 +65,11 @@ public class Bus : MonoBehaviour
 
     public void AssignSlot(Slot clickedSlot)
     {
-        if (_assignedSlot != null)
+        if (AssignedSlot != null)
         {
-            _assignedSlot.CurrentBus = null;
+            AssignedSlot.CurrentBus = null;
         }
-        _assignedSlot = clickedSlot;
+        AssignedSlot = clickedSlot;
         
         capacityText.SetText(capacity.ToString());
         currentSizeText.SetText(currentSize.ToString());
