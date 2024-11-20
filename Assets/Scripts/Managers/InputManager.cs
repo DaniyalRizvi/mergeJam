@@ -1,14 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+public class InputManager : Singelton<InputManager>
 {
     private Bus _selectedBus; 
-    private GameInputActions _inputActions; 
+    private GameInputActions _inputActions;
 
-    void Awake()
+    protected override void Awake()
     {
         _inputActions = new GameInputActions(); 
+        base.Awake();
     }
 
     void OnEnable()
@@ -33,8 +34,27 @@ public class InputManager : MonoBehaviour
             Slot clickedSlot = hit.collider.GetComponent<Slot>();
             if (clickedBus != null)
             {
+                if (_selectedBus != null)
+                {
+                    if (_selectedBus.AssignedSlot != null && clickedBus.AssignedSlot != null)
+                    {
+                        var currentSlot = clickedBus.AssignedSlot;
+                        var newSlot = _selectedBus.AssignedSlot;
+                        _selectedBus.AssignSlot(currentSlot);
+                        newSlot.AssignBus(clickedBus);
+                        clickedBus.AssignSlot(newSlot);
+                        currentSlot.AssignBus(_selectedBus);
+                        GameManager.Instance.CheckForMerging(currentSlot, out Bus finalBus);
+                        GameManager.Instance.CheckForMerging(newSlot, out finalBus);
+                        DeselectBus();
+                    }
+
+                    return;
+                }
+
                 DeselectBus();
                 SelectBus(clickedBus);
+
                 return;
             }
 
@@ -48,14 +68,16 @@ public class InputManager : MonoBehaviour
                 {
                     TryMoveBusToSlot(clickedSlot);
                 }
+
                 return;
             }
         }
-        
+
         DeselectBus();
     }
 
 
+    
     void SelectBus(Bus bus)
     {
         if (_selectedBus != null && bus != _selectedBus)
@@ -68,24 +90,21 @@ public class InputManager : MonoBehaviour
         }
         _selectedBus = bus;
         _selectedBus.gameObject.AddComponent<Outline>();
+        if (bus.AssignedSlot == null)
+            TryMoveBusToSlot();
+    }
+    
+    void TryMoveBusToSlot()
+    { 
+        GameManager.Instance.PlaceBusInSlot(_selectedBus);
     }
 
     void TryMoveBusToSlot(Slot clickedSlot)
     {
-        bool placedInSlot = GameManager.Instance.PlaceBusInSlot(_selectedBus, clickedSlot);
-
-        if (placedInSlot)
-        {
-            DeselectBus();
-            Debug.Log("Bus successfully moved to a slot.");
-        }
-        else
-        {
-            Debug.Log("No available slots for this bus.");
-        }
+        GameManager.Instance.PlaceBusInSlot(_selectedBus, clickedSlot);
     }
 
-    void DeselectBus()
+    public void DeselectBus()
     {
         if (_selectedBus)
         {
