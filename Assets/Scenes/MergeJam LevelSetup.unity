@@ -487,6 +487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 16650998}
+  - component: {fileID: 16650999}
   m_Layer: 0
   m_Name: Busses
   m_TagString: Untagged
@@ -509,6 +510,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 49437068}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &16650999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16650997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4afb4443790204c85a720d0b1d6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &20012400
 GameObject:
   m_ObjectHideFlags: 0
@@ -4359,6 +4372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 162344992}
+  - component: {fileID: 162344993}
   m_Layer: 0
   m_Name: Busses
   m_TagString: Untagged
@@ -4381,6 +4395,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1409098213}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &162344993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162344991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4afb4443790204c85a720d0b1d6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &165462349
 GameObject:
   m_ObjectHideFlags: 0
@@ -20221,6 +20247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 754345068}
+  - component: {fileID: 754345069}
   m_Layer: 0
   m_Name: Busses
   m_TagString: Untagged
@@ -20243,6 +20270,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1087158341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &754345069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754345067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4afb4443790204c85a720d0b1d6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &754604185
 GameObject:
   m_ObjectHideFlags: 0
@@ -23596,7 +23635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95586dd3e70a2f046970a79eabb383e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 0
+  range: 13.26
   busTypes:
   - capacity: 1
     color: 1
@@ -27532,6 +27571,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1040668066}
+  - component: {fileID: 1040668067}
   m_Layer: 0
   m_Name: Busses
   m_TagString: Untagged
@@ -27554,6 +27594,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1836964667}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1040668067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040668065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4afb4443790204c85a720d0b1d6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1045135852
 GameObject:
   m_ObjectHideFlags: 0
@@ -35708,6 +35760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1298269277}
+  - component: {fileID: 1298269278}
   m_Layer: 0
   m_Name: Busses
   m_TagString: Untagged
@@ -35730,6 +35783,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1450407270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1298269278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298269276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4afb4443790204c85a720d0b1d6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1306587246
 GameObject:
   m_ObjectHideFlags: 0
@@ -37755,6 +37820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1371657620}
+  - component: {fileID: 1371657621}
   m_Layer: 0
   m_Name: Busses
   m_TagString: Untagged
@@ -37777,6 +37843,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 22972547}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1371657621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371657619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4afb4443790204c85a720d0b1d6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1372033684
 GameObject:
   m_ObjectHideFlags: 0
@@ -40784,6 +40862,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1448058447}
+  - component: {fileID: 1448058448}
   m_Layer: 0
   m_Name: Busses
   m_TagString: Untagged
@@ -40806,6 +40885,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1562016319}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1448058448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448058446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4afb4443790204c85a720d0b1d6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1448263624
 GameObject:
   m_ObjectHideFlags: 0
@@ -50023,6 +50114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1707575372}
+  - component: {fileID: 1707575373}
   m_Layer: 0
   m_Name: Busses
   m_TagString: Untagged
@@ -50045,6 +50137,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 967677099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1707575373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707575371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4afb4443790204c85a720d0b1d6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1719017008
 GameObject:
   m_ObjectHideFlags: 0
@@ -55975,6 +56079,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1883481661}
+  - component: {fileID: 1883481662}
   m_Layer: 0
   m_Name: Busses
   m_TagString: Untagged
@@ -55997,6 +56102,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 889078103}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1883481662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883481660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4afb4443790204c85a720d0b1d6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1892320736
 GameObject:
   m_ObjectHideFlags: 0
@@ -57842,6 +57959,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1945980086}
+  - component: {fileID: 1945980087}
   m_Layer: 0
   m_Name: Busses
   m_TagString: Untagged
@@ -57864,6 +57982,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1504254909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1945980087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945980085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4afb4443790204c85a720d0b1d6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1963479527
 GameObject:
   m_ObjectHideFlags: 0
@@ -59687,6 +59817,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2045696043}
+  - component: {fileID: 2045696044}
   m_Layer: 0
   m_Name: Busses
   m_TagString: Untagged
@@ -59709,6 +59840,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1372949234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2045696044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045696042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4afb4443790204c85a720d0b1d6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2046790486
 GameObject:
   m_ObjectHideFlags: 0
@@ -61761,6 +61904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2118150934}
+  - component: {fileID: 2118150935}
   m_Layer: 0
   m_Name: Busses
   m_TagString: Untagged
@@ -61783,6 +61927,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1595695273}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2118150935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118150933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4afb4443790204c85a720d0b1d6103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2119632617
 GameObject:
   m_ObjectHideFlags: 0
