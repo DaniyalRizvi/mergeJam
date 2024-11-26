@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,7 +21,7 @@ public class LevelManager : Singelton<LevelManager>
         }
 
         _levels = FindObjectsOfType<Level>().ToList();
-        _levels.Reverse();
+        _levels.SortByName();
 
         Application.targetFrameRate = 1000;
         OnLevelComplete += OnLevelCompleted;
@@ -44,6 +45,10 @@ public class LevelManager : Singelton<LevelManager>
     private void OnLevelCompleted()
     {
         _levelNumber++;
+        if (_levelNumber % 3 == 0)
+        {
+            DTAdsManager.Instance.ShowAd(Constants.InterstitialId);
+        }
         if (_levelNumber < _levels.Count)
         {
             LoadLevel(_levelNumber);
