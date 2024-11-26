@@ -65,6 +65,11 @@ public class Level : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(spawnPoint + new Vector3(0, range, 0), range);
     }
+
+    public void DestroyBus(Bus bus)
+    {
+        Destroy(bus.gameObject);
+    }
 }
 
 

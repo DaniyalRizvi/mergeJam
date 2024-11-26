@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Managers;
 using UnityEngine;
 
 public class GameManager : Singelton<GameManager>
@@ -79,7 +81,6 @@ public class GameManager : Singelton<GameManager>
     private void NotifyPassengersOfNewBus(Bus newBus)
     {
         var passengersToRedirect = _passengers.Where(p => p.IsBoarding && p.passengerColor == newBus.busColor).ToList();
-        Debug.Log(passengersToRedirect.Count);
         foreach (var passenger in passengersToRedirect)
         {
             passenger.UpdateBusAfterMerge(newBus);
@@ -168,5 +169,11 @@ public class GameManager : Singelton<GameManager>
             if(_passengers.Count>0)
                 UIManager.Instance.ShowLevelFailedUI();
         }
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if(hasFocus)
+            DTAdsManager.Instance.ShowAd(Constants.InterstitialId);
     }
 }

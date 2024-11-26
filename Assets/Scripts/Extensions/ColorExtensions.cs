@@ -1,5 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class ColorExtensions
@@ -25,4 +26,10 @@ public static class ColorExtensions
 
         return newColor;
     } 
+    
+    public static List<Colors> Invert(this List<Colors> colors)
+    {
+        var allColors = Enum.GetValues(typeof(Colors)).Cast<Colors>();
+        return allColors.Except(colors).ToList();
+    }
 }

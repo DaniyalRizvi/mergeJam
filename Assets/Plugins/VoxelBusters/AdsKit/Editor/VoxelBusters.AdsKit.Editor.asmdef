@@ -1,0 +1,19 @@
+{
+  "name": "VoxelBusters.AdsKit.Editor",
+  "references": [
+    "VoxelBusters.CoreLibrary",
+    "VoxelBusters.CoreLibrary.NativePlugins",
+    "VoxelBusters.CoreLibrary.Editor",
+    "VoxelBusters.AdsKit"
+  ],
+  "optionalUnityReferences": [],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": []
+}

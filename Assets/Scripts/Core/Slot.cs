@@ -1,5 +1,3 @@
-using System;
-using UnityEditor;
 using UnityEngine;
 
 public class Slot : MonoBehaviour
@@ -19,6 +17,7 @@ public class Slot : MonoBehaviour
 
     public void UnlockSlot()
     {
+        // TODO: Implement Unlock Slot UI With Monetization
         isLocked = false; 
     }
 

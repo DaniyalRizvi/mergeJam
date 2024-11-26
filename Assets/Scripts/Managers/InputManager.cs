@@ -1,14 +1,22 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class InputManager : Singelton<InputManager>
 {
+    
+    [SerializeField] private GraphicRaycaster graphicRaycaster;
     private Bus _selectedBus; 
     private GameInputActions _inputActions;
+    private InputAction _positionAction;
 
     protected override void Awake()
     {
-        _inputActions = new GameInputActions(); 
+        _inputActions = new GameInputActions();
+        _positionAction = _inputActions.FindAction("Position");
         base.Awake();
     }
 
@@ -26,6 +34,8 @@ public class InputManager : Singelton<InputManager>
 
     void OnClickPerformed(InputAction.CallbackContext context)
     {
+        if(IsPointerOverUI())
+            return;
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = Camera.main!.ScreenPointToRay(mousePosition);
         if (Physics.Raycast(ray, out var hit) && hit.collider != null)
@@ -44,8 +54,8 @@ public class InputManager : Singelton<InputManager>
                         newSlot.AssignBus(clickedBus);
                         clickedBus.AssignSlot(newSlot);
                         currentSlot.AssignBus(_selectedBus);
-                        GameManager.Instance.CheckForMerging(currentSlot, out Bus finalBus);
-                        GameManager.Instance.CheckForMerging(newSlot, out finalBus);
+                        GameManager.Instance.CheckForMerging(currentSlot, out _);
+                        GameManager.Instance.CheckForMerging(newSlot, out _);
                         DeselectBus();
                     }
 
@@ -111,5 +121,15 @@ public class InputManager : Singelton<InputManager>
             Destroy(_selectedBus.GetComponent<Outline>());
             _selectedBus = null;
         }
+    }
+    
+    private bool IsPointerOverUI()
+    {
+        var mousePosition = _positionAction.ReadValue<Vector2>();
+        var pointerEventData = new PointerEventData(EventSystem.current);
+        pointerEventData.position = mousePosition;
+        var results = new List<RaycastResult>();
+        graphicRaycaster.Raycast(pointerEventData, results);
+        return results.Count > 0;
     }
 }

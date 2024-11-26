@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e64e32fb2cd4151be3655efff4145f, type: 3}
+  m_Name: AdsKitSettings
+  m_EditorClassIdentifier: 
+  m_isEnabled: 1
+  m_isDebugBuild: 1
+  m_autoLoadRetryDelay: 15
+  m_autoInitOnStart: 0
+  m_loadAdMode: 1
+  m_networkSettingsArray:
+  - m_networkId: AdColony
+    m_isEnabled: 0
+    m_runtimeApiKey: 
+    m_runtimeApiKeyOverrides:
+      m_ios: 
+      m_tvos: 
+      m_android: 
+    m_runtimeApiSecret: 
+    m_runtimeApiSecretOverrides:
+      m_ios: 
+      m_tvos: 
+      m_android: 
+    m_debugApiKey: 
+    m_debugApiSecret: 
+    m_data: 
+    m_adMetaArray: []
+  - m_networkId: AdMob
+    m_isEnabled: 1
+    m_runtimeApiKey: 
+    m_runtimeApiKeyOverrides:
+      m_ios: 
+      m_tvos: 
+      m_android: ca-app-pub-3940256099942544~3347511713
+    m_runtimeApiSecret: 
+    m_runtimeApiSecretOverrides:
+      m_ios: 
+      m_tvos: 
+      m_android: 
+    m_debugApiKey: 
+    m_debugApiSecret: 
+    m_data: 
+    m_adMetaArray:
+    - m_placement: mj_interstitial_ad
+      m_adUnitIds:
+        m_ios: 
+        m_tvos: 
+        m_android: ca-app-pub-3940256099942544/1033173712
+    - m_placement: mj_rewarded_ad
+      m_adUnitIds:
+        m_ios: 
+        m_tvos: 
+        m_android: ca-app-pub-3940256099942544/5224354917
+    - m_placement: mj_banner_ad
+      m_adUnitIds:
+        m_ios: 
+        m_tvos: 
+        m_android: ca-app-pub-3940256099942544/9214589741
+  - m_networkId: AppLovin
+    m_isEnabled: 0
+    m_runtimeApiKey: 
+    m_runtimeApiKeyOverrides:
+      m_ios: 
+      m_tvos: 
+      m_android: 
+    m_runtimeApiSecret: 
+    m_runtimeApiSecretOverrides:
+      m_ios: 
+      m_tvos: 
+      m_android: 
+    m_debugApiKey: 
+    m_debugApiSecret: 
+    m_data: 
+    m_adMetaArray: []
+  - m_networkId: Tapjoy
+    m_isEnabled: 0
+    m_runtimeApiKey: 
+    m_runtimeApiKeyOverrides:
+      m_ios: 
+      m_tvos: 
+      m_android: 
+    m_runtimeApiSecret: 
+    m_runtimeApiSecretOverrides:
+      m_ios: 
+      m_tvos: 
+      m_android: 
+    m_debugApiKey: 
+    m_debugApiSecret: 
+    m_data: 
+    m_adMetaArray: []
+  - m_networkId: UnityAds
+    m_isEnabled: 0
+    m_runtimeApiKey: 
+    m_runtimeApiKeyOverrides:
+      m_ios: 
+      m_tvos: 
+      m_android: 
+    m_runtimeApiSecret: 
+    m_runtimeApiSecretOverrides:
+      m_ios: 
+      m_tvos: 
+      m_android: 
+    m_debugApiKey: 
+    m_debugApiSecret: 
+    m_data: 
+    m_adMetaArray: []
+  - m_networkId: Vungle
+    m_isEnabled: 0
+    m_runtimeApiKey: 
+    m_runtimeApiKeyOverrides:
+      m_ios: 
+      m_tvos: 
+      m_android: 
+    m_runtimeApiSecret: 
+    m_runtimeApiSecretOverrides:
+      m_ios: 
+      m_tvos: 
+      m_android: 
+    m_debugApiKey: 
+    m_debugApiSecret: 
+    m_data: 
+    m_adMetaArray: []
+  m_networkPreferenceMeta:
+    m_banner:
+    - AdMob
+    m_interstitial:
+    - AdMob
+    m_video: []
+    m_rewardedVideo:
+    - AdMob
+    m_augmentedReality: []
+    m_playable: []
+    m_iapPromo: []
+  m_placementMetaArray:
+  - m_name: mj_interstitial_ad
+    m_adType: 2
+    m_autoLoad: 1
+    m_optionsObject: {fileID: 0}
+  - m_name: mj_banner_ad
+    m_adType: 1
+    m_autoLoad: 1
+    m_optionsObject: {fileID: 11400000, guid: ca47e80958738bd43bc004ef2fab2937, type: 2}
+  - m_name: mj_rewarded_ad
+    m_adType: 4
+    m_autoLoad: 1
+    m_optionsObject: {fileID: 11400000, guid: ca47e80958738bd43bc004ef2fab2937, type: 2}
+  m_adContentDefaultSettings:
+    m_banner: {fileID: 11400000, guid: ca47e80958738bd43bc004ef2fab2937, type: 2}
+  m_testDevices:
+    m_iosIds: []
+    m_androidIds: []
+  m_errorLogList: []
