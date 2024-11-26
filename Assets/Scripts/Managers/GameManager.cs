@@ -11,6 +11,12 @@ public class GameManager : Singelton<GameManager>
     private List<Passenger> _passengers = new();
     private Level _level;
 
+    private IEnumerator Start()
+    {
+        yield return new WaitUntil(() => DTAdsManager.Instance && DTAdsManager.Instance.isInitialised);
+        DTAdsManager.Instance.ShowAd(Constants.BannerID);
+    }
+
     public void Init(List<Slot> slots, List<Passenger> passengers, Level level)
     {
         _slots = slots;
@@ -134,11 +140,10 @@ public class GameManager : Singelton<GameManager>
         var clickedSlot = _slots.FirstOrDefault(slot => slot.isEmpty && !slot.isLocked);
         if (clickedSlot != null)
         {
-            selectedBus.transform.localScale = new Vector3(10, 3, 4);
             selectedBus.AssignSlot(clickedSlot);
             clickedSlot.AssignBus(selectedBus);
-            CheckForMerging(clickedSlot, out Bus finalBus);
-            BoardPassengersToBus(finalBus);
+            TriggerCascadingMerge(clickedSlot, out Bus remainingBus);
+            BoardPassengersToBus(remainingBus);
             InputManager.Instance.DeselectBus();
         }
 
@@ -149,15 +154,26 @@ public class GameManager : Singelton<GameManager>
     {
         if (clickedSlot.isEmpty && !clickedSlot.isLocked)
         {
-            selectedBus.transform.localScale = new Vector3(10, 3, 4);
             selectedBus.AssignSlot(clickedSlot);
             clickedSlot.AssignBus(selectedBus);
-            CheckForMerging(clickedSlot, out Bus finalBus);
-            BoardPassengersToBus(finalBus);
+            TriggerCascadingMerge(clickedSlot, out Bus remainingBus);
+            BoardPassengersToBus(remainingBus);
             InputManager.Instance.DeselectBus();
         }
 
         StartCoroutine(nameof(CheckLooseCondition));
+    }
+    
+    private void TriggerCascadingMerge(Slot clickedSlot, out Bus remainingBus)
+    {
+        CheckForMerging(clickedSlot, out remainingBus);
+        foreach (var slot in _slots)
+        {
+            if (slot.CurrentBus != null)
+            {
+                CheckForMerging(slot, out remainingBus);
+            }
+        }
     }
 
     private IEnumerator CheckLooseCondition()
@@ -169,11 +185,5 @@ public class GameManager : Singelton<GameManager>
             if(_passengers.Count>0)
                 UIManager.Instance.ShowLevelFailedUI();
         }
-    }
-
-    private void OnApplicationFocus(bool hasFocus)
-    {
-        if(hasFocus)
-            DTAdsManager.Instance.ShowAd(Constants.InterstitialId);
     }
 }
