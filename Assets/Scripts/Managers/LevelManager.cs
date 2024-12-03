@@ -75,7 +75,8 @@ public class LevelManager : Singelton<LevelManager>
     public List<Colors> GetCurrentLevelColors()
     {
         var allColors = Enum.GetValues(typeof(Colors)).Cast<Colors>();
-        return allColors.Except(_levels[_levelNumber].colors).ToList();
+        var levelColors = _levels[_levelNumber].colors.Select(colorCount => colorCount.color);
+        return allColors.Except(levelColors).ToList();
     }
 }
 

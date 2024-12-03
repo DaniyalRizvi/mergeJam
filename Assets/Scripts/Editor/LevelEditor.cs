@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,8 +9,7 @@ public class LevelEditor : Editor
     SerializedProperty busTypes;
     SerializedProperty range;
     SerializedProperty colors;
-
-    private Vector2 scrollPosition; 
+    private Vector2 busTypesScrollPosition;
 
     private void OnEnable()
     {
@@ -21,115 +21,101 @@ public class LevelEditor : Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        Level level = (Level)target;
 
-        
+        // Display Level Settings
         EditorGUILayout.LabelField("Level Settings", EditorStyles.boldLabel);
+
+        Level level = (Level)target;
+        level.range = 7.5f;
         level.range = EditorGUILayout.FloatField("Range", level.range);
 
         EditorGUILayout.Space();
-        EditorGUILayout.Space();
 
-
-        
+        // Display Passenger Colors
         EditorGUILayout.LabelField("Passenger Colors In Level", EditorStyles.boldLabel);
-
-        HashSet<int> usedColors = GetUsedColors(colors);
+        HashSet<Colors> usedColors = GetUsedColors(colors);
 
         for (int i = 0; i < colors.arraySize; i++)
         {
-            SerializedProperty color = colors.GetArrayElementAtIndex(i);
-            var currentColorIndex = color.enumValueIndex;
+            SerializedProperty colorElement = colors.GetArrayElementAtIndex(i);
+            SerializedProperty color = colorElement.FindPropertyRelative("color");
+            SerializedProperty count = colorElement.FindPropertyRelative("count");
 
-            
-            List<string> availableColorNames = new List<string>();
-            List<int> availableColorIndices = new List<int>();
+            Colors currentColor = (Colors)color.enumValueIndex;
 
-            foreach (var colorOption in System.Enum.GetValues(typeof(Colors)))
-            {
-                int index = (int)colorOption;
-                if (index == currentColorIndex || !usedColors.Contains(index))
-                {
-                    availableColorNames.Add(colorOption.ToString());
-                    availableColorIndices.Add(index);
-                }
-            }
+            // Prepare dropdown options excluding used colors except the current one
+            List<Colors> availableColors = GetAvailableColors(usedColors, currentColor);
+            List<string> availableColorNames = availableColors.ConvertAll(c => c.ToString());
 
-            GUI.backgroundColor = ((Colors)currentColorIndex).GetColor();
+            GUI.backgroundColor = currentColor.GetColor(); // Set background color
 
             EditorGUILayout.BeginVertical("box");
 
-            
-            int selectedIndex = availableColorIndices.IndexOf(currentColorIndex);
-            selectedIndex = EditorGUILayout.Popup($"Color {i}", selectedIndex, availableColorNames.ToArray());
+            // Dropdown for color selection
+            int selectedIndex = availableColors.IndexOf(currentColor);
+            int newIndex = EditorGUILayout.Popup($"Color {i + 1}", selectedIndex, availableColorNames.ToArray());
+            if (newIndex >= 0 && newIndex < availableColors.Count)
+            {
+                color.enumValueIndex = (int)availableColors[newIndex];
+            }
 
-            
-            color.enumValueIndex = availableColorIndices[selectedIndex];
+            // Count Field
+            count.intValue = EditorGUILayout.IntField("Count", count.intValue);
 
-            
-            if (GUILayout.Button("Remove", GUILayout.Width(100)))
+            // Remove Button
+            if (GUILayout.Button("Remove"))
             {
                 colors.DeleteArrayElementAtIndex(i);
                 break;
             }
 
             EditorGUILayout.EndVertical();
-            GUI.backgroundColor = Color.white;
+            GUI.backgroundColor = Color.white; // Reset background color
         }
 
-        
+        // Add Color Button
         if (GUILayout.Button("Add Color"))
         {
-            AddUniqueColor(colors);
+            AddUniqueColor(colors, usedColors);
         }
-        
+
+
         EditorGUILayout.Space();
-        EditorGUILayout.Space();
-        
-        
-        
-        EditorGUILayout.LabelField("Bus Types", EditorStyles.boldLabel);
-        
-        float scrollHeight = 300f; 
-        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, GUILayout.Height(scrollHeight));
+
+        // Bus Types
+        EditorGUILayout.LabelField($"Bus Types. Count: {level.busTypes.Count}", EditorStyles.boldLabel);
+
+        float scrollHeight = 300f; // Adjust this height as needed
+        busTypesScrollPosition =
+            EditorGUILayout.BeginScrollView(busTypesScrollPosition, GUILayout.Height(scrollHeight));
 
         for (int i = 0; i < busTypes.arraySize; i++)
         {
             SerializedProperty busType = busTypes.GetArrayElementAtIndex(i);
             SerializedProperty capacity = busType.FindPropertyRelative("capacity");
-            SerializedProperty colors = busType.FindPropertyRelative("color");
+            SerializedProperty color = busType.FindPropertyRelative("color");
 
-            
-            var colorValue = (Colors)colors.enumValueIndex;
-            GUI.backgroundColor = colorValue.GetColor(); 
+            var currentColor = (Colors)color.enumValueIndex;
+            GUI.backgroundColor = currentColor.GetColor();
 
             EditorGUILayout.BeginVertical("box");
-            
-            
-            EditorGUILayout.LabelField($"Bus Type (Color: {colorValue}) (Capacity: {capacity.intValue})", EditorStyles.miniBoldLabel);
 
+            EditorGUILayout.LabelField($"Bus Type {i + 1}", EditorStyles.miniBoldLabel);
             EditorGUILayout.PropertyField(capacity, new GUIContent("Capacity"));
-            EditorGUILayout.PropertyField(colors, new GUIContent("Colors"));
+            EditorGUILayout.PropertyField(color, new GUIContent("Color"));
 
-            EditorGUILayout.Space();
-
-            EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Remove", GUILayout.Width(100)))
             {
                 busTypes.DeleteArrayElementAtIndex(i);
                 break;
             }
-            EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.EndVertical();
-
-            
             GUI.backgroundColor = Color.white;
         }
 
         EditorGUILayout.EndScrollView();
 
-        
         if (GUILayout.Button("Add Bus Type"))
         {
             busTypes.InsertArrayElementAtIndex(busTypes.arraySize);
@@ -137,35 +123,42 @@ public class LevelEditor : Editor
 
         serializedObject.ApplyModifiedProperties();
     }
-    
-    private void AddUniqueColor(SerializedProperty colors)
+
+    private List<Colors> GetAvailableColors(HashSet<Colors> usedColors, Colors currentColor)
     {
-        var existingColors = new HashSet<int>();
+        var allColors = System.Enum.GetValues(typeof(Colors)).Cast<Colors>();
+        return allColors.Where(color => color == currentColor || !usedColors.Contains(color)).ToList();
+    }
+
+    private HashSet<Colors> GetUsedColors(SerializedProperty colors)
+    {
+        HashSet<Colors> usedColors = new HashSet<Colors>();
         for (int i = 0; i < colors.arraySize; i++)
         {
-            existingColors.Add(colors.GetArrayElementAtIndex(i).enumValueIndex);
+            SerializedProperty color = colors.GetArrayElementAtIndex(i).FindPropertyRelative("color");
+            usedColors.Add((Colors)color.enumValueIndex);
         }
 
-        for (int i = 0; i < System.Enum.GetValues(typeof(Colors)).Length; i++)
+        return usedColors;
+    }
+
+    private void AddUniqueColor(SerializedProperty colors, HashSet<Colors> usedColors)
+    {
+        foreach (Colors color in System.Enum.GetValues(typeof(Colors)))
         {
-            if (!existingColors.Contains(i))
+            if (!usedColors.Contains(color))
             {
                 colors.InsertArrayElementAtIndex(colors.arraySize);
-                colors.GetArrayElementAtIndex(colors.arraySize - 1).enumValueIndex = i;
+                SerializedProperty newElement = colors.GetArrayElementAtIndex(colors.arraySize - 1);
+
+                // Initialize new element
+                newElement.FindPropertyRelative("color").enumValueIndex = (int)color;
+                newElement.FindPropertyRelative("count").intValue = 0;
+
                 return;
             }
         }
 
         Debug.LogWarning("All colors are already in the list!");
-    }
-    
-    private HashSet<int> GetUsedColors(SerializedProperty colors)
-    {
-        HashSet<int> usedColors = new HashSet<int>();
-        for (int i = 0; i < colors.arraySize; i++)
-        {
-            usedColors.Add(colors.GetArrayElementAtIndex(i).enumValueIndex);
-        }
-        return usedColors;
     }
 }

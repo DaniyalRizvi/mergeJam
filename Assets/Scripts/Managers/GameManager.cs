@@ -64,7 +64,7 @@ public class GameManager : Singelton<GameManager>
         leftBus.AssignSlot(leftSlot);
         leftSlot.AssignBus(leftBus);
         rightSlot.ClearSlot();
-        if (!_level.colors.Contains(leftSlot.CurrentBus.busColor))
+        if (!_level.colors.Exists(i=>i.color == leftSlot.CurrentBus.busColor))
         {
             Destroy(leftSlot.CurrentBus.gameObject);
             leftSlot.ClearSlot();
