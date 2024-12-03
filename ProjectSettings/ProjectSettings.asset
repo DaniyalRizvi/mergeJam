@@ -160,7 +160,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.DefaultCompany.MergeJam
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -169,7 +170,7 @@ PlayerSettings:
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 22
-  AndroidTargetSdkVersion: 28
+  AndroidTargetSdkVersion: 34
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -837,6 +838,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     Android: ENABLE_VOXELBUSTERS_ADS_KIT
     Standalone: ENABLE_VOXELBUSTERS_ADS_KIT
+    WebGL: ENABLE_VOXELBUSTERS_ADS_KIT
     iPhone: ENABLE_VOXELBUSTERS_ADS_KIT
   additionalCompilerArguments: {}
   platformArchitecture: {}
@@ -946,7 +948,7 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 2
+  activeInputHandler: 1
   windowsGamepadBackendHint: 0
   cloudProjectId: f07a8347-712f-420c-9906-c13b1f16c5d2
   framebufferDepthMemorylessMode: 0

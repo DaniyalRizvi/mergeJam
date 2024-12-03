@@ -15,7 +15,8 @@ public class Level : MonoBehaviour
     
     public void Init()
     {
-        range = 7.5f;
+        if (Mathf.Approximately(range, 0))
+            range = 7.5f;
         InitLevel();
         InitBuses();
         GameManager.Instance.Init(_slots, _passengers, this);

@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Bus : MonoBehaviour
 {
@@ -28,8 +27,7 @@ public class Bus : MonoBehaviour
         }
     }
     private int _currentSize;
-    
-    
+
     public Colors busColor;
     public bool isMergable = true;
     public Transform gateTransform;
@@ -49,28 +47,18 @@ public class Bus : MonoBehaviour
     {
         GetComponent<Renderer>().material.color = busColor.GetColor();
     }
-
-    public bool CanMergeWith(Bus otherBus)
-    {
-        return otherBus.busColor == busColor && otherBus.capacity == capacity && AssignedSlot != null && otherBus.AssignedSlot != null;
-    }
-
-    public void MergeWith(Bus otherBus)
-    {
-        capacity *= 2;
-        currentSize = capacity;
-        UpdateVisual();
-        Destroy(otherBus.gameObject);
-    }
-
+    
     public void AssignSlot(Slot clickedSlot)
     {
-        if (AssignedSlot != null)
+        if (clickedSlot.isLocked)
         {
-            AssignedSlot.CurrentBus = null;
+            Debug.Log("Slot is locked. Cannot assign a bus.");
+            return;
         }
+
+        if (AssignedSlot != null)
+            AssignedSlot.CurrentBus = null;
         AssignedSlot = clickedSlot;
-        
         capacityText.SetText(capacity.ToString());
         currentSizeText.SetText(currentSize.ToString());
     }

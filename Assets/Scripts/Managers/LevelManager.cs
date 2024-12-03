@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Managers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -38,6 +39,7 @@ public class LevelManager : Singelton<LevelManager>
         }
         _levels[levelNumber].SetActiveState(true);
         _levels[levelNumber].Init();
+        GameObject.Find("LevelText").GetComponent<TMP_Text>().SetText($"Level No: {_levelNumber + 1}");
         UIManager.Instance.ResetUI();
     }
 
@@ -63,6 +65,17 @@ public class LevelManager : Singelton<LevelManager>
     {
         PlayerPrefs.SetInt("RestartLevel", _levelNumber);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public Level GetCurrentLevel()
+    {
+        return _levels[_levelNumber];
+    }
+
+    public List<Colors> GetCurrentLevelColors()
+    {
+        var allColors = Enum.GetValues(typeof(Colors)).Cast<Colors>();
+        return allColors.Except(_levels[_levelNumber].colors).ToList();
     }
 }
 

@@ -17,8 +17,11 @@ public class Slot : MonoBehaviour
 
     public void UnlockSlot()
     {
-        // TODO: Implement Unlock Slot UI With Monetization
-        isLocked = false; 
+        if (GemsManager.Instance.GetGems() >= Constants.UnlockSlotRequirement)
+        {
+            isLocked = false;
+            GemsManager.Instance.UseGems(Constants.UnlockSlotRequirement);
+        }
     }
 
     public void AssignBus(Bus bus)
@@ -33,11 +36,18 @@ public class Slot : MonoBehaviour
         CurrentBus.transform.position = _referencePoint.transform.position;
         CurrentBus.transform.rotation = _referencePoint.transform.rotation;
         bus.Rb.isKinematic = true;
-        GetComponent<Rigidbody>().isKinematic = true;
     }
+
 
     public void ClearSlot()
     {
-        CurrentBus = null;
+        if (CurrentBus != null)
+        {
+            Debug.Log($"Clearing slot: {name}, Bus: {CurrentBus.name}");
+            Destroy(CurrentBus.gameObject);
+            CurrentBus = null;
+        }
     }
+
+
 }

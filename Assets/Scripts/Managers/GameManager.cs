@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,63 +24,54 @@ public class GameManager : Singelton<GameManager>
     }
 
 
-    public void CheckForMerging(Slot clickedSlot, out Bus remainingBus)
+    private void CheckForMerging(Slot clickedSlot, out Bus remainingBus)
     {
-        var (leftSlot, rightSlot) = GetAdjacentSlots(clickedSlot);
-        if (leftSlot?.CurrentBus != null && clickedSlot.CurrentBus != null &&
-            leftSlot.CurrentBus.busColor == clickedSlot.CurrentBus.busColor &&
-            leftSlot.CurrentBus.capacity == clickedSlot.CurrentBus.capacity)
+        remainingBus = clickedSlot.CurrentBus;
+        bool mergeHappened;
+        do
         {
-            remainingBus = TryMergeBuses(leftSlot.CurrentBus, clickedSlot.CurrentBus, leftSlot, clickedSlot);
-            clickedSlot.CurrentBus = null;
-        }
-        else if (rightSlot?.CurrentBus != null && clickedSlot.CurrentBus != null &&
-                 rightSlot.CurrentBus.busColor == clickedSlot.CurrentBus.busColor &&
-                 rightSlot.CurrentBus.capacity == clickedSlot.CurrentBus.capacity)
-        {
-            remainingBus = TryMergeBuses(clickedSlot.CurrentBus, rightSlot.CurrentBus, clickedSlot, rightSlot);
-            clickedSlot.CurrentBus = null;
-        }
-        else
-        {
-            remainingBus = clickedSlot.CurrentBus;
-        }
-    }
+            mergeHappened = false;
 
-    private (Slot leftSlot, Slot rightSlot) GetAdjacentSlots(Slot currentSlot)
-    {
-        int currentIndex = _slots.IndexOf(currentSlot);
-        if (currentIndex == -1)
-        {
-            return (null, null);
-        }
-
-        Slot leftSlot = currentIndex > 0 ? _slots[currentIndex - 1] : null;
-        Slot rightSlot = currentIndex < _slots.Count - 1 ? _slots[currentIndex + 1] : null;
-        return (leftSlot, rightSlot);
-    }
-
-
-    private Bus TryMergeBuses(Bus leftBus, Bus rightBus, Slot leftSlot, Slot rightSlot)
-    {
-        if (leftBus.busColor == rightBus.busColor && leftBus.capacity == rightBus.capacity)
-        {
-            leftBus.currentSize += rightBus.currentSize;
-            leftBus.capacity += rightBus.capacity;
-            NotifyPassengersOfNewBus(leftSlot.CurrentBus);
-            Destroy(rightBus.gameObject);
-            rightSlot.ClearSlot();
-            leftSlot.AssignBus(leftBus);
-            if (!_level.colors.Contains(leftSlot.CurrentBus.busColor))
+            for (int i = _slots.Count - 1; i > 0; i--)
             {
-                // TODO : Implement Animation For Bus Leaving
-                Destroy(leftSlot.CurrentBus.gameObject);
-                leftSlot.ClearSlot();
-            }
-            return leftBus;
-        }
+                var leftSlot = _slots[i - 1];
+                var rightSlot = _slots[i];
 
-        return leftBus;
+                if (CanMerge(leftSlot, rightSlot))
+                {
+                    TryMergeBuses(leftSlot, rightSlot);
+                    mergeHappened = true;
+                }
+            }
+
+        } while (mergeHappened);
+    }
+
+    private bool CanMerge(Slot leftSlot, Slot rightSlot)
+    {
+        return leftSlot?.CurrentBus != null &&
+               rightSlot?.CurrentBus != null &&
+               leftSlot.CurrentBus.busColor == rightSlot.CurrentBus.busColor &&
+               leftSlot.CurrentBus.capacity == rightSlot.CurrentBus.capacity;
+    }
+
+    private void TryMergeBuses(Slot leftSlot, Slot rightSlot)
+    {
+        var leftBus = leftSlot.CurrentBus;
+        var rightBus = rightSlot.CurrentBus;
+        leftBus.capacity += rightBus.capacity;
+        leftBus.currentSize += rightBus.currentSize;
+        leftBus.AssignSlot(leftSlot);
+        leftSlot.AssignBus(leftBus);
+        rightSlot.ClearSlot();
+        if (!_level.colors.Contains(leftSlot.CurrentBus.busColor))
+        {
+            Destroy(leftSlot.CurrentBus.gameObject);
+            leftSlot.ClearSlot();
+            return;
+        }
+        NotifyPassengersOfNewBus(leftBus);
+        BoardPassengersToBus(leftBus);
     }
 
     private void NotifyPassengersOfNewBus(Bus newBus)
@@ -96,7 +86,7 @@ public class GameManager : Singelton<GameManager>
     private void BoardPassengersToBus(Bus bus)
     {
         var matchingPassengers = _passengers
-            .Where(p => p.passengerColor == bus.busColor)
+            .Where(p => p.passengerColor == bus.busColor && !p.hasBoarded && !p.IsBoarding)
             .ToList();
 
 
@@ -125,12 +115,12 @@ public class GameManager : Singelton<GameManager>
     {
         if (_passengers.Count == 0)
         {
+            GemsManager.Instance.AddGems(10);
             UIManager.Instance.ShowLevelCompleteUI();
-            Invoke(nameof(LevelComplete), 2f);
         }
     }
 
-    private void LevelComplete()
+    public void LevelComplete()
     {
         LevelManager.Instance.OnLevelComplete?.Invoke();
     }
@@ -160,11 +150,10 @@ public class GameManager : Singelton<GameManager>
             BoardPassengersToBus(remainingBus);
             InputManager.Instance.DeselectBus();
         }
-
         StartCoroutine(nameof(CheckLooseCondition));
     }
     
-    private void TriggerCascadingMerge(Slot clickedSlot, out Bus remainingBus)
+    public void TriggerCascadingMerge(Slot clickedSlot, out Bus remainingBus)
     {
         CheckForMerging(clickedSlot, out remainingBus);
         foreach (var slot in _slots)
@@ -178,7 +167,7 @@ public class GameManager : Singelton<GameManager>
 
     private IEnumerator CheckLooseCondition()
     {
-        var isSlotEmpty = _slots.Any(slot => slot.isEmpty);
+        var isSlotEmpty = _slots.Any(slot => slot.isEmpty && !slot.isLocked);
         if (!isSlotEmpty)
         {
             yield return new WaitUntil(() => _passengers.Where(p => p.IsBoarding).All(p => p.hasBoarded));

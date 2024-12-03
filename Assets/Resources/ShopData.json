@@ -1,0 +1,84 @@
+{
+    "data": [
+        {
+            "Item": "No Ads ",
+            "Rocket Power Up": 0,
+            "Fan Power Up": 0,
+            "No ads in months": 1,
+            "Dollar Price ": 3.99,
+            "Gems": 0,
+            "Bundle ID": "mj_no_ads",
+            "Description ": "Removes full screen ads "
+        },
+        {
+            "Item": "Vip Bundle ",
+            "Rocket Power Up": 5,
+            "Fan Power Up": 5,
+            "No ads in months": 1,
+            "Dollar Price ": 5.99,
+            "Gems": 0,
+            "Bundle ID": "mj_bundle_vip",
+            "Description ": "Removes full screen ads and gain power up "
+        },
+        {
+            "Item": "50 Gem Bundle",
+            "Rocket Power Up": 0,
+            "Fan Power Up": 0,
+            "No ads in months": 0,
+            "Dollar Price ": 0.99,
+            "Gems": 50,
+            "Bundle ID": "mj_gems_small",
+            "Description ": "Small Gem Bundle"
+        },
+        {
+            "Item": "150 Gem Bundle",
+            "Rocket Power Up": 0,
+            "Fan Power Up": 0,
+            "No ads in months": 0,
+            "Dollar Price ": 1.99,
+            "Gems": 150,
+            "Bundle ID": "mj_gems_medium",
+            "Description ": "Medium Gem Bundle"
+        },
+        {
+            "Item": "700 Gem Bundle",
+            "Rocket Power Up": 0,
+            "Fan Power Up": 0,
+            "No ads in months": 0,
+            "Dollar Price ": 3.99,
+            "Gems": 700,
+            "Bundle ID": "mj_gems_large",
+            "Description ": "Large Gem Bundle"
+        },
+        {
+            "Item": "1800 Gem Bundle",
+            "Rocket Power Up": 0,
+            "Fan Power Up": 0,
+            "No ads in months": 0,
+            "Dollar Price ": 5.99,
+            "Gems": 1800,
+            "Bundle ID": "mj_gems_giant",
+            "Description ": "Gaint Gem Bundle"
+        },
+        {
+            "Item": "Mega Bundle ",
+            "Rocket Power Up": 10,
+            "Fan Power Up": 10,
+            "No ads in months": 0,
+            "Dollar Price ": 7.99,
+            "Gems": 1000,
+            "Bundle ID": "mj_bundle_mega",
+            "Description ": "Mega Bundle Gems and power ups"
+        },
+        {
+            "Item": "Delux Bundle",
+            "Rocket Power Up": 25,
+            "Fan Power Up": 25,
+            "No ads in months": 0,
+            "Dollar Price ": 8.99,
+            "Gems": 1500,
+            "Bundle ID": "mj_bundle_delux",
+            "Description ": "Delux Bundle"
+        }
+    ]
+}

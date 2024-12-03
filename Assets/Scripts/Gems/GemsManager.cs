@@ -6,11 +6,13 @@ using UnityEngine;
 public class GemsManager : Singelton<GemsManager>
 {
     private int _gemAmount;
+    internal bool IsInitialized;
 
     protected override void Awake()
     {
         base.Awake();
-        _gemAmount = PlayerPrefs.HasKey("Gems") ? PlayerPrefs.GetInt("Gems") : 0; 
+        _gemAmount = PlayerPrefs.HasKey("Gems") ? PlayerPrefs.GetInt("Gems") : 0;
+        IsInitialized = true;
     }
 
     public void AddGems(int amount)

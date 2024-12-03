@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using Managers;
+using Newtonsoft.Json;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using UnityEngine;
@@ -9,68 +11,10 @@ using UnityEngine.UI;
 
 namespace IAP
 {
-    public class IAPManager : MonoBehaviour, IDetailedStoreListener
+    public class IAPManager : Singelton<IAPManager>, IDetailedStoreListener
     {
-        #region Singleton
-
-        private static IAPManager _instance;
-
-        private static readonly object Lock = new();
-
-        public static IAPManager Instance
-        {
-            get
-            {
-                if (_applicationIsQuitting)
-                {
-                    return null;
-                }
-
-                lock (Lock)
-                {
-                    if (_instance != null) return _instance;
-                    _instance = (IAPManager)FindObjectOfType(typeof(IAPManager));
-
-                    if (FindObjectsOfType(typeof(IAPManager)).Length > 1)
-                    {
-                        return _instance;
-                    }
-
-                    if (_instance != null) return _instance;
-
-                    return null;
-                }
-            }
-        }
-
-        private static bool IsDontDestroyOnLoad()
-        {
-            if (_instance == null)
-            {
-                return false;
-            }
-
-            if ((_instance.gameObject.hideFlags & HideFlags.DontSave) == HideFlags.DontSave)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private static bool _applicationIsQuitting;
-
-        public void OnDestroy()
-        {
-            if (IsDontDestroyOnLoad())
-            {
-                _applicationIsQuitting = true;
-            }
-        }
-    
-        #endregion
-
         public Button restorePurchasesButton;
+        [SerializeField] private Transform shopItemParent;
 
         private static IStoreController _storeController; 
         private static IExtensionProvider _storeExtensionProvider; 
@@ -84,8 +28,9 @@ namespace IAP
         const string k_Environment = "production";
         private bool IsUGSInit = false;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             Initialize(OnSuccess, OnError);
         }
         void Initialize(Action onSuccess, Action<string> onError)
@@ -140,9 +85,22 @@ namespace IAP
             module.useFakeStoreAlways = true;
             module.useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
             var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-            builder.AddProduct("mj_gems_5", ProductType.Consumable);
+            builder = LoadShopData(builder);
             UnityPurchasing.Initialize(this, builder);
         }
+
+        private ConfigurationBuilder LoadShopData(ConfigurationBuilder builder)
+        {
+            var json = Resources.Load<TextAsset>("ShopData");
+            var shopData = JsonConvert.DeserializeObject<ShopData>(json.text);
+            foreach (var datum in shopData.ShopDataItem)
+            {
+                builder.AddProduct(datum.BundleID, ProductType.Consumable);
+            }
+
+            return builder;
+        }
+
         private void BuyProductID(string productId)
         {
             if (Application.internetReachability != NetworkReachability.NotReachable)
@@ -172,6 +130,7 @@ namespace IAP
 
         public void BuyBundle(string bundleID)
         {
+            UIManager.Instance.EnableIAPOverlay(true);
             BuyProductID(bundleID);
         }
 
@@ -179,7 +138,7 @@ namespace IAP
 
         #region IAP Callbacks
 
-        private bool IsInitialized()
+        public bool IsInitialized()
         {
             return _storeController != null && _storeExtensionProvider != null;
         }
@@ -195,25 +154,70 @@ namespace IAP
 
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
         {
+            UIManager.Instance.EnableIAPOverlay(false);
             string id = args.purchasedProduct.definition.id;
-
-            Debug.LogError($"Purchased: {args.purchasedProduct.definition.id}");
+            var json = Resources.Load<TextAsset>("ShopData");
             switch (id)
             {
-                case "mj_gems_5":
+                case "mj_no_ads":
                 {
-                    GemsManager.Instance.AddGems(5);
+                    //Note: Remove Banner Ads
+                    DTAdsManager.Instance.adsRemoved = true;
+                    break;
+                }
+                case "mj_bundle_vip":
+                {
+                    DTAdsManager.Instance.adsRemoved = true;
+                    PowerUpsManager.Instance.AddPowerUp(PowerUpType.Rocket,5);
+                    PowerUpsManager.Instance.AddPowerUp(PowerUpType.Fan,5);
+                    break;
+                }
+                case "mj_gems_small":
+                {
+                    GemsManager.Instance.AddGems(50);
+                    break;
+                }
+                case "mj_gems_medium":
+                {
+                    GemsManager.Instance.AddGems(150);
+                    break;
+                }
+                case "mj_gems_large":
+                {
+                    GemsManager.Instance.AddGems(700);
+                    break;
+                }
+                case "mj_gems_giant":
+                {
+                    GemsManager.Instance.AddGems(1800);
+                    break;
+                }
+                case "mj_bundle_mega":
+                {
+                    GemsManager.Instance.AddGems(1000);
+                    PowerUpsManager.Instance.AddPowerUp(PowerUpType.Rocket,10);
+                    PowerUpsManager.Instance.AddPowerUp(PowerUpType.Fan,10);
+                    break;
+                }
+                case "mj_bundle_delux":
+                {
+                    GemsManager.Instance.AddGems(1500);
+                    PowerUpsManager.Instance.AddPowerUp(PowerUpType.Rocket,25);
+                    PowerUpsManager.Instance.AddPowerUp(PowerUpType.Fan,25);
                     break;
                 }
             }
+
             return PurchaseProcessingResult.Complete;
         }
         public void OnPurchaseDeferred(Product product)
         {
+            UIManager.Instance.EnableIAPOverlay(false);
             Debug.Log("Deferred product " + product.definition.id);
         }
         public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
         {
+            UIManager.Instance.EnableIAPOverlay(false);
             Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}",
                 product.definition.storeSpecificId, failureReason));
         }
@@ -252,6 +256,7 @@ namespace IAP
 
         public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
         {
+            UIManager.Instance.EnableIAPOverlay(false);
             Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}",
                 product.definition.storeSpecificId, failureDescription.message)); 
         }

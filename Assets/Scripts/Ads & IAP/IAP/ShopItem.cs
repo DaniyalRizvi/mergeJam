@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using IAP;
 using TMPro;
 using UnityEngine;
@@ -11,38 +12,36 @@ public class ShopItem : MonoBehaviour
 {
     private TMP_Text _itemName;
     private Button _buyButton;
-    private string _bundleId;
+    public string bundleId;
 
     private void Awake()
     {
+        bundleId = name;
+        _itemName = gameObject.GetComponentsInChildren<TMP_Text>().ToList()
+            .FirstOrDefault(i => i.name.Equals("Price Text"));
         _buyButton = gameObject.GetComponentInChildren<Button>();
-        _itemName = gameObject.GetComponentInChildren<TMP_Text>();
+    }
+
+    private void OnEnable()
+    {
         _buyButton.onClick.AddListener(BuyThis);
-        Init(new ShopItemData("Gems", "mj_gems_5"));
+        UpdatePrices();
+    }
+
+    private void OnDisable()
+    {
+        _buyButton.onClick.RemoveAllListeners();
     }
 
     private void BuyThis()
     {
-        IAPManager.Instance.BuyBundle(_bundleId);
+        IAPManager.Instance.BuyBundle(bundleId);
+        UIManager.Instance.EnableIAPOverlay(true);
     }
 
-    public void Init(ShopItemData itemData)
+    private void UpdatePrices()
     {
-        _itemName.SetText(itemData.name);
-        _bundleId = itemData.id;
-    }
-}
-
-
-[Serializable]
-public class ShopItemData
-{
-    public string name;
-    public string id;
-
-    public ShopItemData(string gems, string mjGems)
-    {
-        name = gems;
-        id = mjGems;
+        var price = IAPManager.Instance.GetProductPrice(bundleId);
+        _itemName.text = $"$ {price}";
     }
 }

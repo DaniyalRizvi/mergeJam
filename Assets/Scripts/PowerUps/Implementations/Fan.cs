@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Fan : IPowerUp
 {
-    public void UsePowerUp(object data = null)
+    public void Execute(object data = null)
     {
         if (data is not FanData sceneData) return;
         var force = sceneData.Force;
@@ -11,8 +11,16 @@ public class Fan : IPowerUp
         var busesInPile = buses.Where(bus => bus.AssignedSlot == null).ToList();
         foreach (var bus in busesInPile)
         {
-            bus.GetComponent<Rigidbody>().AddForce(Vector3.up * force, ForceMode.VelocityChange);
+            Vector3 randomDirection = Vector3.up + new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f));
+            randomDirection.Normalize(); 
+            float randomForce = force * Random.Range(0.9f, 1.1f);
+            bus.GetComponent<Rigidbody>().AddForce(randomDirection * randomForce, ForceMode.VelocityChange);
         }
+    }
+
+    public bool ExecuteWithReturn(object data = null)
+    {
+        return false;
     }
 }
 

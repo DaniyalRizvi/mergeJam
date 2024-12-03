@@ -1,4 +1,6 @@
 public interface IPowerUp
 {
-    public void UsePowerUp(object data = null);
+    public void Execute(object data = null);
+
+    public bool ExecuteWithReturn(object data = null);
 }

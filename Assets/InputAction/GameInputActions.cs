@@ -33,7 +33,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""b17b89a3-c88b-421a-92b0-813726829f97"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -60,7 +60,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""47628b4d-47d3-4dce-b887-c00a929cf6be"",
+                    ""id"": ""dbf6036f-8d4b-4e42-8f4e-5e5412366154"",
                     ""path"": ""<Touchscreen>/Press"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -83,7 +83,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e3be0824-0ef1-4b64-a7b7-128654bbc6ab"",
-                    ""path"": ""<Touchscreen>/touch0/position"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

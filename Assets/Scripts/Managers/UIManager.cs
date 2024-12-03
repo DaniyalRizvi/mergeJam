@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Managers;
 using TMPro;
 using UnityEngine;
@@ -8,27 +10,30 @@ using VoxelBusters.AdsKit;
 
 public class UIManager : Singelton<UIManager>
 {
-    [FormerlySerializedAs("_levelCompleteUI")] public GameObject levelCompleteUI;  
-    [FormerlySerializedAs("_levelFailedUI")] public GameObject levelFailedUI;  
-    [FormerlySerializedAs("_shopUI")] public GameObject shopUI;  
-    [FormerlySerializedAs("_getGemsBtn")] public Button getGemsBtn;  
-    [FormerlySerializedAs("_openShopBtn")] public Button openShopBtn;  
-    [FormerlySerializedAs("_gemsText")] public TMP_Text gemsText;  
+    public GameObject iapOverlay;
+    [FormerlySerializedAs("_levelCompleteUI")] public GameObject levelCompleteUI;
+    [FormerlySerializedAs("_levelFailedUI")] public GameObject levelFailedUI;
+    [FormerlySerializedAs("_shopUI")] public GameObject shopUI;
+    [FormerlySerializedAs("_openShopBtn")] public Button openShopBtn;
+    public Button watchAdBtn;
+    [FormerlySerializedAs("_gemsText")] public TMP_Text gemsText;
+    public List<ShopItem> iapHolders;
 
-    void Start()
+    IEnumerator Start()
     {
+        yield return new WaitUntil(() => GemsManager.Instance.IsInitialized);
+        iapOverlay.SetActive(false);
         levelCompleteUI.SetActive(false);
         levelFailedUI.SetActive(false);
         shopUI.SetActive(false);
-        
-        getGemsBtn.onClick.RemoveAllListeners();
-        getGemsBtn.onClick.AddListener(WatchAd);
-        
         openShopBtn.onClick.RemoveAllListeners();
         openShopBtn.onClick.AddListener(OpenShop);
+        watchAdBtn.onClick.RemoveAllListeners();
+        watchAdBtn.onClick.AddListener(WatchAd);
+        UpdateGems();
     }
 
-    private void OpenShop()
+    public void OpenShop()
     {
         shopUI.SetActive(true);
     }
@@ -48,14 +53,18 @@ public class UIManager : Singelton<UIManager>
     private void OnWatchAdFailed(string placementid)
     {
         if (placementid.Equals(Constants.RewardedID))
+        {
             Debug.Log("Reward not Added!");
+            OpenShop();
+        }
     }
 
     private void OnAdWatched(string placementid)
     {
         if (placementid.Equals(Constants.RewardedID))
         {
-            GemsManager.Instance.AddGems(5);
+            GemsManager.Instance.UseGems(10);
+            GemsManager.Instance.AddGems(200);
             Debug.Log("Reward Added!");
         }
     }
@@ -68,6 +77,7 @@ public class UIManager : Singelton<UIManager>
     
     public void ShowLevelCompleteUI()
     {
+        watchAdBtn.interactable = true;
         levelCompleteUI.SetActive(true);  
     }
     
@@ -91,5 +101,10 @@ public class UIManager : Singelton<UIManager>
     public void UpdateGems()
     {
         gemsText.SetText(GemsManager.Instance.GetGems().ToString());
+    }
+
+    public void EnableIAPOverlay(bool enable)
+    {
+        iapOverlay.SetActive(enable);
     }
 }

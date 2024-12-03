@@ -34,9 +34,9 @@ public class InputManager : Singelton<InputManager>
 
     void OnClickPerformed(InputAction.CallbackContext context)
     {
-        if(IsPointerOverUI())
+        if(!context.performed || IsPointerOverUI())
             return;
-        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        Vector2 mousePosition = _positionAction.ReadValue<Vector2>();
         Ray ray = Camera.main!.ScreenPointToRay(mousePosition);
         if (Physics.Raycast(ray, out var hit) && hit.collider != null)
         {
@@ -54,8 +54,7 @@ public class InputManager : Singelton<InputManager>
                         newSlot.AssignBus(clickedBus);
                         clickedBus.AssignSlot(newSlot);
                         currentSlot.AssignBus(_selectedBus);
-                        GameManager.Instance.CheckForMerging(currentSlot, out _);
-                        GameManager.Instance.CheckForMerging(newSlot, out _);
+                        GameManager.Instance.TriggerCascadingMerge(currentSlot,out _);
                         DeselectBus();
                     }
 
@@ -73,6 +72,7 @@ public class InputManager : Singelton<InputManager>
                 if (clickedSlot.isLocked)
                 {
                     clickedSlot.UnlockSlot();
+                    DeselectBus();
                 }
                 else if (_selectedBus != null)
                 {
@@ -90,14 +90,6 @@ public class InputManager : Singelton<InputManager>
     
     void SelectBus(Bus bus)
     {
-        if (_selectedBus != null && bus != _selectedBus)
-        {
-            if (bus.CanMergeWith(_selectedBus))
-            {
-                bus.MergeWith(_selectedBus);
-            }
-            return;
-        }
         _selectedBus = bus;
         _selectedBus.gameObject.AddComponent<Outline>();
         if (bus.AssignedSlot == null)
