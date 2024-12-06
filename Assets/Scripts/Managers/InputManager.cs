@@ -53,7 +53,7 @@ public class InputManager : Singelton<InputManager>
                     TutorialManager.Instance.tutorialCase++;
                     TutorialManager.Instance.HidePanel();
                     TutorialManager.Instance.MoveToBusses();
-                    return;
+                    return;                                                                     
                 }
                 case 2:
                 {
@@ -111,6 +111,16 @@ public class InputManager : Singelton<InputManager>
         {
             Bus clickedBus = hit.collider.GetComponent<Bus>();
             Slot clickedSlot = hit.collider.GetComponent<Slot>();
+            if (TutorialManager.Instance)
+            {
+                if (clickedBus != null)
+                {
+                    if (!TutorialManager.Instance.Busses.Contains(clickedBus.gameObject))
+                    {
+                        return;
+                    }
+                }
+            }
             if (clickedBus != null)
             {
                 if (_selectedBus != null)

@@ -22,6 +22,7 @@ public class TutorialManager : Singelton<TutorialManager>
     public List<Outline> passengerOutlines;
     public List<Outline> busOutlines;
     public bool isInAnimation = false;
+    internal List<GameObject> Busses = new List<GameObject>();
 
     public void HidePanel()
     {
@@ -146,6 +147,8 @@ public class TutorialManager : Singelton<TutorialManager>
             outline.OutlineWidth = 5f;
             var pos = mainCamera.GetComponent<Camera>().WorldToScreenPoint(outline.transform.position);
             hand.transform.position = pos + new Vector3(25, 0, -25);
+            Busses.Clear();
+            Busses.Add(outline.gameObject);
         }
     }
 
@@ -167,6 +170,8 @@ public class TutorialManager : Singelton<TutorialManager>
             outline.OutlineWidth = 5f;
             var pos = mainCamera.GetComponent<Camera>().WorldToScreenPoint(outline.transform.position);
             hand.transform.position = pos + new Vector3(25, 0, -25);
+            Busses.Clear();
+            Busses.Add(outline.gameObject);
         }
     }
 
@@ -177,6 +182,7 @@ public class TutorialManager : Singelton<TutorialManager>
             x.enabled = false;
         }
 
+        Busses.Clear();
         var outlineOne = busOutlines.FirstOrDefault(x => x != null && x.GetComponent<Bus>().busColor == Colors.Pink);
         var outlineTwo = busOutlines.FirstOrDefault(x =>
             x != null && x.GetComponent<Bus>().busColor == Colors.Pink && x != outlineOne);
@@ -185,6 +191,7 @@ public class TutorialManager : Singelton<TutorialManager>
             outlineOne.enabled = true;
             outlineOne.OutlineColor = Color.red;
             outlineOne.OutlineWidth = 5f;
+            Busses.Add(outlineOne.gameObject);
         }
 
         if (outlineTwo != null)
@@ -192,6 +199,7 @@ public class TutorialManager : Singelton<TutorialManager>
             outlineTwo.enabled = true;
             outlineTwo.OutlineColor = Color.red;
             outlineTwo.OutlineWidth = 5f;
+            Busses.Add(outlineTwo.gameObject);
         }
         InitPanel("Some vehicles are trash items. These take up space in the vehicle slots." + 
         "\nTo get rid of trash items, merge two trash items together to free up space.");
