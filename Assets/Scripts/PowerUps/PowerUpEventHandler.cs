@@ -54,6 +54,8 @@ public class PowerUpEventHandler : MonoBehaviour
             TutorialManager.Instance.tutorialCase++;
             TutorialManager.Instance.TutorialCompleted();
         }
+
+        GetComponent<Button>().interactable = false;
     }
 
     public void SetText()
