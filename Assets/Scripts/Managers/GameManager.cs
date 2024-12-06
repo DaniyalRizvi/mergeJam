@@ -9,7 +9,7 @@ public class GameManager : Singelton<GameManager>
     private List<Slot> _slots = new();
     private List<Passenger> _passengers = new();
     private Level _level;
-
+    
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => DTAdsManager.Instance && DTAdsManager.Instance.isInitialised);

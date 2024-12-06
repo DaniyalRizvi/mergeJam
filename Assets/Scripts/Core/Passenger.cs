@@ -82,6 +82,26 @@ public class Passenger : MonoBehaviour
             yield return null;
         }
 
+        if (TutorialManager.Instance)
+        {
+            switch (TutorialManager.Instance.tutorialCase)
+            {
+                case 5:
+                {
+                    TutorialManager.Instance.tutorialCase++;
+                    TutorialManager.Instance.InitSecondBus();
+                    break;
+                }
+                case 6:
+                {
+                    TutorialManager.Instance.tutorialCase++;
+                    TutorialManager.Instance.InitPanel(
+                        "When two vehicles of the same color and size merge, they form a higher-capacity vehicle!");
+                    break;
+                }
+            }
+        }
+        UIManager.Instance.UpdateHolder(passengerColor);
         hasBoarded = true;
         onComplete?.Invoke(hasBoarded);
     }

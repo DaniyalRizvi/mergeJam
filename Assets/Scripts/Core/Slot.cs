@@ -5,11 +5,16 @@ public class Slot : MonoBehaviour
     internal Bus CurrentBus;
     private Transform _referencePoint;
     public bool isLocked;
+    private GameObject _lockedIcon;
 
     private void Awake()
     {
         _referencePoint = transform.GetChild(0);
         name = $"{name} {transform.GetSiblingIndex()}";
+        if (isLocked)
+        {
+            _lockedIcon = Instantiate(Resources.Load<GameObject>("Unlock Icon"), transform, false);
+        }
     }
 
     public bool isEmpty => CurrentBus == null;
@@ -21,6 +26,8 @@ public class Slot : MonoBehaviour
         {
             isLocked = false;
             GemsManager.Instance.UseGems(Constants.UnlockSlotRequirement);
+            if(_lockedIcon)
+                Destroy(_lockedIcon);
         }
     }
 

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -34,6 +35,74 @@ public class InputManager : Singelton<InputManager>
 
     void OnClickPerformed(InputAction.CallbackContext context)
     {
+        if (TutorialManager.Instance)
+        {
+            if(TutorialManager.Instance.isInAnimation)
+                return;
+            switch (TutorialManager.Instance.tutorialCase)
+            {
+                case 0:
+                {
+                    TutorialManager.Instance.tutorialCase++;
+                    TutorialManager.Instance.HidePanel();
+                    TutorialManager.Instance.MoveToPassengers();
+                    return;
+                }
+                case 1:
+                {
+                    TutorialManager.Instance.tutorialCase++;
+                    TutorialManager.Instance.HidePanel();
+                    TutorialManager.Instance.MoveToBusses();
+                    return;
+                }
+                case 2:
+                {
+                    TutorialManager.Instance.tutorialCase++;
+                    TutorialManager.Instance.HidePanel();
+                    TutorialManager.Instance.InitFirstBus();
+                    return;
+                }
+                case 3:
+                {
+                    TutorialManager.Instance.tutorialCase++;
+                    TutorialManager.Instance.HidePanel();
+                    return;
+                }
+                case 4:
+                {
+                    TutorialManager.Instance.tutorialCase++;
+                    TutorialManager.Instance.hand.SetActive(false);
+                    break;
+                }
+                case 6:
+                {
+                    TutorialManager.Instance.HidePanel();
+                    break;
+                }
+                case 7:
+                {
+                    TutorialManager.Instance.tutorialCase++;
+                    TutorialManager.Instance.MoveToFull();
+                    break;
+                }
+                case 8:
+                {
+                    TutorialManager.Instance.tutorialCase++;
+                    TutorialManager.Instance.HidePanel();
+                    TutorialManager.Instance.InitTrashItems();
+                    break;
+                }
+                case 9:
+                {
+                    TutorialManager.Instance.HidePanel();
+                    break;
+                }
+                default:
+                    break;
+            }
+            
+            TutorialManager.Instance.hand.SetActive(false);
+        }
         if(!context.performed || IsPointerOverUI())
             return;
         Vector2 mousePosition = _positionAction.ReadValue<Vector2>();

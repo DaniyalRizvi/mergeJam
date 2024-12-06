@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class Level : MonoBehaviour
@@ -12,7 +13,15 @@ public class Level : MonoBehaviour
     public List<ColorCount> colors;
     private List<Slot> _slots;
     private List<Passenger> _passengers;
-    
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name.Contains("Tutorial"))
+        {
+            Init();
+        }
+    }
+
     public void Init()
     {
         if (Mathf.Approximately(range, 0))
@@ -34,6 +43,15 @@ public class Level : MonoBehaviour
             bus.busColor = busType.color;
             bus.capacity = busType.capacity;
             bus.Init();
+            if (TutorialManager.Instance)
+            {
+                var outline = bus.gameObject.AddComponent<Outline>();
+                outline.OutlineColor = Color.red;
+                outline.OutlineMode = Outline.Mode.OutlineAll;
+                outline.OutlineWidth = 3f;
+                TutorialManager.Instance.busOutlines.Add(outline);
+                outline.enabled = false;
+            }
         }
     }
 

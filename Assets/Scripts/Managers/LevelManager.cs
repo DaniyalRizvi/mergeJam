@@ -67,10 +67,7 @@ public class LevelManager : Singelton<LevelManager>
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public Level GetCurrentLevel()
-    {
-        return _levels[_levelNumber];
-    }
+    public Level GetCurrentLevel() => _levels[_levelNumber];
 
     public List<Colors> GetCurrentLevelColors()
     {

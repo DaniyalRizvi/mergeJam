@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Managers;
 using TMPro;
 using UnityEngine;
@@ -11,6 +12,7 @@ using VoxelBusters.AdsKit;
 public class UIManager : Singelton<UIManager>
 {
     public GameObject iapOverlay;
+    public GameObject pahHolder;
     [FormerlySerializedAs("_levelCompleteUI")] public GameObject levelCompleteUI;
     [FormerlySerializedAs("_levelFailedUI")] public GameObject levelFailedUI;
     [FormerlySerializedAs("_shopUI")] public GameObject shopUI;
@@ -91,6 +93,26 @@ public class UIManager : Singelton<UIManager>
     {
         levelCompleteUI.SetActive(false);
         levelFailedUI.SetActive(false);
+        SetupHolders(LevelManager.Instance.GetCurrentLevel());
+    }
+
+    private void SetupHolders(Level currentLevel)
+    {
+        foreach (var pah in pahHolder.GetComponentsInChildren<PassengerAmountHolder>())
+        {
+            Destroy(pah.gameObject);
+        }
+        foreach (var color in currentLevel.colors)
+        {
+            PassengerAmountHolder pah = Instantiate(Resources.Load<GameObject>("Passenger Amount Holder")).GetComponent<PassengerAmountHolder>();
+            pah.Init(color.color, color.count);
+            pah.transform.SetParent(pahHolder.transform);
+        }
+    }
+
+    public void UpdateHolder(Colors color)
+    {
+        pahHolder.GetComponentsInChildren<PassengerAmountHolder>().FirstOrDefault(i => i.Color == color)?.UpdateAmount();
     }
 
     public void RestartLevel()
