@@ -13,15 +13,6 @@ public class Level : MonoBehaviour
     public List<ColorCount> colors;
     private List<Slot> _slots;
     private List<Passenger> _passengers;
-
-    private void Start()
-    {
-        if (SceneManager.GetActiveScene().name.Contains("Tutorial"))
-        {
-            Init();
-        }
-    }
-
     public void Init()
     {
         if (Mathf.Approximately(range, 0))

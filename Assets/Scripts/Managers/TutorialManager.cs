@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class TutorialManager : Singelton<TutorialManager>
@@ -16,6 +17,8 @@ public class TutorialManager : Singelton<TutorialManager>
     public Transform passengerTransform;
     public Transform busTransform;
     public Transform homeTransform;
+    public Transform fan;
+    public Transform rocket;
     public List<Outline> passengerOutlines;
     public List<Outline> busOutlines;
     public bool isInAnimation = false;
@@ -101,7 +104,9 @@ public class TutorialManager : Singelton<TutorialManager>
             x.enabled = false;
         }
 
+        HidePanel();
         StartCoroutine(MoveToFullCoroutine());
+        
     }
 
     private IEnumerator MoveToFullCoroutine()
@@ -190,5 +195,88 @@ public class TutorialManager : Singelton<TutorialManager>
         }
         InitPanel("Some vehicles are trash items. These take up space in the vehicle slots." + 
         "\nTo get rid of trash items, merge two trash items together to free up space.");
+    }
+
+    public void InitFan()
+    {
+        StartCoroutine(InitFanCoroutine());
+    }
+
+    private IEnumerator InitFanCoroutine()
+    {
+        yield return null;
+        InitPanel("The Fan rearranges the vehicle pile, making vehicles at the bottom easier to access.");
+        isInAnimation = true;
+        float time = 0;
+        const float duration = 2f;
+        Vector3 startPosition = fan.localPosition;
+        Vector3 targetPosition = new Vector3(120, -800);
+        fan.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        var startScale = fan.transform.localScale;
+        var targetScale = Vector3.one;
+        while (time < duration)
+        {
+            fan.transform.localPosition = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            fan.transform.localScale = Vector3.Lerp(startScale, targetScale, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        fan.transform.localPosition = targetPosition;
+        fan.transform.localScale = targetScale;
+        isInAnimation = false;
+        HidePanel();
+    }
+
+    public void InitRocket()
+    {
+        StartCoroutine(InitRocketCoroutine());
+    }
+
+    private IEnumerator InitRocketCoroutine()
+    {
+        HidePanel();
+        yield return new WaitForSeconds(5f);
+        yield return null;
+        InitPanel("Rockets destroy a trash item, clearing space for you to easily select required items.");
+        isInAnimation = true;
+        float time = 0;
+        const float duration = 2f;
+        Vector3 startPosition = rocket.localPosition;
+        Vector3 targetPosition = new Vector3(-120, -800);
+        rocket.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        var startScale = rocket.transform.localScale;
+        var targetScale = Vector3.one;
+        while (time < duration)
+        {
+            rocket.transform.localPosition = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            rocket.transform.localScale = Vector3.Lerp(startScale, targetScale, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        rocket.transform.localPosition = targetPosition;
+        rocket.transform.localScale = targetScale;
+        isInAnimation = false;
+        yield return new WaitForSeconds(5f);
+        HidePanel();
+    }
+
+    public void TutorialCompleted()
+    {
+        Invoke(nameof(InitPanelAsync),2f);
+    }
+
+    private void InitPanelAsync()
+    {
+        InitPanel("Congratulations on completing the tutorial");
+        Invoke(nameof(LoadGameScene), 2f);
+    }
+
+
+
+    private void LoadGameScene()
+    {
+        SceneManager.LoadScene(sceneBuildIndex: 1);
     }
 }

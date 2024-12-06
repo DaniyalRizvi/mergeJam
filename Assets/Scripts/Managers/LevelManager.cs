@@ -39,7 +39,8 @@ public class LevelManager : Singelton<LevelManager>
         }
         _levels[levelNumber].SetActiveState(true);
         _levels[levelNumber].Init();
-        GameObject.Find("LevelText").GetComponent<TMP_Text>().SetText($"Level No: {_levelNumber + 1}");
+        if (GameObject.Find("LevelText"))
+            GameObject.Find("LevelText").GetComponent<TMP_Text>().SetText($"Level No: {_levelNumber + 1}"); 
         UIManager.Instance.ResetUI();
     }
 
@@ -76,11 +77,3 @@ public class LevelManager : Singelton<LevelManager>
         return allColors.Except(levelColors).ToList();
     }
 }
-
-//
-// internal class LevelComparer : IComparer<Level>
-// {
-//     public int Compare(Level x, Level y)
-//     {
-//     }
-// }

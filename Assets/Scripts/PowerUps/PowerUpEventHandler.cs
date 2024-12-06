@@ -16,10 +16,10 @@ public class PowerUpEventHandler : MonoBehaviour
     
     private bool canUse => PowerUpsManager.Instance.CanUsePowerUp(powerUpType);
     private bool _isOnCooldown = false;
+
     IEnumerator Start()
     {
         yield return new WaitUntil(() => PowerUpsManager.Instance.isInitialized);
-        GetComponent<Button>().onClick.AddListener(UsePowerUp);
         switch (powerUpType)
         {
             case PowerUpType.Rocket:
@@ -32,7 +32,28 @@ public class PowerUpEventHandler : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
 
+        if (TutorialManager.Instance)
+        {
+            GetComponent<Button>().onClick.AddListener(UsePowerUpTutorial);
+            yield break;
+        }
+        GetComponent<Button>().onClick.AddListener(UsePowerUp);
         SetText();
+    }
+
+    private void UsePowerUpTutorial()
+    {
+        _powerUp.Execute(CreateData());
+        if (TutorialManager.Instance && powerUpType == PowerUpType.Fan)
+        {
+            TutorialManager.Instance.tutorialCase++;
+            TutorialManager.Instance.InitRocket();
+        }
+        if (TutorialManager.Instance && powerUpType == PowerUpType.Rocket)
+        {
+            TutorialManager.Instance.tutorialCase++;
+            TutorialManager.Instance.TutorialCompleted();
+        }
     }
 
     public void SetText()
@@ -44,6 +65,7 @@ public class PowerUpEventHandler : MonoBehaviour
 
     private void UsePowerUp()
     {
+        
         if (_isOnCooldown)
             return;
         _isOnCooldown = true;
@@ -85,7 +107,6 @@ public class PowerUpEventHandler : MonoBehaviour
         {
             GemsManager.Instance.UseGems(requiredGems);
             _powerUp.Execute(CreateData());
-            return;
         }
         else
         {

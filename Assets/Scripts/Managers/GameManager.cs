@@ -66,6 +66,11 @@ public class GameManager : Singelton<GameManager>
         rightSlot.ClearSlot();
         if (!_level.colors.Exists(i=>i.color == leftSlot.CurrentBus.busColor))
         {
+            if (TutorialManager.Instance)
+            {
+                TutorialManager.Instance.tutorialCase++;
+                TutorialManager.Instance.InitFan();
+            }
             Destroy(leftSlot.CurrentBus.gameObject);
             leftSlot.ClearSlot();
             return;
