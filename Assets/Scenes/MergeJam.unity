@@ -3468,8 +3468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb30198aa32dd140b5750692dd48104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
-  image: {fileID: 87499171}
 --- !u!1 &89070864
 GameObject:
   m_ObjectHideFlags: 0
@@ -24863,8 +24861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb30198aa32dd140b5750692dd48104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
-  image: {fileID: 580666066}
 --- !u!1 &582965855
 GameObject:
   m_ObjectHideFlags: 0
@@ -36679,7 +36675,7 @@ MonoBehaviour:
     color: 1
   colors:
   - color: 1
-    count: 8
+    count: 12
 --- !u!4 &889078103
 Transform:
   m_ObjectHideFlags: 0
@@ -53651,6 +53647,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!1 &1256217420
 GameObject:
   m_ObjectHideFlags: 0
