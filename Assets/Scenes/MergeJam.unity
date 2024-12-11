@@ -336,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &5718219
@@ -549,6 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &9794096
@@ -783,6 +785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &13041289
@@ -834,104 +837,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13041286}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &14095170
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 14095171}
-  - component: {fileID: 14095174}
-  - component: {fileID: 14095173}
-  - component: {fileID: 14095172}
-  m_Layer: 0
-  m_Name: Passenger (6)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &14095171
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 14095170}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.13, y: 0, z: -11.28}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1492523672}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &14095172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 14095170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passengerColor: 1
-  hasBoarded: 0
---- !u!23 &14095173
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 14095170}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &14095174
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 14095170}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &16135312
 GameObject:
@@ -1378,7 +1283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &22972546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1920,7 +1825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &49437067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2067,6 +1972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &52413974
@@ -2242,6 +2148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &57756074
@@ -2340,6 +2247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &59229545
@@ -2438,6 +2346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &59979704
@@ -2521,6 +2430,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 911268474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &66791383
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1492523672}
+    m_Modifications:
+    - target: {fileID: 883498735117416877, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_Name
+      value: Passenger (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984851049964056386, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: passengerColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+--- !u!4 &66791384 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+  m_PrefabInstance: {fileID: 66791383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &67940927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2621,6 +2596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &68331466
@@ -2719,6 +2695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &69988827
@@ -2817,6 +2794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &71104974
@@ -2915,6 +2893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &73944722
@@ -3013,6 +2992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &74739377
@@ -3328,6 +3308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &85396499
@@ -3514,6 +3495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &89070867
@@ -4034,6 +4016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &106308755
@@ -4132,6 +4115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &107003558
@@ -4230,6 +4214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &110767151
@@ -4476,6 +4461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &116913387
@@ -4574,6 +4560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &118445522
@@ -4787,6 +4774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &120671409
@@ -4951,6 +4939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &125440270
@@ -5178,6 +5167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &131838832
@@ -5276,6 +5266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &134883602
@@ -5374,6 +5365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &136106932
@@ -5472,6 +5464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &136185489
@@ -5601,6 +5594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &138088463
@@ -5995,6 +5989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &141509899
@@ -6222,6 +6217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &147550393
@@ -6351,6 +6347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &151519966
@@ -6449,6 +6446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &151794934
@@ -6683,6 +6681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &174102467
@@ -7057,6 +7056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &181262320
@@ -7155,6 +7155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &186493098
@@ -7862,6 +7863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &197682487
@@ -7991,6 +7993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &199622768
@@ -8543,6 +8546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &208338995
@@ -8641,6 +8645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &220174733
@@ -9035,6 +9040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &226708920
@@ -9432,6 +9438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &229513794
@@ -9753,6 +9760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &239771986
@@ -9882,6 +9890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &244782616
@@ -10011,6 +10020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &248132710
@@ -10171,6 +10181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &262007879
@@ -10269,6 +10280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &265932517
@@ -10367,6 +10379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &268316208
@@ -10519,6 +10532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &268987715
@@ -10617,6 +10631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &271440924
@@ -10830,6 +10845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &276945285
@@ -10928,6 +10944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &277689852
@@ -11621,6 +11638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &298475676
@@ -11898,6 +11916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &304885201
@@ -11996,6 +12015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &305343821
@@ -12550,6 +12570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &312288721
@@ -12832,6 +12853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &314341880
@@ -12930,6 +12952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &316726060
@@ -13028,6 +13051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &320822419
@@ -14189,6 +14213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &358309759
@@ -14287,6 +14312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &358367136
@@ -14385,6 +14411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &360851075
@@ -14699,6 +14726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &368131069
@@ -14797,6 +14825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &370076847
@@ -14997,6 +15026,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375402727}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &375716591
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1492523672}
+    m_Modifications:
+    - target: {fileID: 883498735117416877, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_Name
+      value: Passenger (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984851049964056386, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: passengerColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+--- !u!4 &375716592 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+  m_PrefabInstance: {fileID: 375716591}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &376505690
 GameObject:
   m_ObjectHideFlags: 0
@@ -15260,6 +15355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &384488055
@@ -15358,6 +15454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &384960636
@@ -15456,6 +15553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &385652308
@@ -15554,6 +15652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &390469067
@@ -15652,6 +15751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &390895045
@@ -15880,6 +15980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &393752943
@@ -16143,6 +16244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &399353097
@@ -16241,6 +16343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &399741785
@@ -16518,6 +16621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &402544861
@@ -16749,6 +16853,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411167964}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &412801514
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1492523672}
+    m_Modifications:
+    - target: {fileID: 883498735117416877, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_Name
+      value: Passenger (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984851049964056386, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: passengerColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+--- !u!4 &412801515 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+  m_PrefabInstance: {fileID: 412801514}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &413940072
 GameObject:
   m_ObjectHideFlags: 0
@@ -16826,6 +16996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &414394881
@@ -16924,6 +17095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &415214214
@@ -17022,6 +17194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &418122430
@@ -17174,6 +17347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &426752000
@@ -17272,6 +17446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &430682548
@@ -17371,7 +17546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &435131820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17611,6 +17786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &438119245
@@ -17709,6 +17885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &441156712
@@ -17807,6 +17984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &447277553
@@ -17905,6 +18083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &447701909
@@ -18151,6 +18330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &451878118
@@ -18535,6 +18715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &465943654
@@ -18633,6 +18814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &466340062
@@ -18926,6 +19108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &476827990
@@ -19024,6 +19207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &478851487
@@ -19206,6 +19390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &486093768
@@ -19425,6 +19610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &492784142
@@ -19671,6 +19857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &495170559
@@ -19722,104 +19909,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 495170556}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &496930964
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 496930965}
-  - component: {fileID: 496930968}
-  - component: {fileID: 496930967}
-  - component: {fileID: 496930966}
-  m_Layer: 0
-  m_Name: Passenger (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &496930965
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496930964}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.57, y: 0, z: -4.17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1492523672}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &496930966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496930964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passengerColor: 1
-  hasBoarded: 0
---- !u!23 &496930967
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496930964}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &496930968
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496930964}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &499224321
 GameObject:
@@ -20161,6 +20250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &506505815
@@ -20259,6 +20349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &508363826
@@ -20357,6 +20448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &508865697
@@ -20455,6 +20547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &510380596
@@ -20701,6 +20794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &513231742
@@ -20799,6 +20893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &519785318
@@ -21277,6 +21372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &525229474
@@ -21406,6 +21502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &526167640
@@ -21683,6 +21780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &527653417
@@ -21781,6 +21879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &528039407
@@ -21879,6 +21978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &528439969
@@ -22343,6 +22443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &532302274
@@ -22551,6 +22652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &536348168
@@ -22649,6 +22751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &537672880
@@ -22810,6 +22913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &544986079
@@ -22939,6 +23043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &546338566
@@ -23526,6 +23631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &561960492
@@ -23803,6 +23909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &564312180
@@ -23901,6 +24008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &569616450
@@ -23999,6 +24107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &573217490
@@ -24151,6 +24260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &574202455
@@ -24303,6 +24413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &575491598
@@ -24401,6 +24512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &575552270
@@ -24499,6 +24611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &575771190
@@ -24689,6 +24802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &579071224
@@ -24787,6 +24901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &580629495
@@ -24973,6 +25088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &582965858
@@ -25071,6 +25187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &583901519
@@ -25169,6 +25286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &584742841
@@ -25525,6 +25643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &587679962
@@ -25724,6 +25843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &591392156
@@ -25884,6 +26004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &598596209
@@ -25982,6 +26103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &600497524
@@ -26335,6 +26457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &603911010
@@ -26433,6 +26556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &604278370
@@ -26531,6 +26655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &607565235
@@ -26909,6 +27034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &619032946
@@ -27155,6 +27281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &624399022
@@ -27253,6 +27380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &624399177
@@ -27553,6 +27681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &628428325
@@ -27682,6 +27811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &634726057
@@ -27733,104 +27863,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634726054}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &636210534
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 636210535}
-  - component: {fileID: 636210538}
-  - component: {fileID: 636210537}
-  - component: {fileID: 636210536}
-  m_Layer: 0
-  m_Name: Passenger (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &636210535
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 636210534}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.57, y: 0, z: -9.28}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1492523672}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &636210536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 636210534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passengerColor: 1
-  hasBoarded: 0
---- !u!23 &636210537
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 636210534}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &636210538
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 636210534}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &640455279
 GameObject:
@@ -28267,6 +28299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &646374573
@@ -28365,6 +28398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &647588102
@@ -28518,6 +28552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &655181513
@@ -29464,6 +29499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &689706650
@@ -29562,6 +29598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &691553233
@@ -29660,6 +29697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &692126014
@@ -29843,6 +29881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &697096660
@@ -30026,6 +30065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &705284514
@@ -30442,6 +30482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &719900975
@@ -30540,6 +30581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &724578691
@@ -30722,6 +30764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &725770952
@@ -30904,6 +30947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &730687261
@@ -31002,6 +31046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &733609441
@@ -31100,6 +31145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &735635522
@@ -31151,104 +31197,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735635519}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &737813058
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 737813059}
-  - component: {fileID: 737813062}
-  - component: {fileID: 737813061}
-  - component: {fileID: 737813060}
-  m_Layer: 0
-  m_Name: Passenger (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &737813059
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 737813058}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.14, y: 0, z: -11.17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1492523672}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &737813060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 737813058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passengerColor: 1
-  hasBoarded: 0
---- !u!23 &737813061
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 737813058}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &737813062
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 737813058}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &741655705
 GameObject:
@@ -31430,6 +31378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &751411418
@@ -31647,6 +31596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &754604188
@@ -31799,6 +31749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &757174183
@@ -31897,6 +31848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &757234752
@@ -32160,6 +32112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &764801812
@@ -32406,6 +32359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &768478585
@@ -32504,6 +32458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &768575542
@@ -32781,6 +32736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &775355334
@@ -32962,6 +32918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &789893344
@@ -33060,6 +33017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &792030132
@@ -33306,6 +33264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &794914692
@@ -33511,6 +33470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &805107211
@@ -33693,6 +33653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &813911450
@@ -33791,6 +33752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &816636566
@@ -33889,6 +33851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &818819409
@@ -34384,6 +34347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &829768556
@@ -34435,104 +34399,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829768553}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &830813699
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 830813700}
-  - component: {fileID: 830813703}
-  - component: {fileID: 830813702}
-  - component: {fileID: 830813701}
-  m_Layer: 0
-  m_Name: Passenger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &830813700
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830813699}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.57, y: 0, z: -7.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1492523672}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &830813701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830813699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passengerColor: 1
-  hasBoarded: 0
---- !u!23 &830813702
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830813699}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &830813703
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830813699}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &837913417
 GameObject:
@@ -34686,6 +34552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &840912273
@@ -34951,6 +34818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &846512049
@@ -35049,6 +34917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &850356802
@@ -35255,6 +35124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &856064990
@@ -35794,6 +35664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &865647554
@@ -35892,6 +35763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &866828836
@@ -35990,6 +35862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &868142078
@@ -36142,6 +36015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &875536554
@@ -36240,6 +36114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &879671648
@@ -36338,6 +36213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &880200258
@@ -36436,6 +36312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &881400769
@@ -36640,6 +36517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &887048356
@@ -36850,6 +36728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &890496266
@@ -36948,6 +36827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &892110490
@@ -37077,6 +36957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &898371953
@@ -37438,6 +37319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &903403160
@@ -37738,6 +37620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &909158792
@@ -37836,6 +37719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &909522441
@@ -37934,6 +37818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &909593174
@@ -38180,6 +38065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &918166480
@@ -38278,6 +38164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &918393379
@@ -38376,6 +38263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &923594478
@@ -38558,6 +38446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &931318918
@@ -38656,6 +38545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &934271119
@@ -38754,6 +38644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &934818242
@@ -39161,6 +39052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &945739540
@@ -39259,6 +39151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &946582040
@@ -39411,6 +39304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &950740997
@@ -39624,6 +39518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &957309021
@@ -39746,7 +39641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &967677098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39883,6 +39778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &974995196
@@ -40157,6 +40053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &983391380
@@ -40255,6 +40152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &987306181
@@ -40522,6 +40420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &994194891
@@ -40620,6 +40519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &997878693
@@ -40950,6 +40850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1002005711
@@ -41289,6 +41190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1007288969
@@ -41795,6 +41697,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031138521}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1031172310
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1492523672}
+    m_Modifications:
+    - target: {fileID: 883498735117416877, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_Name
+      value: Passenger (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984851049964056386, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: passengerColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+--- !u!4 &1031172311 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+  m_PrefabInstance: {fileID: 1031172310}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1031490345
 GameObject:
   m_ObjectHideFlags: 0
@@ -41841,6 +41809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1031490348
@@ -42049,6 +42018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1033365752
@@ -42201,6 +42171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1036583092
@@ -42478,6 +42449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1037470063
@@ -43304,6 +43276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1051000243
@@ -43402,6 +43375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1052059328
@@ -43500,6 +43474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1052610642
@@ -43846,6 +43821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1059898576
@@ -43975,6 +43951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1063244831
@@ -44073,6 +44050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1064605993
@@ -44171,6 +44149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1065454578
@@ -44300,6 +44279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1069524797
@@ -44398,6 +44378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1069953767
@@ -44604,6 +44585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1075157997
@@ -45269,7 +45251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1087158340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45776,6 +45758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1092308279
@@ -45874,6 +45857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1094190500
@@ -46164,6 +46148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1102931219
@@ -46262,6 +46247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1105584036
@@ -46360,6 +46346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1106770112
@@ -46836,6 +46823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1112185010
@@ -46965,6 +46953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1120176104
@@ -47163,6 +47152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1122877827
@@ -47466,6 +47456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1125390715
@@ -47564,6 +47555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1126540081
@@ -47662,6 +47654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1132116508
@@ -48089,6 +48082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1141328124
@@ -48187,6 +48181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1142202110
@@ -48285,6 +48280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1144524784
@@ -48555,6 +48551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1151187647
@@ -48847,6 +48844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1155913604
@@ -49261,6 +49259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1158484619
@@ -49359,6 +49358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1159025980
@@ -49577,6 +49577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1161061602
@@ -49750,6 +49751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1165648861
@@ -50113,6 +50115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1172813017
@@ -50211,6 +50214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1172943716
@@ -50649,6 +50653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1181874128
@@ -50747,6 +50752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1185849309
@@ -50918,104 +50924,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7ee101b6f088ffc4398b0f66d8597744, type: 3}
   m_PrefabInstance: {fileID: 1188372013}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1189420772
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1189420773}
-  - component: {fileID: 1189420776}
-  - component: {fileID: 1189420775}
-  - component: {fileID: 1189420774}
-  m_Layer: 0
-  m_Name: Passenger (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1189420773
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189420772}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.53, y: 0, z: -11.27}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1492523672}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1189420774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189420772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passengerColor: 1
-  hasBoarded: 0
---- !u!23 &1189420775
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189420772}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1189420776
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189420772}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1194800659
 GameObject:
   m_ObjectHideFlags: 0
@@ -51062,6 +50970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1194800662
@@ -51214,6 +51123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1199744383
@@ -51312,6 +51222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1201023062
@@ -51590,6 +51501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1207000895
@@ -51688,6 +51600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1207496147
@@ -51934,6 +51847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1209978084
@@ -52032,6 +51946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1211687686
@@ -52130,6 +52045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1212732651
@@ -52228,6 +52144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1219142326
@@ -52326,6 +52243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1221159796
@@ -52424,6 +52342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1223791784
@@ -52553,6 +52472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1229223824
@@ -52651,6 +52571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1231959064
@@ -52879,6 +52800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1237480573
@@ -52977,6 +52899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1238026794
@@ -53254,6 +53177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1251642385
@@ -53435,6 +53359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1253022509
@@ -53760,6 +53685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1256217423
@@ -54108,104 +54034,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266998344}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1268249857
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1268249858}
-  - component: {fileID: 1268249861}
-  - component: {fileID: 1268249860}
-  - component: {fileID: 1268249859}
-  m_Layer: 0
-  m_Name: Passenger (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1268249858
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268249857}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.57, y: 0, z: -5.74}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1492523672}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1268249859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268249857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passengerColor: 1
-  hasBoarded: 0
---- !u!23 &1268249860
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268249857}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1268249861
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268249857}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1268852652
 GameObject:
   m_ObjectHideFlags: 0
@@ -54252,6 +54080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1268852655
@@ -54350,6 +54179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1274442555
@@ -54532,6 +54362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1279852708
@@ -54630,6 +54461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1279931258
@@ -54728,6 +54560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1282163744
@@ -54826,6 +54659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1282656736
@@ -54878,6 +54712,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282656733}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1283175019
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1492523672}
+    m_Modifications:
+    - target: {fileID: 883498735117416877, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_Name
+      value: Passenger (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984851049964056386, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: passengerColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+--- !u!4 &1283175020 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+  m_PrefabInstance: {fileID: 1283175019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1283838052
 GameObject:
   m_ObjectHideFlags: 0
@@ -54924,6 +54824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1283838055
@@ -55022,6 +54923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1286558576
@@ -55304,6 +55206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1296083158
@@ -55477,6 +55380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1299213348
@@ -55575,6 +55479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1305003483
@@ -55673,6 +55578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1306587249
@@ -55833,6 +55739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1310015179
@@ -55974,6 +55881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1312658203
@@ -56072,6 +55980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1314751630
@@ -56170,6 +56079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1314861984
@@ -56268,6 +56178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1317326373
@@ -56366,6 +56277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1318881041
@@ -56464,6 +56376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1319879442
@@ -56794,6 +56707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1324760303
@@ -57125,6 +57039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1335424419
@@ -57418,6 +57333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1343140805
@@ -57516,6 +57432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1344037919
@@ -57810,6 +57727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1351651176
@@ -57908,6 +57826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1355432926
@@ -58256,6 +58175,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366112972}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1366205288
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1492523672}
+    m_Modifications:
+    - target: {fileID: 883498735117416877, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_Name
+      value: Passenger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984851049964056386, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: passengerColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+--- !u!4 &1366205289 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+  m_PrefabInstance: {fileID: 1366205288}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1370612296
 GameObject:
   m_ObjectHideFlags: 0
@@ -58456,6 +58441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1372033687
@@ -58578,7 +58564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1372949233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58939,6 +58925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1383107401
@@ -59037,6 +59024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1385627480
@@ -59269,6 +59257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1387818024
@@ -59546,6 +59535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1394216256
@@ -59644,6 +59634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1395944571
@@ -59773,6 +59764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1401781884
@@ -59871,6 +59863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1404562270
@@ -60049,7 +60042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1409098212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60194,6 +60187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1412931545
@@ -60376,6 +60370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1415790181
@@ -60622,6 +60617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1419057538
@@ -60720,6 +60716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1420366851
@@ -61081,6 +61078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1424134280
@@ -61613,6 +61611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1447611303
@@ -61756,7 +61755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1450407269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61998,6 +61997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1454306107
@@ -62346,104 +62346,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456955588}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1459357132
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1459357133}
-  - component: {fileID: 1459357136}
-  - component: {fileID: 1459357135}
-  - component: {fileID: 1459357134}
-  m_Layer: 0
-  m_Name: Passenger (7)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1459357133
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459357132}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.4, y: 0, z: -11.26}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1492523672}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1459357134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459357132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passengerColor: 1
-  hasBoarded: 0
---- !u!23 &1459357135
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459357132}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1459357136
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459357132}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1459903125
 GameObject:
   m_ObjectHideFlags: 0
@@ -62490,6 +62392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1459903128
@@ -63017,6 +62920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1475759763
@@ -63263,6 +63167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1479454654
@@ -63584,6 +63489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1489996914
@@ -63682,6 +63588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1492478076
@@ -63763,14 +63670,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 830813700}
-  - {fileID: 1268249858}
-  - {fileID: 636210535}
-  - {fileID: 496930965}
-  - {fileID: 737813059}
-  - {fileID: 1189420773}
-  - {fileID: 14095171}
-  - {fileID: 1459357133}
+  - {fileID: 1366205289}
+  - {fileID: 1283175020}
+  - {fileID: 375716592}
+  - {fileID: 412801515}
+  - {fileID: 1577611293}
+  - {fileID: 66791384}
+  - {fileID: 1031172311}
+  - {fileID: 1906765394}
   m_Father: {fileID: 889078103}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1492645374
@@ -63819,6 +63726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1492645377
@@ -64065,6 +63973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1498161254
@@ -64217,7 +64126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1504254908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64754,6 +64663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1510025969
@@ -64937,6 +64847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1514540192
@@ -65035,6 +64946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1514674248
@@ -65208,6 +65120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1517026030
@@ -65546,6 +65459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1523679842
@@ -65644,6 +65558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1523925520
@@ -65944,6 +65859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1533964338
@@ -66042,6 +65958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1534600284
@@ -66140,6 +66057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1535902345
@@ -66322,6 +66240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1538466820
@@ -66420,6 +66339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1538589632
@@ -66518,6 +66438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1539523314
@@ -66670,6 +66591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1540208945
@@ -66768,6 +66690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1544965788
@@ -67069,6 +66992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1554302805
@@ -67260,6 +67184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1559468606
@@ -67328,7 +67253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1562016318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67661,6 +67586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1563615077
@@ -67938,6 +67864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1566526195
@@ -68146,6 +68073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1571012304
@@ -68244,6 +68172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1571082955
@@ -68342,6 +68271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1572099447
@@ -68440,6 +68370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1573421166
@@ -68569,6 +68500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1575964464
@@ -68621,6 +68553,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575964461}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1577611292
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1492523672}
+    m_Modifications:
+    - target: {fileID: 883498735117416877, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_Name
+      value: Passenger (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984851049964056386, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: passengerColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+--- !u!4 &1577611293 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+  m_PrefabInstance: {fileID: 1577611292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1581920163
 GameObject:
   m_ObjectHideFlags: 0
@@ -68667,6 +68665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1581920166
@@ -68765,6 +68764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1584282138
@@ -68863,6 +68863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1585444778
@@ -69095,6 +69096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1587964332
@@ -69311,7 +69313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1595695272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69500,6 +69502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1601208437
@@ -69652,6 +69655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1602261363
@@ -69750,6 +69754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1606408813
@@ -69932,6 +69937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1614001978
@@ -70105,6 +70111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1618757969
@@ -70203,6 +70210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1620000737
@@ -70301,6 +70309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1620129204
@@ -70584,6 +70593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1623527654
@@ -70682,6 +70692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1627925536
@@ -70780,6 +70791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1630337602
@@ -70878,6 +70890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1635502110
@@ -71112,6 +71125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1639030044
@@ -71537,6 +71551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1648829092
@@ -71875,6 +71890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1655998428
@@ -71973,6 +71989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1658281402
@@ -72071,6 +72088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1660524864
@@ -72317,6 +72335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1663657121
@@ -72446,6 +72465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1670964697
@@ -72861,6 +72881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1678422667
@@ -73330,6 +73351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1687007834
@@ -73428,6 +73450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1693544725
@@ -73526,6 +73549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1693867443
@@ -73708,6 +73732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1694193158
@@ -73990,6 +74015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1703007141
@@ -74828,6 +74854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1722524663
@@ -74926,6 +74953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1722754204
@@ -75024,6 +75052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1724286400
@@ -75122,6 +75151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1724653157
@@ -75220,6 +75250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1725303992
@@ -75318,6 +75349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1726985115
@@ -75564,6 +75596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1733166542
@@ -75846,6 +75879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1735888987
@@ -75944,6 +75978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1738478049
@@ -76267,6 +76302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1744329650
@@ -76365,6 +76401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1746983714
@@ -76463,6 +76500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1747417502
@@ -76561,6 +76599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1749736853
@@ -76659,6 +76698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1752562774
@@ -76757,6 +76797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1755464299
@@ -77088,6 +77129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1756192129
@@ -77581,6 +77623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1762768981
@@ -77679,6 +77722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1764154566
@@ -77914,6 +77958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1770291959
@@ -78366,6 +78411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1782668357
@@ -78464,6 +78510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1783031987
@@ -78562,6 +78609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1785135801
@@ -78808,6 +78856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1789880671
@@ -79285,6 +79334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1795859408
@@ -79696,6 +79746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1800924049
@@ -79954,6 +80005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1806307118
@@ -80137,6 +80189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1812869477
@@ -80383,6 +80436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1820911656
@@ -80735,6 +80789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1831608656
@@ -80887,6 +80942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1833389626
@@ -80985,6 +81041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1835287591
@@ -81083,6 +81140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1836578750
@@ -81181,6 +81239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1836689421
@@ -81249,7 +81308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1836964666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81418,6 +81477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1839004989
@@ -81680,6 +81740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1844162026
@@ -81946,6 +82007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1849278633
@@ -82129,6 +82191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1854528468
@@ -82675,6 +82738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1861220242
@@ -82896,6 +82960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1864993712
@@ -83397,6 +83462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1878633277
@@ -83495,6 +83561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1881232913
@@ -83593,6 +83660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1881350274
@@ -83691,6 +83759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1882099389
@@ -83789,6 +83858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1882374848
@@ -84163,6 +84233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1896638600
@@ -84292,6 +84363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1898504962
@@ -84496,6 +84568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1904674418
@@ -84775,6 +84848,72 @@ MonoBehaviour:
   m_Spacing: {x: 200, y: 50}
   m_Constraint: 1
   m_ConstraintCount: 2
+--- !u!1001 &1906765393
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1492523672}
+    m_Modifications:
+    - target: {fileID: 883498735117416877, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_Name
+      value: Passenger (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984851049964056386, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: passengerColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+--- !u!4 &1906765394 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
+  m_PrefabInstance: {fileID: 1906765393}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1908014482
 GameObject:
   m_ObjectHideFlags: 0
@@ -84821,6 +84960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1908014485
@@ -84919,6 +85059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1908891590
@@ -85289,6 +85430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1916421899
@@ -85387,6 +85529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1916882149
@@ -85485,6 +85628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1919077403
@@ -85702,6 +85846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1923258418
@@ -85800,6 +85945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1923615461
@@ -86032,6 +86178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1928386389
@@ -86246,6 +86393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1932808073
@@ -86344,6 +86492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1935457784
@@ -86534,6 +86683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1943465312
@@ -87024,6 +87174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1964858929
@@ -87122,6 +87273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1965977804
@@ -87303,6 +87455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1966408913
@@ -87549,6 +87702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1969010636
@@ -87647,6 +87801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1975138767
@@ -87781,6 +87936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &1977615042
@@ -87879,6 +88035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1980506496
@@ -87977,6 +88134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &1981042439
@@ -88254,6 +88412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &1982710265
@@ -89214,6 +89373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &2006958877
@@ -89551,6 +89711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &2016741740
@@ -89619,7 +89780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2018158912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89786,6 +89947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &2021251169
@@ -90663,6 +90825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &2041026934
@@ -90894,6 +91057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &2045572198
@@ -91036,6 +91200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &2046254668
@@ -91375,6 +91540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &2052838425
@@ -91557,6 +91723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &2054999898
@@ -91913,6 +92080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &2060342679
@@ -92042,6 +92210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &2068574098
@@ -92140,6 +92309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &2069402407
@@ -92238,6 +92408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &2074464709
@@ -92336,6 +92507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &2075149473
@@ -92732,6 +92904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &2078122839
@@ -92978,6 +93151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &2080252741
@@ -93286,6 +93460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &2095302658
@@ -93605,6 +93780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &2101672208
@@ -93801,6 +93977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 0
   hasBoarded: 0
 --- !u!23 &2119632620
@@ -93899,6 +94076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &2121694787
@@ -93997,6 +94175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 1
   hasBoarded: 0
 --- !u!23 &2123315225
@@ -94397,6 +94576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea909f0954b7a4aa37cf41eb780f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassengerAnimator: {fileID: 0}
   passengerColor: 3
   hasBoarded: 0
 --- !u!23 &2139343113
@@ -94608,6 +94788,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &6803040600097216179
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7874485841436329034, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
+      propertyPath: m_Name
+      value: Stick Man
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309690613529402369, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309690613529402369, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309690613529402369, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309690613529402369, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309690613529402369, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309690613529402369, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309690613529402369, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309690613529402369, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309690613529402369, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309690613529402369, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -94642,3 +94879,4 @@ SceneRoots:
   - {fileID: 2018158913}
   - {fileID: 1409098213}
   - {fileID: 49437068}
+  - {fileID: 6803040600097216179}

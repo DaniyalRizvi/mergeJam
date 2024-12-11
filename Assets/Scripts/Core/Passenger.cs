@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Passenger : MonoBehaviour
 {
+    [SerializeField] private PassengerAnimator PassengerAnimator;
     public Colors passengerColor;
     public bool hasBoarded;
     internal bool IsBoarding;
@@ -53,10 +55,18 @@ public class Passenger : MonoBehaviour
                 if (Vector3.Distance(transform.position, _selectedBus.gateTransform.position) > 0.1f)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, _selectedBus.gateTransform.position,
-                        speed * Time.deltaTime);
+                    speed * Time.deltaTime);
+
+                    Vector3 direction = _selectedBus.gateTransform.position - transform.position;
+
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f* Time.deltaTime);
+
+                    PassengerAnimator.IsWalking(true);
                 }
                 else
                 {
+                    PassengerAnimator.IsWalking(false);
                     break;
                 }
             }
@@ -72,6 +82,11 @@ public class Passenger : MonoBehaviour
                 {
                     transform.position = Vector3.MoveTowards(transform.position,
                         _selectedBus.transform.GetChild(0).position, speed * Time.deltaTime);
+
+                    Vector3 direction = _selectedBus.transform.GetChild(0).position - transform.position;
+
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f * Time.deltaTime);
                 }
                 else
                 {
