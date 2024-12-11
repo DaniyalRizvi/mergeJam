@@ -19,6 +19,7 @@ public class Passenger : MonoBehaviour
     void UpdateVisual()
     {
         GetComponent<Renderer>().material.color = passengerColor.GetColor();
+        PassengerAnimator.transform.GetChild(1).GetComponent<Renderer>().material.color = passengerColor.GetColor();
     }
 
     public void TryBoardBus(Bus bus, Action<bool> onComplete)
