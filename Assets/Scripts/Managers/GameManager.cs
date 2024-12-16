@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ public class GameManager : Singelton<GameManager>
     private List<Slot> _slots = new();
     private List<Passenger> _passengers = new();
     private Level _level;
-    
+    public Action OnLevelComplete;
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => DTAdsManager.Instance && DTAdsManager.Instance.isInitialised);
@@ -122,6 +123,7 @@ public class GameManager : Singelton<GameManager>
         {
             GemsManager.Instance.AddGems(10);
             UIManager.Instance.ShowLevelCompleteUI();
+            OnLevelComplete?.Invoke();
         }
     }
 
