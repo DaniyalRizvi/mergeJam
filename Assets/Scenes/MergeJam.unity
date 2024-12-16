@@ -27734,7 +27734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6984851049964056386, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
       propertyPath: passengerColor
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8017802146227044687, guid: b74d4371d1c71e540b7f57088e2d17c9, type: 3}
       propertyPath: m_LocalPosition.x
