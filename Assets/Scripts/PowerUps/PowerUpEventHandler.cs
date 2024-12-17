@@ -87,6 +87,7 @@ public class PowerUpEventHandler : MonoBehaviour
                     foreach (var bus in busses.Where(bus => colors.Contains(bus.busColor)))
                     {
                         level.DestroyBus(bus);
+                        Debug.LogError("Vehicle Bus Destroyed" + bus.name);
                         break;
                     }
                 }
@@ -98,6 +99,7 @@ public class PowerUpEventHandler : MonoBehaviour
         }
         if (canUse)
         {
+            GameManager.Instance.FanPowerUpVFX.SetActive(true);
             _powerUp.Execute(CreateData());
             PowerUpsManager.Instance.UsePowerUp(powerUpType);
             SetText();
