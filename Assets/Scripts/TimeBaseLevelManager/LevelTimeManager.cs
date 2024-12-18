@@ -54,8 +54,8 @@ public class LevelTimeManager : MonoBehaviour
         if (!CanStartTimer) return;
        
             MaxTime -= Time.deltaTime;
-            Min = MaxTime / 60;
-            Sec = MaxTime % 60;
+            Min = Mathf.FloorToInt(MaxTime / 60f);
+            Sec = Mathf.FloorToInt(MaxTime % 60f);
             LevelTimeTextContainer.SetText(Min, Sec);
 
         if (MaxTime <= 0)

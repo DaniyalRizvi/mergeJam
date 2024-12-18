@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Managers;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.Port;
+using static UnityEngine.GraphicsBuffer;
 
 public class GameManager : Singelton<GameManager>
 {
-    public VehicleDataManager VehicleDataManager;
+    //public VehicleDataManager VehicleDataManager;
     [SerializeField] private GameObject RocketPowerupsVFX;
     [SerializeField] private GameObject MergeVFX;
-    [SerializeField] public GameObject FanPowerUpVFX;
+    [SerializeField] private GameObject FanPowerUpVFX;
     private List<Slot> _slots = new();
     private List<Passenger> _passengers = new();
     private Level _level;
@@ -67,6 +69,9 @@ public class GameManager : Singelton<GameManager>
         
         leftBus.capacity += rightBus.capacity;
 
+        leftBus.VehicleRenderModels.ActiveVehicle(leftBus.capacity);
+        leftBus.UpdateVisual();
+        
         leftBus.currentSize += rightBus.currentSize;
         leftBus.AssignSlot(leftSlot);
         leftSlot.AssignBus(leftBus);
@@ -78,6 +83,8 @@ public class GameManager : Singelton<GameManager>
                 TutorialManager.Instance.tutorialCase++;
                 TutorialManager.Instance.InitFan();
             }
+            //Rocket PowerUps
+            RocketPowerUps(leftSlot.CurrentBus.transform);
             Destroy(leftSlot.CurrentBus.gameObject);
             leftSlot.ClearSlot();
             return;
@@ -93,6 +100,20 @@ public class GameManager : Singelton<GameManager>
         MergePos.y = MergeVFX.transform.position.y;
         MergeVFX.transform.position = MergePos;
         MergeVFX.SetActive(true);
+    }
+    public void RocketPowerUps(Transform Target)
+    {
+        RocketPowerupsVFX.SetActive(false);
+        Vector3 Pos = Target.position;
+        Pos.y = MergeVFX.transform.position.y;
+        RocketPowerupsVFX.transform.position = Pos;
+        RocketPowerupsVFX.SetActive(true);
+    }
+    public void FanPowerUps()
+    {
+        GameManager.Instance.FanPowerUpVFX.SetActive(false);
+        GameManager.Instance.FanPowerUpVFX.SetActive(true);
+
     }
 
     private void NotifyPassengersOfNewBus(Bus newBus)

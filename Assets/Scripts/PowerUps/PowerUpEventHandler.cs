@@ -46,8 +46,7 @@ public class PowerUpEventHandler : MonoBehaviour
         _powerUp.Execute(CreateData());
         if (TutorialManager.Instance && powerUpType == PowerUpType.Fan)
         {
-            GameManager.Instance.FanPowerUpVFX.SetActive(false);
-            GameManager.Instance.FanPowerUpVFX.SetActive(true);
+            GameManager.Instance.FanPowerUps();
             TutorialManager.Instance.tutorialCase++;
             TutorialManager.Instance.InitRocket();
         }
@@ -89,6 +88,7 @@ public class PowerUpEventHandler : MonoBehaviour
                     foreach (var bus in busses.Where(bus => colors.Contains(bus.busColor)))
                     {
                         level.DestroyBus(bus);
+                        GameManager.Instance.RocketPowerUps(bus.transform); ;
                         Debug.LogError("Vehicle Bus Destroyed" + bus.name);
                         break;
                     }
@@ -101,8 +101,7 @@ public class PowerUpEventHandler : MonoBehaviour
         }
         if (canUse)
         {
-            GameManager.Instance.FanPowerUpVFX.SetActive(false);
-            GameManager.Instance.FanPowerUpVFX.SetActive(true);
+            GameManager.Instance.FanPowerUps();
             _powerUp.Execute(CreateData());
             PowerUpsManager.Instance.UsePowerUp(powerUpType);
             SetText();

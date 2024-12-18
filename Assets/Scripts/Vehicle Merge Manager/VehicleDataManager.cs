@@ -6,8 +6,7 @@ using UnityEngine;
 public class VehicleModelData
 {
     public GameObject model;
-    public int capacity;
-    public Colors Color;
+    public int capacity; 
 } 
 public class VehicleDataManager : MonoBehaviour
 {
