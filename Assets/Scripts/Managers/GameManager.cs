@@ -84,7 +84,7 @@ public class GameManager : Singelton<GameManager>
                 TutorialManager.Instance.InitFan();
             }
             //Rocket PowerUps
-            RocketPowerUps(leftSlot.CurrentBus.transform);
+            MergeEffect(leftSlot.CurrentBus.transform);
             Destroy(leftSlot.CurrentBus.gameObject);
             leftSlot.ClearSlot();
             return;

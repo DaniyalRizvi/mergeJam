@@ -45665,7 +45665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc32ed929628f6479b0f8ad067560b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VehicleDataManager: {fileID: 1552603999}
   RocketPowerupsVFX: {fileID: 163710048}
   MergeVFX: {fileID: 1733949700}
   FanPowerUpVFX: {fileID: 366093513}
@@ -48756,8 +48755,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -80, y: -80}
+  m_AnchoredPosition: {x: 0, y: 2.089096}
+  m_SizeDelta: {x: -144.7629, y: -86.2674}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1237716375
 MonoBehaviour:
@@ -48781,8 +48780,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '"Welcome to Merge Jam! Merge vehicles to accommodate all the passengers."'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e8b68c036219eb544a3b1f114a93cb96, type: 2}
+  m_sharedMaterial: {fileID: 4621200205589732911, guid: e8b68c036219eb544a3b1f114a93cb96, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -62644,82 +62643,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!1001 &1552603998
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2085238870415810678, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -32.899246
-      objectReference: {fileID: 0}
-    - target: {fileID: 2085238870415810678, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 57.177837
-      objectReference: {fileID: 0}
-    - target: {fileID: 2085238870415810678, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.1368684e-13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2085238870415810678, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2085238870415810678, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2085238870415810678, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2085238870415810678, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2085238870415810678, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2085238870415810678, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2085238870415810678, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3367146546379247880, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: vehicleModels.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3367146546379247880, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: vehicleModels.Array.data[2].capacity
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8138031192374223962, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-      propertyPath: m_Name
-      value: VehicleDataManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
---- !u!114 &1552603999 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3367146546379247880, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
-  m_PrefabInstance: {fileID: 1552603998}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b36addf182d1e9d47a540d94259909d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1558122169
 GameObject:
   m_ObjectHideFlags: 0
@@ -91671,7 +91594,6 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 1558122170}
   - {fileID: 1159495008}
-  - {fileID: 1552603998}
   - {fileID: 86884404}
   - {fileID: 144689113}
   - {fileID: 1090238610}

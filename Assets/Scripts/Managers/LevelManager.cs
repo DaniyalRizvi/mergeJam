@@ -48,7 +48,7 @@ public class LevelManager : Singelton<LevelManager>
         {
             OnTimeBaseLevel?.Invoke(0,false);
         }
-
+         
 
         if (GameObject.Find("LevelText"))
             GameObject.Find("LevelText").GetComponent<TMP_Text>().SetText($"Level No: {_levelNumber + 1}"); 

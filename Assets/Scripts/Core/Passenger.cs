@@ -88,9 +88,11 @@ public class Passenger : MonoBehaviour
 
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f * Time.deltaTime);
+                    PassengerAnimator.IsWalking(true);
                 }
                 else
                 {
+                    PassengerAnimator.IsWalking(false);
                     break;
                 }
             }

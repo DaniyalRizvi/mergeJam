@@ -8,6 +8,13 @@ public class VehicleRenderModels : MonoBehaviour
 {
     [SerializeField] private List<VehicleModelData> vehicleModels = new List<VehicleModelData>();
 
+    public void DisableAllData()
+    {
+        foreach (var model in vehicleModels)
+        {
+            model.model.SetActive(false);
+        }
+    }
     public void UpdateVisual(Color color)
     {
         foreach (var item in vehicleModels)

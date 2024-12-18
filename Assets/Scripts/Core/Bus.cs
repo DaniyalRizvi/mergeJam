@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bus : MonoBehaviour
 {
+    public VehicleRenderModels VehicleRenderModelsOnInitilization;
     public VehicleRenderModels VehicleRenderModels;
     public int capacity
     {
@@ -43,7 +44,11 @@ public class Bus : MonoBehaviour
         currentSize = capacity;
         Rb = GetComponent<Rigidbody>();
         UpdateVisual();
-        VehicleRenderModels.ActiveVehicle(capacity);
+        //VehicleRenderModels.ActiveVehicle(capacity);
+
+        VehicleRenderModelsOnInitilization.UpdateVisual(busColor.GetColor());
+        VehicleRenderModelsOnInitilization.ActiveVehicle(capacity);
+        
     }
 
     public void UpdateVisual()
@@ -64,8 +69,12 @@ public class Bus : MonoBehaviour
         if (AssignedSlot != null)
             AssignedSlot.CurrentBus = null;
         AssignedSlot = clickedSlot;
+
         capacityText.SetText(capacity.ToString());
         currentSizeText.SetText(currentSize.ToString());
+
          
+        VehicleRenderModelsOnInitilization.DisableAllData();
+        VehicleRenderModels.ActiveVehicle(capacity);
     }
 }
