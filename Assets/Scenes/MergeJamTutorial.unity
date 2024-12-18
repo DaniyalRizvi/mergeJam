@@ -26146,7 +26146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 36.609535, y: 5.208893}
+  m_AnchoredPosition: {x: 36.60962, y: 5.208893}
   m_SizeDelta: {x: -73.2191, y: -31.8447}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &829285326
@@ -62691,6 +62691,14 @@ PrefabInstance:
     - target: {fileID: 2085238870415810678, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367146546379247880, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
+      propertyPath: vehicleModels.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367146546379247880, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
+      propertyPath: vehicleModels.Array.data[2].capacity
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8138031192374223962, guid: 170d2eb85671d9d42ab2ca689f018813, type: 3}
       propertyPath: m_Name

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Bus : MonoBehaviour
 {
+    [SerializeField] private GameObject VehicleRender;
     public int capacity
     {
         get => _capacity;
@@ -45,7 +46,8 @@ public class Bus : MonoBehaviour
 
     void UpdateVisual()
     {
-        GetComponent<Renderer>().material.color = busColor.GetColor();
+        //GetComponent<Renderer>().material.color = busColor.GetColor();
+        VehicleRender.GetComponent<Renderer>().material.color = busColor.GetColor();
     }
     
     public void AssignSlot(Slot clickedSlot)

@@ -64,7 +64,9 @@ public class GameManager : Singelton<GameManager>
     {
         var leftBus = leftSlot.CurrentBus;
         var rightBus = rightSlot.CurrentBus;
+        
         leftBus.capacity += rightBus.capacity;
+
         leftBus.currentSize += rightBus.currentSize;
         leftBus.AssignSlot(leftSlot);
         leftSlot.AssignBus(leftBus);

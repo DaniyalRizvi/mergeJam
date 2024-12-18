@@ -45,15 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicleModels:
-  - model: {fileID: 2631870417845439468, guid: 04eb2f828138990418d947108b8c2ed1, type: 3}
+  - model: {fileID: 7594067892721966139, guid: f4d50602de3640e4689ad09ca5b513b6, type: 3}
     capacity: 1
     Color: 0
-  - model: {fileID: 8872385688414019145, guid: 1c2afb1dd9fbec14a86c917443e547aa, type: 3}
+  - model: {fileID: 7929768788542044406, guid: 011ba36d117ebdc4fbed200daa89ee6d, type: 3}
     capacity: 2
     Color: 0
-  - model: {fileID: 2631870417845439468, guid: 04eb2f828138990418d947108b8c2ed1, type: 3}
+  - model: {fileID: 7187545115680541199, guid: ab600e0c450a1c7428d05d7b8da489a6, type: 3}
     capacity: 4
     Color: 0
-  - model: {fileID: 2631870417845439468, guid: 04eb2f828138990418d947108b8c2ed1, type: 3}
+  - model: {fileID: 7187545115680541199, guid: ab600e0c450a1c7428d05d7b8da489a6, type: 3}
     capacity: 8
     Color: 0

@@ -29,10 +29,13 @@ public class Level : MonoBehaviour
         busTypes.Shuffle();
         foreach (var busType in busTypes)
         {
-            var bus = Instantiate(prefab, GetRandomSpawnPoint(spawnPoint), Quaternion.identity).GetComponent<Bus>();
+            //var bus = Instantiate(prefab, GetRandomSpawnPoint(spawnPoint), Quaternion.identity).GetComponent<Bus>();
+            GameObject p=GameManager.Instance.VehicleDataManager.GetVehicleModel(busType.capacity);
+            var bus = Instantiate(p, GetRandomSpawnPoint(spawnPoint), Quaternion.identity).GetComponent<Bus>();
             bus.transform.SetParent(spawnPoint, true);
             bus.busColor = busType.color;
             bus.capacity = busType.capacity;
+            
             bus.Init();
             if (TutorialManager.Instance)
             {
