@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class GameManager : Singelton<GameManager>
 {
+    public VehicleDataManager VehicleDataManager;
     [SerializeField] private GameObject RocketPowerupsVFX;
     [SerializeField] private GameObject MergeVFX;
     [SerializeField] public GameObject FanPowerUpVFX;
@@ -79,13 +80,17 @@ public class GameManager : Singelton<GameManager>
             leftSlot.ClearSlot();
             return;
         }
+        MergeEffect(leftBus.transform);
+        NotifyPassengersOfNewBus(leftBus);
+        BoardPassengersToBus(leftBus);
+    }
+    private void MergeEffect(Transform target)
+    {
         MergeVFX.SetActive(false);
-        Vector3 MergePos = leftBus.transform.position;
+        Vector3 MergePos = target.position;
         MergePos.y = MergeVFX.transform.position.y;
         MergeVFX.transform.position = MergePos;
         MergeVFX.SetActive(true);
-        NotifyPassengersOfNewBus(leftBus);
-        BoardPassengersToBus(leftBus);
     }
 
     private void NotifyPassengersOfNewBus(Bus newBus)

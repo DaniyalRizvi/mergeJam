@@ -46,6 +46,8 @@ public class PowerUpEventHandler : MonoBehaviour
         _powerUp.Execute(CreateData());
         if (TutorialManager.Instance && powerUpType == PowerUpType.Fan)
         {
+            GameManager.Instance.FanPowerUpVFX.SetActive(false);
+            GameManager.Instance.FanPowerUpVFX.SetActive(true);
             TutorialManager.Instance.tutorialCase++;
             TutorialManager.Instance.InitRocket();
         }
@@ -99,6 +101,7 @@ public class PowerUpEventHandler : MonoBehaviour
         }
         if (canUse)
         {
+            GameManager.Instance.FanPowerUpVFX.SetActive(false);
             GameManager.Instance.FanPowerUpVFX.SetActive(true);
             _powerUp.Execute(CreateData());
             PowerUpsManager.Instance.UsePowerUp(powerUpType);
