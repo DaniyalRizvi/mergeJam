@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using VoxelBusters.AdsKit;
 
 public class UIManager : Singelton<UIManager>
-{
+{ 
     public GameObject iapOverlay;
     public GameObject pahHolder;
     [FormerlySerializedAs("_levelCompleteUI")] public GameObject levelCompleteUI;

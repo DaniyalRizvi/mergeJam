@@ -1,15 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Managers;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.Port;
+using static UnityEngine.GraphicsBuffer;
 
 public class GameManager : Singelton<GameManager>
 {
+    //public VehicleDataManager VehicleDataManager;
+    [SerializeField] private GameObject RocketPowerupsVFX;
+    [SerializeField] private GameObject MergeVFX;
+    [SerializeField] private GameObject FanPowerUpVFX;
     private List<Slot> _slots = new();
     private List<Passenger> _passengers = new();
     private Level _level;
-    
+    public Action OnLevelComplete;
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => DTAdsManager.Instance && DTAdsManager.Instance.isInitialised);
@@ -59,7 +66,12 @@ public class GameManager : Singelton<GameManager>
     {
         var leftBus = leftSlot.CurrentBus;
         var rightBus = rightSlot.CurrentBus;
+        
         leftBus.capacity += rightBus.capacity;
+
+        leftBus.VehicleRenderModels.ActiveVehicle(leftBus.capacity);
+        leftBus.UpdateVisual();
+        
         leftBus.currentSize += rightBus.currentSize;
         leftBus.AssignSlot(leftSlot);
         leftSlot.AssignBus(leftBus);
@@ -71,12 +83,37 @@ public class GameManager : Singelton<GameManager>
                 TutorialManager.Instance.tutorialCase++;
                 TutorialManager.Instance.InitFan();
             }
+            //Rocket PowerUps
+            MergeEffect(leftSlot.CurrentBus.transform);
             Destroy(leftSlot.CurrentBus.gameObject);
             leftSlot.ClearSlot();
             return;
         }
+        MergeEffect(leftBus.transform);
         NotifyPassengersOfNewBus(leftBus);
         BoardPassengersToBus(leftBus);
+    }
+    private void MergeEffect(Transform target)
+    {
+        MergeVFX.SetActive(false);
+        Vector3 MergePos = target.position;
+        MergePos.y = MergeVFX.transform.position.y;
+        MergeVFX.transform.position = MergePos;
+        MergeVFX.SetActive(true);
+    }
+    public void RocketPowerUps(Transform Target)
+    {
+        RocketPowerupsVFX.SetActive(false);
+        Vector3 Pos = Target.position;
+        Pos.y = MergeVFX.transform.position.y;
+        RocketPowerupsVFX.transform.position = Pos;
+        RocketPowerupsVFX.SetActive(true);
+    }
+    public void FanPowerUps()
+    {
+        GameManager.Instance.FanPowerUpVFX.SetActive(false);
+        GameManager.Instance.FanPowerUpVFX.SetActive(true);
+
     }
 
     private void NotifyPassengersOfNewBus(Bus newBus)
@@ -122,6 +159,7 @@ public class GameManager : Singelton<GameManager>
         {
             GemsManager.Instance.AddGems(10);
             UIManager.Instance.ShowLevelCompleteUI();
+            OnLevelComplete?.Invoke();
         }
     }
 

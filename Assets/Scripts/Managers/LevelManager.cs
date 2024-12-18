@@ -12,7 +12,7 @@ public class LevelManager : Singelton<LevelManager>
     private int _levelNumber;
     public Action OnLevelComplete;
     public Action OnLevelRestart;
-    
+    public Action<float,bool> OnTimeBaseLevel;
     void Start()
     {
         if (PlayerPrefs.HasKey("RestartLevel"))
@@ -39,6 +39,17 @@ public class LevelManager : Singelton<LevelManager>
         }
         _levels[levelNumber].SetActiveState(true);
         _levels[levelNumber].Init();
+
+        if(_levels[levelNumber].TryGetComponent<LevelTimeComponent>(out LevelTimeComponent Z))
+        {
+            OnTimeBaseLevel?.Invoke(Z.GetLevelTime(), true);
+        }
+        else
+        {
+            OnTimeBaseLevel?.Invoke(0,false);
+        }
+         
+
         if (GameObject.Find("LevelText"))
             GameObject.Find("LevelText").GetComponent<TMP_Text>().SetText($"Level No: {_levelNumber + 1}"); 
         UIManager.Instance.ResetUI();

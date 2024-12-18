@@ -1,8 +1,11 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Bus : MonoBehaviour
 {
+    public VehicleRenderModels VehicleRenderModelsOnInitilization;
+    public VehicleRenderModels VehicleRenderModels;
     public int capacity
     {
         get => _capacity;
@@ -41,11 +44,18 @@ public class Bus : MonoBehaviour
         currentSize = capacity;
         Rb = GetComponent<Rigidbody>();
         UpdateVisual();
+        //VehicleRenderModels.ActiveVehicle(capacity);
+
+        VehicleRenderModelsOnInitilization.UpdateVisual(busColor.GetColor());
+        VehicleRenderModelsOnInitilization.ActiveVehicle(capacity);
+        
     }
 
-    void UpdateVisual()
+    public void UpdateVisual()
     {
-        GetComponent<Renderer>().material.color = busColor.GetColor();
+        VehicleRenderModels.UpdateVisual(busColor.GetColor());
+        //GetComponent<Renderer>().material.color = busColor.GetColor();
+        //VehicleRender.GetComponent<Renderer>().material.color = busColor.GetColor();
     }
     
     public void AssignSlot(Slot clickedSlot)
@@ -59,7 +69,12 @@ public class Bus : MonoBehaviour
         if (AssignedSlot != null)
             AssignedSlot.CurrentBus = null;
         AssignedSlot = clickedSlot;
+
         capacityText.SetText(capacity.ToString());
         currentSizeText.SetText(currentSize.ToString());
+
+         
+        VehicleRenderModelsOnInitilization.DisableAllData();
+        VehicleRenderModels.ActiveVehicle(capacity);
     }
 }

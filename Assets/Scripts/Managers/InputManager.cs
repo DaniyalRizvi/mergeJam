@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -105,6 +106,8 @@ public class InputManager : Singelton<InputManager>
         }
         if(!context.performed || IsPointerOverUI())
             return;
+
+         
         Vector2 mousePosition = _positionAction.ReadValue<Vector2>();
         Ray ray = Camera.main!.ScreenPointToRay(mousePosition);
         if (Physics.Raycast(ray, out var hit) && hit.collider != null)
