@@ -1452,25 +1452,25 @@ MonoBehaviour:
     color: 1
   - capacity: 4
     color: 1
-  - capacity: 1
+  - capacity: 2
     color: 1
-  - capacity: 1
+  - capacity: 2
     color: 1
-  - capacity: 1
+  - capacity: 2
     color: 1
-  - capacity: 1
+  - capacity: 2
     color: 1
   - capacity: 8
     color: 0
   - capacity: 4
     color: 0
-  - capacity: 1
+  - capacity: 2
     color: 0
-  - capacity: 1
+  - capacity: 2
     color: 0
-  - capacity: 1
+  - capacity: 2
     color: 0
-  - capacity: 1
+  - capacity: 2
     color: 0
   - capacity: 1
     color: 2
@@ -22253,6 +22253,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!1 &1309003506
 GameObject:
   m_ObjectHideFlags: 0
