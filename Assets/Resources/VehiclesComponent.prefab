@@ -52,18 +52,18 @@ MonoBehaviour:
   vehicleModels:
   - model: {fileID: 2664394980527572244}
     capacity: 1
-  - model: {fileID: 83090441573296886}
+  - model: {fileID: 2664394980527572244}
     capacity: 2
-  - model: {fileID: 9187908100517139690}
+  - model: {fileID: 83090441573296886}
     capacity: 4
   - model: {fileID: 9187908100517139690}
-    capacity: 4
-  - model: {fileID: 4168463719022891888}
     capacity: 8
-  - model: {fileID: 7949422503979958566}
+  - model: {fileID: 4168463719022891888}
     capacity: 16
   - model: {fileID: 7949422503979958566}
     capacity: 32
+  - model: {fileID: 7949422503979958566}
+    capacity: 64
 --- !u!1 &705932653327973958
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,18 +487,18 @@ MonoBehaviour:
   vehicleModels:
   - model: {fileID: 6422911161400455328}
     capacity: 1
-  - model: {fileID: 9107577269297552438}
+  - model: {fileID: 6422911161400455328}
     capacity: 2
-  - model: {fileID: 357599027750621976}
+  - model: {fileID: 9107577269297552438}
     capacity: 4
   - model: {fileID: 357599027750621976}
-    capacity: 4
-  - model: {fileID: 4045147934585604432}
     capacity: 8
-  - model: {fileID: 6907399545066027844}
+  - model: {fileID: 4045147934585604432}
     capacity: 16
   - model: {fileID: 6907399545066027844}
     capacity: 32
+  - model: {fileID: 6907399545066027844}
+    capacity: 64
 --- !u!1 &4959594490234523154
 GameObject:
   m_ObjectHideFlags: 0

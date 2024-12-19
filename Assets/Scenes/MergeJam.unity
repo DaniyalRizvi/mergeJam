@@ -40919,25 +40919,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 7.5
   busTypes:
-  - capacity: 1
+  - capacity: 2
     color: 1
-  - capacity: 1
+  - capacity: 2
     color: 1
-  - capacity: 1
+  - capacity: 2
     color: 1
-  - capacity: 1
-    color: 1
-  - capacity: 1
-    color: 1
-  - capacity: 1
-    color: 1
-  - capacity: 1
-    color: 1
-  - capacity: 1
+  - capacity: 2
     color: 1
   colors:
   - color: 1
-    count: 12
+    count: 8
 --- !u!4 &889078103
 Transform:
   m_ObjectHideFlags: 0
