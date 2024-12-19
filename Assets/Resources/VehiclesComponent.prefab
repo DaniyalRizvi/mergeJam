@@ -62,6 +62,8 @@ MonoBehaviour:
     capacity: 8
   - model: {fileID: 7949422503979958566}
     capacity: 16
+  - model: {fileID: 7949422503979958566}
+    capacity: 32
 --- !u!1 &705932653327973958
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +497,8 @@ MonoBehaviour:
     capacity: 8
   - model: {fileID: 6907399545066027844}
     capacity: 16
+  - model: {fileID: 6907399545066027844}
+    capacity: 32
 --- !u!1 &4959594490234523154
 GameObject:
   m_ObjectHideFlags: 0

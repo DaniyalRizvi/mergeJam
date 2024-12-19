@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Managers;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.Port;
-using static UnityEngine.GraphicsBuffer;
-
 public class GameManager : Singelton<GameManager>
 {
     //public VehicleDataManager VehicleDataManager;

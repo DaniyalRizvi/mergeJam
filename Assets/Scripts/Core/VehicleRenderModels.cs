@@ -27,6 +27,7 @@ public class VehicleRenderModels : MonoBehaviour
     }
     public void ActiveVehicle(int Capacity)
     {
+
             foreach (var vehicle in vehicleModels)
             {
             //if (vehicle.color == color && vehicle.capacity == capacity)
