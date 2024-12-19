@@ -107,6 +107,7 @@ public class UIManager : Singelton<UIManager>
             PassengerAmountHolder pah = Instantiate(Resources.Load<GameObject>("Passenger Amount Holder")).GetComponent<PassengerAmountHolder>();
             pah.Init(color.color, color.count);
             pah.transform.SetParent(pahHolder.transform);
+            pah.transform.localScale= Vector3.one;
         }
     }
 
