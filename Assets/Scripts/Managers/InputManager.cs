@@ -102,7 +102,7 @@ public class InputManager : Singelton<InputManager>
                     break;
             }
             
-            TutorialManager.Instance.hand.SetActive(false);
+            //TutorialManager.Instance.hand.SetActive(false);//Z
         }
         if(!context.performed || IsPointerOverUI())
             return;

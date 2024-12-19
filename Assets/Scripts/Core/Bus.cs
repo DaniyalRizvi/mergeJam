@@ -43,9 +43,7 @@ public class Bus : MonoBehaviour
     {
         currentSize = capacity;
         Rb = GetComponent<Rigidbody>();
-        UpdateVisual();
-        //VehicleRenderModels.ActiveVehicle(capacity);
-
+        UpdateVisual();  
         VehicleRenderModelsOnInitilization.UpdateVisual(busColor.GetColor());
         VehicleRenderModelsOnInitilization.ActiveVehicle(capacity);
         
@@ -53,9 +51,7 @@ public class Bus : MonoBehaviour
 
     public void UpdateVisual()
     {
-        VehicleRenderModels.UpdateVisual(busColor.GetColor());
-        //GetComponent<Renderer>().material.color = busColor.GetColor();
-        //VehicleRender.GetComponent<Renderer>().material.color = busColor.GetColor();
+        VehicleRenderModels.UpdateVisual(busColor.GetColor()); 
     }
     
     public void AssignSlot(Slot clickedSlot)
