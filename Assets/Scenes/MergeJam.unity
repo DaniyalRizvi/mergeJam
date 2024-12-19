@@ -61050,7 +61050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1409098212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134091,7 +134091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2018158912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134106,29 +134106,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 7.5
   busTypes:
-  - capacity: 1
+  - capacity: 2
     color: 0
-  - capacity: 1
+  - capacity: 2
     color: 0
-  - capacity: 1
+  - capacity: 2
     color: 0
-  - capacity: 1
+  - capacity: 2
     color: 0
-  - capacity: 1
+  - capacity: 2
     color: 0
-  - capacity: 1
-    color: 0
-  - capacity: 1
-    color: 0
-  - capacity: 1
-    color: 0
-  - capacity: 1
-    color: 0
-  - capacity: 1
-    color: 0
-  - capacity: 1
-    color: 0
-  - capacity: 1
+  - capacity: 2
     color: 0
   - capacity: 1
     color: 3
@@ -134146,17 +134134,17 @@ MonoBehaviour:
     color: 3
   - capacity: 1
     color: 3
-  - capacity: 1
+  - capacity: 2
     color: 1
-  - capacity: 1
+  - capacity: 2
     color: 1
-  - capacity: 1
+  - capacity: 2
     color: 1
-  - capacity: 1
+  - capacity: 2
     color: 1
-  - capacity: 1
+  - capacity: 2
     color: 1
-  - capacity: 1
+  - capacity: 2
     color: 1
   - capacity: 1
     color: 2
@@ -134174,18 +134162,6 @@ MonoBehaviour:
     color: 2
   - capacity: 1
     color: 2
-  - capacity: 1
-    color: 1
-  - capacity: 1
-    color: 1
-  - capacity: 1
-    color: 1
-  - capacity: 1
-    color: 1
-  - capacity: 1
-    color: 1
-  - capacity: 1
-    color: 1
   colors:
   - color: 0
     count: 12
