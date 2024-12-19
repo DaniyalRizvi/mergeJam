@@ -137,7 +137,7 @@ public class TutorialManager : Singelton<TutorialManager>
     {
         InitPanel("Tap this vehicle to move it to the vehicle slot.");
         handIcon.SetActive(false);
-        hand.SetActive(true);
+        hand.SetActive(false);//ZZ
         busOutlines.ForEach(x => x.enabled = false);
         var outline = busOutlines.FirstOrDefault(x => x.GetComponent<Bus>().busColor == Colors.Blue && x.GetComponent<Bus>().capacity == 1);
         if (outline != null)
@@ -156,7 +156,7 @@ public class TutorialManager : Singelton<TutorialManager>
     {
         InitPanel("Tap this vehicle to move it to the next slot.");
         handIcon.SetActive(false);
-        hand.SetActive(true);
+        hand.SetActive(false);//ZZ
         foreach (var x in busOutlines.Where(x => x != null))
         {
             x.enabled = false;

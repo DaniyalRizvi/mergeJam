@@ -65,20 +65,22 @@ public class InputManager : Singelton<InputManager>
                 }
                 case 3:
                 {
-                    TutorialManager.Instance.tutorialCase++;
-                    TutorialManager.Instance.HidePanel();
+                        TutorialManager.Instance.tutorialCase++;
+                        TutorialManager.Instance.hand.SetActive(true);
+                        TutorialManager.Instance.HidePanel();
                     return;
                 }
                 case 4:
                 {
                     TutorialManager.Instance.tutorialCase++;
-                    TutorialManager.Instance.hand.SetActive(false);
+                    
                     break;
                 }
                 case 6:
                 {
-                    TutorialManager.Instance.HidePanel();
-                    break;
+                        TutorialManager.Instance.HidePanel();
+                        TutorialManager.Instance.hand.SetActive(true);
+                        break;
                 }
                 case 7:
                 {
@@ -176,6 +178,14 @@ public class InputManager : Singelton<InputManager>
         _selectedBus.gameObject.AddComponent<Outline>();
         if (bus.AssignedSlot == null)
             TryMoveBusToSlot();
+        if (TutorialManager.Instance)
+        {
+            if (TutorialManager.Instance.hand.activeInHierarchy)
+            {
+                TutorialManager.Instance.hand.SetActive(false);
+                Debug.LogError("HandOFF");
+            }
+        }
     }
     
     void TryMoveBusToSlot()
@@ -184,7 +194,7 @@ public class InputManager : Singelton<InputManager>
     }
 
     void TryMoveBusToSlot(Slot clickedSlot)
-    {
+    { 
         GameManager.Instance.PlaceBusInSlot(_selectedBus, clickedSlot);
     }
 
