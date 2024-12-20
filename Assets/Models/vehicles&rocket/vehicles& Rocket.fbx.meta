@@ -3,7 +3,52 @@ guid: 26b3cb6c994dea144a383245972170bc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bicycle_red
+    second: {fileID: 2100000, guid: 9f7de1136bff4424fa9af995267528ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bicyle_parts
+    second: {fileID: 2100000, guid: 4f203ab4e0d503245a3377eb9ec71314, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body_doubledeckerbus
+    second: {fileID: 2100000, guid: 4601e138a2ecdb442b9bca8da56b3339, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bodycolor_bus
+    second: {fileID: 2100000, guid: 43b212f61ddf1ff4ea4f228417daaa8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bus_partscolor
+    second: {fileID: 2100000, guid: 4b88c1aa1fbd8684494e4dc128631dbd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: double_decker_windows,other parts
+    second: {fileID: 2100000, guid: 6dd24c0808f46d24a9ff48d3eb05a39e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lighterarea_rocket
+    second: {fileID: 2100000, guid: f68783e4e321e954aaae9bd32137bda2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: red_rocket
+    second: {fileID: 2100000, guid: 16d30495f7531ea47b702894e7b1a093, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: white_rocket
+    second: {fileID: 2100000, guid: 313deb7e326f66441ae715d51eecb8f1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
