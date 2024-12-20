@@ -138,7 +138,7 @@ public class TutorialManager : Singelton<TutorialManager>
 
     public void InitFirstBus()
     {
-        InitPanel("Tap this vehicle to move it to the vehicle slot.");
+        InitPanel("Tap First vehicle to move it to the vehicle slot.");
         handIcon.SetActive(false);
         hand.SetActive(false);//ZZ
         busOutlines.ForEach(x => x.enabled = false);
@@ -329,6 +329,7 @@ public class TutorialManager : Singelton<TutorialManager>
     private IEnumerator InitRocketCoroutine()
     {
         HidePanel();
+        rocket.GetComponent<Button>().interactable = false;
         yield return new WaitForSeconds(5f);
         yield return null;
         InitPanel("Rockets destroy a trash item, clearing space for you to easily select required items.");
@@ -351,7 +352,8 @@ public class TutorialManager : Singelton<TutorialManager>
         rocket.transform.localPosition = targetPosition;
         rocket.transform.localScale = targetScale;
         isInAnimation = false;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
+        rocket.GetComponent<Button>().interactable = true;
         HidePanel();
     }
 
