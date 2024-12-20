@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class TutorialManager : Singelton<TutorialManager>
 {
@@ -177,6 +179,7 @@ public class TutorialManager : Singelton<TutorialManager>
 
     public void InitTrashItems()
     {
+        
         foreach (var x in busOutlines.Where(x => x != null))
         {
             x.enabled = false;
@@ -203,6 +206,80 @@ public class TutorialManager : Singelton<TutorialManager>
         }
         InitPanel("Some vehicles are trash items. These take up space in the vehicle slots." + 
         "\nTo get rid of trash items, merge two trash items together to free up space.");
+    }
+    public bool IsFirstTrashDone;
+    Outline outlineOneRef;
+    public void InitFirstTrashItems()
+    {
+
+       // InitPanel("Tap this Trash vehicle to move it to the vehicle slot.");
+        handIcon.SetActive(false);
+        hand.SetActive(false);//ZZ
+        foreach (var x in busOutlines.Where(x => x != null))
+        {
+            x.enabled = false;
+        }
+        Outline outlineOne = busOutlines.FirstOrDefault(x => x.GetComponent<Bus>().busColor == Colors.Pink && x.GetComponent<Bus>().capacity == 1);
+        if (outlineOne != null)
+        {
+            this.outlineOneRef = outlineOne;
+            outlineOne.enabled = true;
+            outlineOne.OutlineColor = Color.green;
+            outlineOne.OutlineWidth = 5f;
+            var pos = mainCamera.GetComponent<Camera>().WorldToScreenPoint(outlineOne.transform.position);
+            hand.transform.position = pos + new Vector3(25, 0, -25);
+            Busses.Clear();
+            Busses.Add(outlineOne.gameObject);
+        }
+        #region TRASH
+        //foreach (var x in busOutlines.Where(x => x != null))
+        //{
+        //    x.enabled = false;
+        //}
+
+        //Busses.Clear();
+        //var outlineOne = busOutlines.FirstOrDefault(x => x != null && x.GetComponent<Bus>().busColor == Colors.Pink);
+       
+        //if (outlineOne != null)
+        //{
+        //    outlineOne.enabled = true;
+        //    outlineOne.OutlineColor = Color.red;
+        //    outlineOne.OutlineWidth = 5f;
+
+        //    var pos = mainCamera.GetComponent<Camera>().WorldToScreenPoint(outlineOne.transform.position);
+        //    hand.transform.position = pos + new Vector3(25, 0, -25);
+
+        //    Busses.Add(outlineOne.gameObject);
+        //}
+        #endregion
+        InitPanel("Some vehicles are trash items. These take up space in the vehicle slots." +
+        "\nTo get rid of trash items, merge two trash items together to free up space.");
+
+        IsFirstTrashDone = true;
+    }
+    public void InitSecondTrashItems()
+    {
+        handIcon.SetActive(false);
+        hand.SetActive(false);//ZZ
+        foreach (var x in busOutlines.Where(x => x != null))
+        {
+            x.enabled = false;
+        }
+        //Outline outline = busOutlines.FirstOrDefault(x => x.GetComponent<Bus>().busColor == Colors.Pink && x.GetComponent<Bus>().capacity == 1);
+        Outline outline = busOutlines.FirstOrDefault(x =>
+           x != null && x.GetComponent<Bus>().busColor == Colors.Pink && x != outlineOneRef);
+        if (outline != null)
+        {
+            outline.enabled = true;
+            outline.OutlineColor = Color.green;
+            outline.OutlineWidth = 5f;
+            var pos = mainCamera.GetComponent<Camera>().WorldToScreenPoint(outline.transform.position);
+            hand.transform.position = pos + new Vector3(25, 0, -25);
+            Busses.Clear();
+            Busses.Add(outline.gameObject);
+        }
+        InitPanel("Tap this Trash vehicle to move it to the vehicle slot.");
+        IsFirstTrashDone = false;
     }
 
     public void InitFan()
@@ -287,4 +364,5 @@ public class TutorialManager : Singelton<TutorialManager>
     {
         SceneManager.LoadScene(sceneBuildIndex: 1);
     }
+
 }

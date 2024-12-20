@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using VoxelBusters.AdsKit;
 
 public class InputManager : Singelton<InputManager>
 {
@@ -66,8 +67,8 @@ public class InputManager : Singelton<InputManager>
                 case 3:
                 {
                         TutorialManager.Instance.tutorialCase++;
-                        TutorialManager.Instance.hand.SetActive(true);
                         TutorialManager.Instance.HidePanel();
+                        TutorialManager.Instance.hand.SetActive(true);
                     return;
                 }
                 case 4:
@@ -90,16 +91,26 @@ public class InputManager : Singelton<InputManager>
                 }
                 case 8:
                 {
-                    TutorialManager.Instance.tutorialCase++;
-                    TutorialManager.Instance.HidePanel();
-                    TutorialManager.Instance.InitTrashItems();
-                    break;
+                          TutorialManager.Instance.tutorialCase++;
+                         TutorialManager.Instance.HidePanel();
+                          //TutorialManager.Instance.InitTrashItems();
+                          TutorialManager.Instance.InitFirstTrashItems();
+                        break;
                 }
                 case 9:
                 {
-                    TutorialManager.Instance.HidePanel();
-                    break;
+                        //First Trash Done
+                        TutorialManager.Instance.HidePanel();
+                        TutorialManager.Instance.hand.SetActive(true);
+                        break;
                 }
+                case 10:
+                    //Second Trash Done 
+                    TutorialManager.Instance.tutorialCase++;
+
+
+                    //Fand Button Active
+                    break;
                 default:
                     break;
             }
@@ -140,6 +151,7 @@ public class InputManager : Singelton<InputManager>
                         currentSlot.AssignBus(_selectedBus);
                         GameManager.Instance.TriggerCascadingMerge(currentSlot,out _);
                         DeselectBus();
+                         
                     }
 
                     return;
@@ -185,6 +197,9 @@ public class InputManager : Singelton<InputManager>
                 TutorialManager.Instance.hand.SetActive(false);
                 Debug.LogError("HandOFF");
             }
+            //for Trash Item we check this 
+
+            
         }
     }
     

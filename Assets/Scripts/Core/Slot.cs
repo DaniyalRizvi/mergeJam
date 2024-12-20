@@ -43,6 +43,15 @@ public class Slot : MonoBehaviour
         CurrentBus.transform.position = _referencePoint.transform.position;
         CurrentBus.transform.rotation = _referencePoint.transform.rotation;
         bus.Rb.isKinematic = true;
+
+
+        if (!GameManager.Instance.CurrentBusExistInGame(CurrentBus.busColor))
+        {
+            Debug.LogError("Bus NOT Exist");
+            //TutorialManager.Instance.tutorialCase++;
+            if(TutorialManager.Instance.IsFirstTrashDone)
+            TutorialManager.Instance.InitSecondTrashItems();
+        }
     }
 
 

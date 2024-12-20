@@ -20,6 +20,15 @@ public class GameManager : Singelton<GameManager>
         DTAdsManager.Instance.ShowAd(Constants.BannerID);
     }
 
+    public bool CurrentBusExistInGame(Colors CurrentBusColor)
+    {
+        bool result = true;
+        if (!_level.colors.Exists(i => i.color == CurrentBusColor))
+        {
+            result = false;
+        }
+        return result;
+    }
     public void Init(List<Slot> slots, List<Passenger> passengers, Level level)
     {
         _slots = slots;
@@ -79,6 +88,7 @@ public class GameManager : Singelton<GameManager>
             {
                 TutorialManager.Instance.tutorialCase++;
                 TutorialManager.Instance.InitFan();
+                Debug.LogError("InitFan");
             }
             //Rocket PowerUps
             MergeEffect(leftSlot.CurrentBus.transform);
@@ -176,7 +186,7 @@ public class GameManager : Singelton<GameManager>
             BoardPassengersToBus(remainingBus);
             InputManager.Instance.DeselectBus();
         }
-
+         
         StartCoroutine(nameof(CheckLooseCondition));
     }
 
