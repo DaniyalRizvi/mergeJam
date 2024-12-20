@@ -48,7 +48,8 @@ public class PowerUpEventHandler : MonoBehaviour
         {
             GameManager.Instance.FanPowerUps();
             TutorialManager.Instance.tutorialCase++;
-            TutorialManager.Instance.InitRocket();
+            //TutorialManager.Instance.InitRocket();
+            TutorialManager.Instance.InitRocketPanel();
         }
         if (TutorialManager.Instance && powerUpType == PowerUpType.Rocket)
         {

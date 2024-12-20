@@ -107,9 +107,24 @@ public class InputManager : Singelton<InputManager>
                 case 10:
                     //Second Trash Done 
                     //Fand Button Active and Show hand On It
-                    TutorialManager.Instance.hand.SetActive(true);
+                    TutorialManager.Instance.tutorialCase++;
+                    TutorialManager.Instance.InitFan();
+                    TutorialManager.Instance.HidePanel();
+
                     break;
                 case 11: 
+                    TutorialManager.Instance.hand.SetActive(true);
+
+                    //Show Rocket init here 
+                    break;
+                case 13:
+
+                    TutorialManager.Instance.tutorialCase++;
+                    break;
+                case 14:
+                    Debug.Log("14");
+                    TutorialManager.Instance.InitRocket();
+                    TutorialManager.Instance.tutorialCase++;
                     break;
                 default:
                     break;

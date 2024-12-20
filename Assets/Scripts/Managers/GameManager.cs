@@ -87,7 +87,8 @@ public class GameManager : Singelton<GameManager>
             if (TutorialManager.Instance)
             {
                 TutorialManager.Instance.tutorialCase++;
-                TutorialManager.Instance.InitFan();
+                //TutorialManager.Instance.InitFan();
+                TutorialManager.Instance.InitFanPanel();
                 Debug.LogError("InitFan");
             }
             //Rocket PowerUps

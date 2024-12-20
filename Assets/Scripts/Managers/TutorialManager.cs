@@ -288,11 +288,14 @@ public class TutorialManager : Singelton<TutorialManager>
     {
         StartCoroutine(InitFanCoroutine());
     }
-
+    public void InitFanPanel()
+    {
+        InitPanel("The Fan rearranges the vehicle pile, making vehicles at the bottom easier to access.");
+    }
     private IEnumerator InitFanCoroutine()
     {
         yield return null;
-        InitPanel("The Fan rearranges the vehicle pile, making vehicles at the bottom easier to access.");
+        //InitPanel("The Fan rearranges the vehicle pile, making vehicles at the bottom easier to access.");
         isInAnimation = true;
         float time = 0;
         const float duration = 2f;
@@ -325,14 +328,28 @@ public class TutorialManager : Singelton<TutorialManager>
     {
         StartCoroutine(InitRocketCoroutine());
     }
+    public void InitRocketPanel()
+    {
+        StartCoroutine(InitRocketPanelCoroutine());
+    }
+    private IEnumerator InitRocketPanelCoroutine()
+    {
+        isInAnimation = true;
+        yield return new WaitForSeconds(2f);
+        isInAnimation = false;
+        HidePanel();
+        InitPanel("Rockets destroy a trash item, clearing space for you to easily select required items.");
+        TutorialManager.Instance.tutorialCase++;
+    }
 
     private IEnumerator InitRocketCoroutine()
     {
         HidePanel();
         rocket.GetComponent<Button>().interactable = false;
-        yield return new WaitForSeconds(5f);
-        yield return null;
-        InitPanel("Rockets destroy a trash item, clearing space for you to easily select required items.");
+        yield return new WaitForSeconds(0.1f);
+        //yield return new WaitForSeconds(5f);
+        //yield return null;
+        //InitPanel("Rockets destroy a trash item, clearing space for you to easily select required items.");
         isInAnimation = true;
         float time = 0;
         const float duration = 2f;
@@ -352,7 +369,11 @@ public class TutorialManager : Singelton<TutorialManager>
         rocket.transform.localPosition = targetPosition;
         rocket.transform.localScale = targetScale;
         isInAnimation = false;
-        yield return new WaitForSeconds(2f);
+
+        yield return new WaitForSeconds(.5f);
+        Vector3 HandTargetPos = targetPosition + new Vector3(100, 0, -25);
+        hand.transform.localPosition = HandTargetPos;
+        hand.SetActive(true);
         rocket.GetComponent<Button>().interactable = true;
         HidePanel();
     }
