@@ -106,10 +106,10 @@ public class InputManager : Singelton<InputManager>
                 }
                 case 10:
                     //Second Trash Done 
-                    TutorialManager.Instance.tutorialCase++;
-
-
-                    //Fand Button Active
+                    //Fand Button Active and Show hand On It
+                    TutorialManager.Instance.hand.SetActive(true);
+                    break;
+                case 11: 
                     break;
                 default:
                     break;

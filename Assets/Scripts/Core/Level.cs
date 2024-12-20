@@ -83,6 +83,10 @@ public class Level : MonoBehaviour
 
     public void DestroyBus(Bus bus)
     {
+        if (TutorialManager.Instance)
+        {
+            GameManager.Instance.RocketPowerUps(bus.transform);
+        }
         Destroy(bus.gameObject);
     }
 }

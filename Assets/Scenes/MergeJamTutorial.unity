@@ -23453,10 +23453,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 7.5
   busTypes:
-  - capacity: 8
-    color: 1
-  - capacity: 4
-    color: 1
   - capacity: 1
     color: 1
   - capacity: 1
@@ -23464,23 +23460,11 @@ MonoBehaviour:
   - capacity: 1
     color: 1
   - capacity: 1
-    color: 1
-  - capacity: 8
-    color: 0
-  - capacity: 4
     color: 0
   - capacity: 1
     color: 0
   - capacity: 1
     color: 0
-  - capacity: 1
-    color: 0
-  - capacity: 1
-    color: 0
-  - capacity: 1
-    color: 2
-  - capacity: 1
-    color: 2
   - capacity: 1
     color: 2
   - capacity: 1
@@ -42896,6 +42880,7 @@ MonoBehaviour:
   - {fileID: 1561565764}
   busOutlines: []
   isInAnimation: 0
+  IsFirstTrashDone: 0
 --- !u!4 &1031512925
 Transform:
   m_ObjectHideFlags: 0
@@ -43620,9 +43605,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '5
-
-'
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e8b68c036219eb544a3b1f114a93cb96, type: 2}
   m_sharedMaterial: {fileID: 4621200205589732911, guid: e8b68c036219eb544a3b1f114a93cb96, type: 2}
@@ -45158,9 +45141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '5
-
-'
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e8b68c036219eb544a3b1f114a93cb96, type: 2}
   m_sharedMaterial: {fileID: 4621200205589732911, guid: e8b68c036219eb544a3b1f114a93cb96, type: 2}

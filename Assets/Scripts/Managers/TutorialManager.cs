@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class TutorialManager : Singelton<TutorialManager>
 {
@@ -211,7 +212,7 @@ public class TutorialManager : Singelton<TutorialManager>
     Outline outlineOneRef;
     public void InitFirstTrashItems()
     {
-
+        outlineOneRef = new Outline();
        // InitPanel("Tap this Trash vehicle to move it to the vehicle slot.");
         handIcon.SetActive(false);
         hand.SetActive(false);//ZZ
@@ -219,7 +220,7 @@ public class TutorialManager : Singelton<TutorialManager>
         {
             x.enabled = false;
         }
-        Outline outlineOne = busOutlines.FirstOrDefault(x => x.GetComponent<Bus>().busColor == Colors.Pink && x.GetComponent<Bus>().capacity == 1);
+        Outline outlineOne = busOutlines.FirstOrDefault(x => x!=null &&  x.GetComponent<Bus>().busColor == Colors.Pink && x.GetComponent<Bus>().capacity == 1);
         if (outlineOne != null)
         {
             this.outlineOneRef = outlineOne;
@@ -278,8 +279,9 @@ public class TutorialManager : Singelton<TutorialManager>
             Busses.Clear();
             Busses.Add(outline.gameObject);
         }
-        InitPanel("Tap this Trash vehicle to move it to the vehicle slot.");
+        InitPanel("Tap To The Second Trash vehicle to move it to the vehicle slot.");
         IsFirstTrashDone = false;
+
     }
 
     public void InitFan()
@@ -296,6 +298,7 @@ public class TutorialManager : Singelton<TutorialManager>
         const float duration = 2f;
         Vector3 startPosition = fan.localPosition;
         Vector3 targetPosition = new Vector3(120, -800);
+        fan.GetComponent<Button>().interactable = false;
         fan.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         var startScale = fan.transform.localScale;
@@ -309,7 +312,12 @@ public class TutorialManager : Singelton<TutorialManager>
         }
         fan.transform.localPosition = targetPosition;
         fan.transform.localScale = targetScale;
+        Vector3 HandTargetPos = targetPosition+new Vector3(100, 0, -25);
+        hand.transform.localPosition = HandTargetPos;
+        hand.SetActive(true);
+        fan.GetComponent<Button>().interactable = true;
         isInAnimation = false;
+        tutorialCase++;
         HidePanel();
     }
 

@@ -52,6 +52,7 @@ public class PowerUpEventHandler : MonoBehaviour
         }
         if (TutorialManager.Instance && powerUpType == PowerUpType.Rocket)
         {
+            
             TutorialManager.Instance.tutorialCase++;
             TutorialManager.Instance.TutorialCompleted();
         }
@@ -88,7 +89,7 @@ public class PowerUpEventHandler : MonoBehaviour
                     foreach (var bus in busses.Where(bus => colors.Contains(bus.busColor)))
                     {
                         level.DestroyBus(bus);
-                        GameManager.Instance.RocketPowerUps(bus.transform); ;
+                        GameManager.Instance.RocketPowerUps(bus.transform);
                         Debug.LogError("Vehicle Bus Destroyed" + bus.name);
                         break;
                     }
