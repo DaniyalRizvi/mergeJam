@@ -47,8 +47,7 @@ public class Slot : MonoBehaviour
 
         if (!GameManager.Instance.CurrentBusExistInGame(CurrentBus.busColor))
         {
-            Debug.LogError("Bus NOT Exist");
-            //TutorialManager.Instance.tutorialCase++;
+            //Debug.LogError("Bus NOT Exist");
             if(TutorialManager.Instance)
             {
                 if(TutorialManager.Instance.IsFirstTrashDone)
