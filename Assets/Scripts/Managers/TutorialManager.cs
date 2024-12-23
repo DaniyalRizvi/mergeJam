@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class TutorialManager : Singelton<TutorialManager>
 {
