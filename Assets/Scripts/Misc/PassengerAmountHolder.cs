@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using DG.Tweening;
 public class PassengerAmountHolder : MonoBehaviour
 {
     public Image image;
@@ -21,8 +21,16 @@ public class PassengerAmountHolder : MonoBehaviour
 
     public void UpdateAmount()
     {
+
         _amount--;
         _amount = Mathf.Clamp(_amount, 0, int.MaxValue);
         amountText.text = _amount.ToString();
+
+
+        amountText.transform.DOScale(Vector3.one * 1.2f, .8f).SetEase(Ease.OutBounce).OnComplete(() =>
+        {
+            amountText.transform.localScale = Vector3.one;
+        });
+
     }
 }
