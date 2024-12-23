@@ -48750,8 +48750,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2.089096}
-  m_SizeDelta: {x: -144.7629, y: -86.2674}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -142.7176, y: -86.1227}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1237716375
 MonoBehaviour:
@@ -48773,7 +48773,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"Welcome to Merge Jam! Merge vehicles to accommodate all the passengers."'
+  m_text: '"Welcome to Merge Jam! Merge vehicles to accommodate all the passengers.""Welcome
+    to Merge Jam! Merge vehicles to accommodate all the passengers.""Welcome to Merge
+    Jam! Merge vehicles to accommodate all the passengers."'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e8b68c036219eb544a3b1f114a93cb96, type: 2}
   m_sharedMaterial: {fileID: 4621200205589732911, guid: e8b68c036219eb544a3b1f114a93cb96, type: 2}
@@ -48800,12 +48802,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
+  m_fontSize: 29.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 40
+  m_fontSizeMin: 15
+  m_fontSizeMax: 35
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
