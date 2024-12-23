@@ -49,8 +49,11 @@ public class Slot : MonoBehaviour
         {
             Debug.LogError("Bus NOT Exist");
             //TutorialManager.Instance.tutorialCase++;
-            if(TutorialManager.Instance.IsFirstTrashDone)
-            TutorialManager.Instance.InitSecondTrashItems();
+            if(TutorialManager.Instance)
+            {
+                if(TutorialManager.Instance.IsFirstTrashDone)
+                TutorialManager.Instance.InitSecondTrashItems();
+            }
         }
     }
 
