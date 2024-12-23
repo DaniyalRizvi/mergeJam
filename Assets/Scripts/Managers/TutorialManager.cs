@@ -48,7 +48,7 @@ public class TutorialManager : Singelton<TutorialManager>
     {
         isInAnimation = true;
         float time = 0;
-        const float duration = 2f;
+        const float duration = 1f;
         Vector3 startPosition = mainCamera.transform.position;
         Vector3 targetPosition = passengerTransform.position;
         
@@ -78,7 +78,7 @@ public class TutorialManager : Singelton<TutorialManager>
     {
         isInAnimation = true;
         float time = 0;
-        const float duration = 2f;
+        const float duration = 1f;
         Vector3 startPosition = mainCamera.transform.position;
         Vector3 targetPosition = busTransform.position;
         
@@ -116,7 +116,7 @@ public class TutorialManager : Singelton<TutorialManager>
     {
         isInAnimation = true;
         float time = 0;
-        const float duration = 2f;
+        const float duration = 1f;
         Vector3 startPosition = mainCamera.transform.position;
         Vector3 targetPosition = homeTransform.position;
         
@@ -297,7 +297,7 @@ public class TutorialManager : Singelton<TutorialManager>
         //InitPanel("The Fan rearranges the vehicle pile, making vehicles at the bottom easier to access.");
         isInAnimation = true;
         float time = 0;
-        const float duration = 2f;
+        const float duration = 1f;
         Vector3 startPosition = fan.localPosition;
         Vector3 targetPosition = new Vector3(120, -800);
         fan.GetComponent<Button>().interactable = false;
@@ -351,7 +351,7 @@ public class TutorialManager : Singelton<TutorialManager>
         //InitPanel("Rockets destroy a trash item, clearing space for you to easily select required items.");
         isInAnimation = true;
         float time = 0;
-        const float duration = 2f;
+        const float duration = 1f;
         Vector3 startPosition = rocket.localPosition;
         Vector3 targetPosition = new Vector3(-120, -800);
         rocket.gameObject.SetActive(true);
