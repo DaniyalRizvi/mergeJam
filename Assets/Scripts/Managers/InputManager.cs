@@ -140,6 +140,7 @@ public class InputManager : Singelton<InputManager>
         Ray ray = Camera.main!.ScreenPointToRay(mousePosition);
         if (Physics.Raycast(ray, out var hit) && hit.collider != null)
         {
+            DeselectBus();//Remove When Enable Swaping Bus
             Bus clickedBus = hit.collider.GetComponent<Bus>();
             Slot clickedSlot = hit.collider.GetComponent<Slot>();
             if (TutorialManager.Instance)
@@ -152,6 +153,7 @@ public class InputManager : Singelton<InputManager>
                     }
                 }
             }
+
             if (clickedBus != null)
             {
                 if (_selectedBus != null)
@@ -185,12 +187,14 @@ public class InputManager : Singelton<InputManager>
                     clickedSlot.UnlockSlot();
                     DeselectBus();
                 }
-                else if (_selectedBus != null)
-                {
-                    TryMoveBusToSlot(clickedSlot);
-                }
 
-                return;
+                //Remove When Enable Swaping Bus
+                //else if (_selectedBus != null)
+                //{
+                //    TryMoveBusToSlot(clickedSlot);
+                //}
+                //return;
+
             }
         }
 
