@@ -18,7 +18,7 @@ public class PassengerAmountHolder : MonoBehaviour
         image.color = color.GetColor();
         amountText.text = amount.ToString();
     }
-
+   bool IsInAnimaiton;
     public void UpdateAmount()
     {
 
@@ -26,11 +26,15 @@ public class PassengerAmountHolder : MonoBehaviour
         _amount = Mathf.Clamp(_amount, 0, int.MaxValue);
         amountText.text = _amount.ToString();
 
-
-        amountText.transform.DOScale(Vector3.one * 1.2f, .8f).SetEase(Ease.OutBounce).OnComplete(() =>
+        if (!IsInAnimaiton)
         {
-            amountText.transform.localScale = Vector3.one;
-        });
+            IsInAnimaiton = true;
+            amountText.transform.DOScale(Vector3.one * 1.2f, .8f).SetEase(Ease.InOutSine).OnComplete(() =>
+            {
+                amountText.transform.localScale = Vector3.one;
+                IsInAnimaiton = false;
+            });
+        }
 
     }
 }
