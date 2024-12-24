@@ -38,9 +38,9 @@ MonoBehaviour:
     m_isEnabled: 1
     m_runtimeApiKey: 
     m_runtimeApiKeyOverrides:
-      m_ios: 
+      m_ios: ca-app-pub-2683410217384030~2986009619
       m_tvos: 
-      m_android: ca-app-pub-3940256099942544~3347511713
+      m_android: ca-app-pub-2683410217384030~1501537552
     m_runtimeApiSecret: 
     m_runtimeApiSecretOverrides:
       m_ios: 
@@ -52,19 +52,19 @@ MonoBehaviour:
     m_adMetaArray:
     - m_placement: mj_interstitial_ad
       m_adUnitIds:
-        m_ios: 
+        m_ios: ca-app-pub-2683410217384030/3277621835
         m_tvos: 
-        m_android: ca-app-pub-3940256099942544/1033173712
+        m_android: ca-app-pub-2683410217384030/9220213655
     - m_placement: mj_rewarded_ad
       m_adUnitIds:
-        m_ios: 
+        m_ios: ca-app-pub-2683410217384030/1944390680
         m_tvos: 
-        m_android: ca-app-pub-3940256099942544/5224354917
+        m_android: ca-app-pub-2683410217384030/6594050315
     - m_placement: mj_banner_ad
       m_adUnitIds:
-        m_ios: 
+        m_ios: ca-app-pub-2683410217384030~2986009619
         m_tvos: 
-        m_android: ca-app-pub-3940256099942544/9214589741
+        m_android: ca-app-pub-2683410217384030/4550340908
   - m_networkId: AppLovin
     m_isEnabled: 0
     m_runtimeApiKey: 
