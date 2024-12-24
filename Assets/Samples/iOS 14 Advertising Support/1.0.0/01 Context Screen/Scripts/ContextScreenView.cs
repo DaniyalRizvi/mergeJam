@@ -28,7 +28,7 @@ namespace Unity.Advertisement.IosSupport.Components
 
             sentTrackingAuthorizationRequest?.Invoke();
 
-            GameBooter.AttPermision = true;
+            GameLoadingController.AttPermision = true;
 #else
             Debug.LogWarning("Unity iOS Support: Tried to request iOS App Tracking Transparency native dialog, " +
                              "but the current platform is not iOS.");

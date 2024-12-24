@@ -32,7 +32,7 @@ namespace Unity.Advertisement.IosSupport.Samples
             }
             else
             {
-                GameBooter.AttPermision = true;
+                GameLoadingController.AttPermision = true;
 
             }
 #else
