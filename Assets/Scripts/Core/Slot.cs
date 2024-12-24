@@ -60,10 +60,11 @@ public class Slot : MonoBehaviour
     public void ClearSlot()
     {
         if (CurrentBus != null)
-        {
-            Debug.Log($"Clearing slot: {name}, Bus: {CurrentBus.name}");
+        { 
+            //Debug.Log($"Clearing slot: {name}, Bus: {CurrentBus.name}");
             Destroy(CurrentBus.gameObject);
             CurrentBus = null;
+           
         }
     }
 

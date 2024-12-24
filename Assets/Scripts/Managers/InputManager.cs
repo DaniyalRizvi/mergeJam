@@ -21,6 +21,7 @@ public class InputManager : Singelton<InputManager>
         _inputActions = new GameInputActions();
         _positionAction = _inputActions.FindAction("Position");
         base.Awake();
+
     }
 
     void OnEnable()
@@ -160,6 +161,8 @@ public class InputManager : Singelton<InputManager>
                 {
                     if (_selectedBus.AssignedSlot != null && clickedBus.AssignedSlot != null)
                     {
+                       
+                       
                         var currentSlot = clickedBus.AssignedSlot;
                         var newSlot = _selectedBus.AssignedSlot;
                         _selectedBus.AssignSlot(currentSlot);
@@ -168,7 +171,7 @@ public class InputManager : Singelton<InputManager>
                         currentSlot.AssignBus(_selectedBus);
                         GameManager.Instance.TriggerCascadingMerge(currentSlot,out _);
                         DeselectBus();
-                         
+                       
                     }
 
                     return;

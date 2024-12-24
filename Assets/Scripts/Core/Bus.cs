@@ -61,7 +61,7 @@ public class Bus : MonoBehaviour
             Debug.Log("Slot is locked. Cannot assign a bus.");
             return;
         }
-
+        SoundManager.Instance.AddingVehiclesToSlotsSFX();
         if (AssignedSlot != null)
             AssignedSlot.CurrentBus = null;
         AssignedSlot = clickedSlot;
@@ -72,5 +72,8 @@ public class Bus : MonoBehaviour
          
         VehicleRenderModelsOnInitilization.DisableAllData();
         VehicleRenderModels.ActiveVehicle(capacity);
+
+
+
     }
 }

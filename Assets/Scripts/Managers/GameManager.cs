@@ -91,12 +91,14 @@ public class GameManager : Singelton<GameManager>
                 TutorialManager.Instance.InitFanPanel();
                 Debug.LogError("InitFan");
             }
+            SoundManager.Instance.TrashItemDeletionSFX();
             //Rocket PowerUps
             MergeEffect(leftSlot.CurrentBus.transform);
             Destroy(leftSlot.CurrentBus.gameObject);
             leftSlot.ClearSlot();
             return;
         }
+        SoundManager.Instance.ItemMergeSoundSFX();
         MergeEffect(leftBus.transform);
         NotifyPassengersOfNewBus(leftBus);
         BoardPassengersToBus(leftBus);
@@ -111,6 +113,7 @@ public class GameManager : Singelton<GameManager>
     }
     public void RocketPowerUps(Transform Target)
     {
+        SoundManager.Instance.PlayRocketPowerUpSFX();
         RocketPowerupsVFX.SetActive(false);
         Vector3 Pos = Target.position;
         Pos.y = MergeVFX.transform.position.y;
@@ -119,6 +122,7 @@ public class GameManager : Singelton<GameManager>
     }
     public void FanPowerUps()
     {
+        SoundManager.Instance.PlayFanPowerUpSFX();
         GameManager.Instance.FanPowerUpVFX.SetActive(false);
         GameManager.Instance.FanPowerUpVFX.SetActive(true);
 
@@ -168,6 +172,7 @@ public class GameManager : Singelton<GameManager>
             GemsManager.Instance.AddGems(10);
             UIManager.Instance.ShowLevelCompleteUI();
             OnLevelComplete?.Invoke();
+            SoundManager.Instance.LevelCompleteSFX();
         }
     }
 
@@ -223,7 +228,10 @@ public class GameManager : Singelton<GameManager>
         {
             yield return new WaitUntil(() => _passengers.Where(p => p.IsBoarding).All(p => p.hasBoarded));
             if(_passengers.Count>0)
+            {
                 UIManager.Instance.ShowLevelFailedUI();
+                SoundManager.Instance.LevelCompleteSFX();
+            }
         }
     }
 }
