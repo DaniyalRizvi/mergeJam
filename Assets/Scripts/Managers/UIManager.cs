@@ -11,6 +11,11 @@ using VoxelBusters.AdsKit;
 
 public class UIManager : Singelton<UIManager>
 {
+    [SerializeField] private Button FanPowerUpButton;
+    [SerializeField] private Button FanPowerUpPurchaseButton;
+    [Space(10)]
+
+    [Space(10)]
     public Button SettingButton;
     public SettingPanel SettingPanel;
     [Space(10)]
@@ -42,6 +47,9 @@ public class UIManager : Singelton<UIManager>
             SettingPanel.SettingPanelState(true);
         });
         UpdateGems();
+
+
+       
     }
 
     public void OpenShop()
@@ -69,7 +77,6 @@ public class UIManager : Singelton<UIManager>
             OpenShop();
         }
     }
-
     private void OnAdWatched(string placementid)
     {
         if (placementid.Equals(Constants.RewardedID))
