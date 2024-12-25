@@ -270,6 +270,11 @@ namespace IAP
                 _storeExtensionProvider.GetExtension<IAppleExtensions>().RestoreTransactions ((x, _) => {
                     if (x)
                     {
+                        HandleRestoredPurchase(item);
+                        //if(item.definition.id== "mj_no_ads")
+                        //{
+
+                        //}
                     }
                     else
                     {
@@ -278,7 +283,21 @@ namespace IAP
             }
             
         }
+        private void HandleRestoredPurchase(Product product)
+        {
+            // Example: unlock content or features for the user based on the product ID
+            if (product.definition.id == "mj_no_ads")
+            {
+                if(product.hasReceipt)
+                {
+
+                Debug.Log("Restored 'your_product_id'. Unlocking content.");
+                DTAdsManager.Instance.adsRemoved = true;
+                }
+                // Unlock content or update game state here
+            }
+        }
         #endregion
-        
+
     }
 }
