@@ -10,7 +10,10 @@ using UnityEngine.UI;
 using VoxelBusters.AdsKit;
 
 public class UIManager : Singelton<UIManager>
-{ 
+{
+    public Button SettingButton;
+    public SettingPanel SettingPanel;
+    [Space(10)]
     public GameObject iapOverlay;
     public GameObject pahHolder;
     [FormerlySerializedAs("_levelCompleteUI")] public GameObject levelCompleteUI;
@@ -32,6 +35,12 @@ public class UIManager : Singelton<UIManager>
         openShopBtn.onClick.AddListener(OpenShop);
         watchAdBtn.onClick.RemoveAllListeners();
         watchAdBtn.onClick.AddListener(WatchAd);
+
+        SettingButton?.onClick.RemoveAllListeners();
+        SettingButton?.onClick.AddListener(() =>
+        {
+            SettingPanel.SettingPanelState(true);
+        });
         UpdateGems();
     }
 

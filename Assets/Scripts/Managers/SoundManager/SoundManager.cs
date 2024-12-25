@@ -21,6 +21,13 @@ public class SoundManager : Singelton<SoundManager>
     }
     private void Start()
     {
+        if (!PlayerPrefs.HasKey(Constants.SoundsSFXKey))
+            PlayerPrefs.SetInt(Constants.SoundsSFXKey, 1);
+        if (!PlayerPrefs.HasKey(Constants.MusicKey))
+            PlayerPrefs.SetInt(Constants.MusicKey, 1);
+
+        SfxAudioSourceState(PlayerPrefs.GetInt(Constants.SoundsSFXKey, 1)==1);
+        MusicAudioSourceState(PlayerPrefs.GetInt(Constants.MusicKey, 1) == 1);
         PlayBackgroundMusic();
     }
     public void PlayBackgroundMusic()
@@ -50,5 +57,16 @@ public class SoundManager : Singelton<SoundManager>
         if (audio == null) return;
         effectsAudioSource.PlayOneShot(audio);
 
+    }
+
+    public  void SfxAudioSourceState(bool isSFXOn)
+    {
+        effectsAudioSource.mute = !isSFXOn;
+    }
+
+    public void MusicAudioSourceState(bool isMusicOn)
+    {
+        musicAudioSource.mute = !isMusicOn;
+        
     }
 }

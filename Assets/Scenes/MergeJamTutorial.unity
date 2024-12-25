@@ -1957,7 +1957,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163710048}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 628ef9b0c7e4fd24db54868035e11237, type: 3}
   m_Name: 
@@ -1970,7 +1970,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163710048}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5cd691c7632755d499fbbb55bc1f0fac, type: 3}
@@ -43916,6 +43916,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39d2977c08c4d9246b60d37088354355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SettingButton: {fileID: 0}
+  SettingPanel: {fileID: 0}
   iapOverlay: {fileID: 1647101622}
   pahHolder: {fileID: 1107082657}
   levelCompleteUI: {fileID: 2130975404}
@@ -49074,7 +49076,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.6
+  m_fontSize: 27.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

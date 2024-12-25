@@ -75,6 +75,7 @@ public class SettingPanel : MonoBehaviour
     {
         isSFXOn = Index != 0;
         CurrentSFXIndex = Index;
+        SoundManager.Instance.SfxAudioSourceState(isSFXOn);
         for (int i = 0; i < SoundsSFXButtons.Length; i++)
         {
             if (Index == i)
@@ -88,7 +89,7 @@ public class SettingPanel : MonoBehaviour
     {
         isMusicOn = Index != 0;
         CurrentMusicIndex = Index;
-
+        SoundManager.Instance.MusicAudioSourceState(isMusicOn);
         for (int i = 0; i < MusicButtons.Length; i++)
         {
             if (Index == i)

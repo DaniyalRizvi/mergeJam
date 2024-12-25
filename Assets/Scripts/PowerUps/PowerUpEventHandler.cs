@@ -91,7 +91,6 @@ public class PowerUpEventHandler : MonoBehaviour
                     {
                         level.DestroyBus(bus);
                         GameManager.Instance.RocketPowerUps(bus.transform);
-                        Debug.LogError("Vehicle Bus Destroyed" + bus.name);
                         break;
                     }
                 }
