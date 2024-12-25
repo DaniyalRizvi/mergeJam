@@ -169,6 +169,7 @@ namespace Managers
 
         private void RemoveAds()
         {
+            DTAdsManager.Instance.HideBannerAd(Constants.BannerID);
             adsRemoved = true;
         }
 

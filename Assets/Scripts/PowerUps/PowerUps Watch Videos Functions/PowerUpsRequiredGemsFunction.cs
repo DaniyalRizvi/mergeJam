@@ -61,14 +61,15 @@ public class PowerUpsRequiredGemsFunction : MonoBehaviour
 
         if (GemsManager.Instance.GetGems() >= Price)
         {
+            GemsManager.Instance.UseGems(Price);
             if (PowerUpEventHandler.powerUpType == PowerUpType.Fan)
             {
-                PowerUpsManager.Instance.AddPowerUp(PowerUpType.Fan, 5);
+                PowerUpsManager.Instance.AddPowerUp(PowerUpType.Fan, 1);
             }
             else if (PowerUpEventHandler.powerUpType == PowerUpType.Rocket)
             {
 
-                PowerUpsManager.Instance.AddPowerUp(PowerUpType.Rocket, 5);
+                PowerUpsManager.Instance.AddPowerUp(PowerUpType.Rocket, 1);
             }
             PowerUpButton.interactable = true;
 

@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214cb72df3086a845bfa2380c4612f4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadingTime: 3
+  LoadingTime: 2
   LoadingImage: {fileID: 1196735116}
 --- !u!1 &961223615
 GameObject:

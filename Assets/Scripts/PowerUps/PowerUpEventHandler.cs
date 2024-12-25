@@ -74,6 +74,7 @@ public class PowerUpEventHandler : MonoBehaviour
         }
         else
         {
+            GetComponent<Button>().interactable = true;
             GetComponent<PowerUpsRequiredGemsFunction>().PowerUpButtonStatus(false);
         }
 

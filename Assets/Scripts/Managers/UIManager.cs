@@ -10,11 +10,7 @@ using UnityEngine.UI;
 using VoxelBusters.AdsKit;
 
 public class UIManager : Singelton<UIManager>
-{
-    [SerializeField] private Button FanPowerUpButton;
-    [SerializeField] private Button FanPowerUpPurchaseButton;
-    [Space(10)]
-
+{ 
     [Space(10)]
     public Button SettingButton;
     public SettingPanel SettingPanel;

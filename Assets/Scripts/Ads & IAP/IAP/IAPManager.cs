@@ -4,6 +4,7 @@ using Managers;
 using Newtonsoft.Json;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
@@ -74,7 +75,13 @@ namespace IAP
                 InitializePurchasing();
             
             if(restorePurchasesButton)
+            {
+                restorePurchasesButton.gameObject.SetActive(true);
                 restorePurchasesButton.onClick.AddListener(RestorePurchases);
+            #if UNITY_ANDROID
+                            restorePurchasesButton.gameObject.SetActive(false);
+            #endif
+            }
         }
         private void InitializePurchasing()
         {
@@ -82,8 +89,9 @@ namespace IAP
 
             StandardPurchasingModule.Instance().useFakeStoreAlways = true;
             var module = StandardPurchasingModule.Instance();
-            module.useFakeStoreAlways = true;
+            //module.useFakeStoreAlways = true;
             module.useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
+
             var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
             builder = LoadShopData(builder);
             UnityPurchasing.Initialize(this, builder);
@@ -291,8 +299,9 @@ namespace IAP
                 if(product.hasReceipt)
                 {
 
-                Debug.Log("Restored 'your_product_id'. Unlocking content.");
-                DTAdsManager.Instance.adsRemoved = true;
+                    Debug.Log("Restored 'your_product_id'. Unlocking content.");
+                    DTAdsManager.Instance.adsRemoved = true;
+                    DTAdsManager.Instance.HideBannerAd(Constants.BannerID);
                 }
                 // Unlock content or update game state here
             }

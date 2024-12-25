@@ -25,6 +25,7 @@ public class SettingPanel : MonoBehaviour
         //isSFXOn = PlayerPrefs.GetInt(Constants.SoundsSFXKey, 1) == 1;     // Default: On
         SaveButton.onClick.AddListener(() => {
             SaveData();
+            SettingPanelState(false);
         });
         BackButton.onClick.AddListener(() => {
             LoadData();
