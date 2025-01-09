@@ -19,10 +19,14 @@ public class VehicleRenderModels : MonoBehaviour
     {
         foreach (var item in vehicleModels)
         {
-            var mats= item.model.GetComponent<Renderer>().materials;
-            foreach (var mat in mats) mat.color = color;
-            //item.model.GetComponent<Renderer>()..material.color = color;
-            item.model.GetComponent<Renderer>().SetMaterials(mats.ToList());
+            var mat= item.model.GetComponent<Renderer>().materials;
+            Debug.Log(mat.ToList().Count);
+            // if (mat.ToList().Count > 1)
+            //     mat[1].color = color;
+            // else
+                mat[0].color = color;
+            //foreach (var mat in mats) mat.color=color; //item.model.GetComponent<Renderer>()..material.color = color;
+            item.model.GetComponent<Renderer>().SetMaterials(mat.ToList());
         }
     }
     public void ActiveVehicle(int Capacity)

@@ -32,6 +32,7 @@ public class Bus : MonoBehaviour
     private int _currentSize;
 
     public Colors busColor;
+    public Texture busTexture;
     public bool isMergable = true;
     public Transform gateTransform;
     internal Rigidbody Rb;

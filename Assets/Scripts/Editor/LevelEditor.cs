@@ -94,6 +94,7 @@ public class LevelEditor : Editor
             SerializedProperty busType = busTypes.GetArrayElementAtIndex(i);
             SerializedProperty capacity = busType.FindPropertyRelative("capacity");
             SerializedProperty color = busType.FindPropertyRelative("color");
+            SerializedProperty textureName = busType.FindPropertyRelative("textureName");
 
             var currentColor = (Colors)color.enumValueIndex;
             GUI.backgroundColor = currentColor.GetColor();
@@ -103,6 +104,7 @@ public class LevelEditor : Editor
             EditorGUILayout.LabelField($"Bus Type {i + 1}", EditorStyles.miniBoldLabel);
             EditorGUILayout.PropertyField(capacity, new GUIContent("Capacity"));
             EditorGUILayout.PropertyField(color, new GUIContent("Color"));
+            EditorGUILayout.PropertyField(textureName, new GUIContent("Texture Name"));
 
             if (GUILayout.Button("Remove", GUILayout.Width(100)))
             {

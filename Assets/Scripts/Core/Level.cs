@@ -35,6 +35,7 @@ public class Level : MonoBehaviour
 
             bus.transform.SetParent(spawnPoint, true);
             bus.busColor = busType.color;
+            bus.busTexture = Resources.Load<Texture>("VehicleTextures/"+busType.textureName);
             bus.capacity = busType.capacity;
             
             bus.Init();
@@ -97,6 +98,7 @@ public class BusType
 {
     public int capacity;
     public Colors color;
+    public string textureName;
 }
 
 [Serializable]
