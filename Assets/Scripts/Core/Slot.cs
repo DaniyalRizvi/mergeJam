@@ -4,12 +4,17 @@ public class Slot : MonoBehaviour
 {
     internal Bus CurrentBus;
     private Transform _referencePoint;
+    private Transform _standTransform;
     public bool isLocked;
     private GameObject _lockedIcon;
 
     private void Awake()
     {
-        _referencePoint = transform.GetChild(0);
+        if (transform.GetChild(0).name == "ReferencePoint")
+            _referencePoint = transform.GetChild(0);
+        else
+            _referencePoint = transform.GetChild(1);
+        
         name = $"{name} {transform.GetSiblingIndex()}";
         if (isLocked)
         {
@@ -17,7 +22,15 @@ public class Slot : MonoBehaviour
         }
     }
 
-    public bool isEmpty => CurrentBus == null;
+    public bool isEmpty
+    {
+        get => CurrentBus == null;
+        set
+        {
+            if(value)
+            CurrentBus =null;
+        }
+    }
 
 
     public void UnlockSlot()
@@ -38,20 +51,25 @@ public class Slot : MonoBehaviour
             Debug.Log("Slot is locked. Cannot assign a bus.");
             return;
         }
+        Debug.Log("KKK");
 
         CurrentBus = bus;
         CurrentBus.transform.position = _referencePoint.transform.position;
         CurrentBus.transform.rotation = _referencePoint.transform.rotation;
-        bus.Rb.isKinematic = true;
+        if(bus.Rb!=null)
+            bus.Rb.isKinematic = true;
 
-
-        if (!GameManager.Instance.CurrentBusExistInGame(CurrentBus.busColor))
+        int currentLevel = PlayerPrefs.GetInt("CurrentLevel");
+        if (!LevelManager.Instance._levels[currentLevel].loadingData)
         {
-            //Debug.LogError("Bus NOT Exist");
-            if(TutorialManager.Instance)
+            if (!GameManager.Instance.CurrentBusExistInGame(CurrentBus.busColor))
             {
-                if(TutorialManager.Instance.IsFirstTrashDone)
-                TutorialManager.Instance.InitSecondTrashItems();
+                Debug.LogError("Bus NOT Exist");
+                if (TutorialManager.Instance)
+                {
+                    if (TutorialManager.Instance.IsFirstTrashDone)
+                        TutorialManager.Instance.InitSecondTrashItems();
+                }
             }
         }
     }

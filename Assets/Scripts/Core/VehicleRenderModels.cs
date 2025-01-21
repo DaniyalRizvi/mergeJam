@@ -8,6 +8,12 @@ public class VehicleRenderModels : MonoBehaviour
 {
     [SerializeField] private List<VehicleModelData> vehicleModels = new List<VehicleModelData>();
 
+
+    public int VehicleMaxCapacity()
+    {
+        return vehicleModels[vehicleModels.Count-1].capacity;
+    }
+
     public void DisableAllData()
     {
         foreach (var model in vehicleModels)
@@ -20,11 +26,7 @@ public class VehicleRenderModels : MonoBehaviour
         foreach (var item in vehicleModels)
         {
             var mat= item.model.GetComponent<Renderer>().materials;
-            Debug.Log(mat.ToList().Count);
-            // if (mat.ToList().Count > 1)
-            //     mat[1].color = color;
-            // else
-                mat[0].color = color;
+            mat[0].color = color;
             //foreach (var mat in mats) mat.color=color; //item.model.GetComponent<Renderer>()..material.color = color;
             item.model.GetComponent<Renderer>().SetMaterials(mat.ToList());
         }
@@ -35,12 +37,10 @@ public class VehicleRenderModels : MonoBehaviour
             foreach (var vehicle in vehicleModels)
             {
             //if (vehicle.color == color && vehicle.capacity == capacity)
-            if (vehicle.capacity == Capacity)
-            {
-                vehicle.model.SetActive(true);
-            }
-            else
-                vehicle.model.SetActive(false);
+                if (vehicle.capacity == Capacity) 
+                    vehicle.model.SetActive(true);
+                else 
+                    vehicle.model.SetActive(false);
 
             }
     }

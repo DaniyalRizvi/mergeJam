@@ -985,7 +985,7 @@ namespace VoxelBusters.AdsKit
         private void SendLoadAdFailEvent(string placement, Error error)
         {
             DebugLogger.Log($"{AdsKitSettings.Domain}:{gameObject.name}", $"Sending LoadAdFail event. Placement: {placement}. Error: {error}.");
-
+ 
             m_loadAdListeners.SendEvent((item) => item.OnLoadAdFail(placement: placement, error: error));
         }
 

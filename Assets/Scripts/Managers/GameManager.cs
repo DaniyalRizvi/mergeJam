@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Managers;
 using UnityEngine;
+
 public class GameManager : Singelton<GameManager>
 {
     //public VehicleDataManager VehicleDataManager;
@@ -12,11 +14,13 @@ public class GameManager : Singelton<GameManager>
     [SerializeField] private GameObject FanPowerUpVFX;
     private List<Slot> _slots = new();
     private List<Passenger> _passengers = new();
-    private Level _level;
+    public Level _level;
     public Action OnLevelComplete;
+    public int maxCount;
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => DTAdsManager.Instance && DTAdsManager.Instance.isInitialised);
+        Debug.Log("Ads Initialized: "+DTAdsManager.Instance.isInitialised);
         DTAdsManager.Instance.ShowAd(Constants.BannerID);
     }
 
@@ -54,6 +58,7 @@ public class GameManager : Singelton<GameManager>
                 {
                     TryMergeBuses(leftSlot, rightSlot);
                     mergeHappened = true;
+                    _level.SaveLevelStateToJson(); 
                 }
             }
 
@@ -65,7 +70,7 @@ public class GameManager : Singelton<GameManager>
         return leftSlot?.CurrentBus != null &&
                rightSlot?.CurrentBus != null &&
                leftSlot.CurrentBus.busColor == rightSlot.CurrentBus.busColor &&
-               leftSlot.CurrentBus.capacity == rightSlot.CurrentBus.capacity;
+               leftSlot.CurrentBus.capacity == rightSlot.CurrentBus.capacity && leftSlot.CurrentBus;
     }
 
     private void TryMergeBuses(Slot leftSlot, Slot rightSlot)
@@ -173,6 +178,17 @@ public class GameManager : Singelton<GameManager>
             UIManager.Instance.ShowLevelCompleteUI();
             OnLevelComplete?.Invoke();
             SoundManager.Instance.LevelCompleteSFX();
+            ClearSavedGameState();
+        }
+    }
+    
+    public void ClearSavedGameState()
+    {
+        string filePath = Path.Combine(Application.persistentDataPath, "LevelSaveData.json");
+        if (File.Exists(filePath))
+        {
+            File.Delete(filePath);
+            Debug.Log("Saved game state cleared.");
         }
     }
 
@@ -195,7 +211,7 @@ public class GameManager : Singelton<GameManager>
          
         StartCoroutine(nameof(CheckLooseCondition));
     }
-
+ 
     public void PlaceBusInSlot(Bus selectedBus, Slot clickedSlot)
     {
         if (clickedSlot.isEmpty && !clickedSlot.isLocked)
@@ -229,6 +245,7 @@ public class GameManager : Singelton<GameManager>
             yield return new WaitUntil(() => _passengers.Where(p => p.IsBoarding).All(p => p.hasBoarded));
             if(_passengers.Count>0)
             {
+                ClearSavedGameState();
                 UIManager.Instance.ShowLevelFailedUI();
                 SoundManager.Instance.LevelCompleteSFX();
             }

@@ -4,7 +4,7 @@ using VoxelBusters.AdsKit;
 namespace Managers
 {
     [RequireComponent(typeof(DTAdEventHandler))]
-    public class DTAdsManager : MonoBehaviour
+    public class  DTAdsManager : MonoBehaviour
     {
         #region Public-Variables
         public bool adsRemoved;

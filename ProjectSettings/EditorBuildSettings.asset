@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameLoading.unity
     guid: b9a4906d7163bf84281b49ab3920e44e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MergeJamTutorial.unity
     guid: 82e9f356d6d0b3b419b7391cfd12d1db
   - enabled: 1

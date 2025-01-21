@@ -393,6 +393,7 @@ public class TutorialManager : Singelton<TutorialManager>
     private void LoadGameScene()
     {
         //SceneManager.LoadScene(sceneBuildIndex: 1);
+        PlayerPrefs.SetInt("TutorialCompleted",1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

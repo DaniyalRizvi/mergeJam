@@ -1,18 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelDataManager : MonoBehaviour
+namespace Phoenix.SaveLoad
 {
-    public int currentLevel;
-}
 
-public class Levels
-{
-    
-}
 
-public class ParkingLot
-{
-    //public int p
+    public class LevelDataManager : SaveableData
+    {
+        public int currentLevel {get; set;}
+        
+        
+
+        public LevelDataManager(Keys key) : base(key)
+        {
+        }
+    }
+
+    public class Levels
+    {
+
+    }
+
+    [Serializable]
+    public class ParkingLot
+    {
+        public int parkingSlot;
+        public Colors parkingLotColor;
+        // public int
+    }
 }

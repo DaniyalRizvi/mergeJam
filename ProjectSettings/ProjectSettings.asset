@@ -273,7 +273,7 @@ PlayerSettings:
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 1
+  androidUseCustomKeystore: 0
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -847,7 +847,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: ENABLE_VOXELBUSTERS_ADS_KIT;DOTWEEN
+    Android: DOTWEEN;ENABLE_VOXELBUSTERS_ADS_KIT
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN
@@ -857,12 +857,12 @@ PlayerSettings:
     PS5: DOTWEEN
     QNX: DOTWEEN
     Stadia: DOTWEEN
-    Standalone: ENABLE_VOXELBUSTERS_ADS_KIT;DOTWEEN
+    Standalone: DOTWEEN;ENABLE_VOXELBUSTERS_ADS_KIT
     VisionOS: DOTWEEN
     WebGL: ENABLE_VOXELBUSTERS_ADS_KIT;DOTWEEN
     Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN
-    iPhone: ENABLE_VOXELBUSTERS_ADS_KIT;DOTWEEN
+    iPhone: DOTWEEN;ENABLE_VOXELBUSTERS_ADS_KIT
     tvOS: DOTWEEN
   additionalCompilerArguments: {}
   platformArchitecture: {}

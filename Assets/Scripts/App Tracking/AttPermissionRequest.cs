@@ -16,12 +16,6 @@ public class AttPermissionRequest : MonoBehaviour
             
                 Debug.LogError("NOT_DETERMINED");
                 ATTrackingStatusBinding.RequestAuthorizationTracking();
-            GameLoadingController.AttPermision = false;
-        }
-        else
-        {
-            GameLoadingController.AttPermision = true;
-
         }
 #endif
     }

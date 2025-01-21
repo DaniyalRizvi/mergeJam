@@ -8,17 +8,19 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : Singelton<LevelManager>
 {
-    private List<Level> _levels;
+    public List<Level> _levels;
     private int _levelNumber;
     public Action OnLevelComplete;
     public Action OnLevelRestart;
     public Action<float,bool> OnTimeBaseLevel;
     void Start()
     {
-        if (PlayerPrefs.HasKey("RestartLevel"))
+        if (PlayerPrefs.GetInt("TutorialCompleted") == 1)
         {
-            _levelNumber = PlayerPrefs.GetInt("RestartLevel");
-            PlayerPrefs.DeleteKey("RestartLevel");
+            if (PlayerPrefs.HasKey("CurrentLevel"))
+            {
+                _levelNumber = PlayerPrefs.GetInt("CurrentLevel");
+            }
         }
 
         _levels = FindObjectsOfType<Level>().ToList();
@@ -40,9 +42,9 @@ public class LevelManager : Singelton<LevelManager>
         _levels[levelNumber].SetActiveState(true);
         _levels[levelNumber].Init();
 
-        if(_levels[levelNumber].TryGetComponent<LevelTimeComponent>(out LevelTimeComponent Z))
+        if(_levels[levelNumber].GetComponent<LevelTimeComponent>())
         {
-            OnTimeBaseLevel?.Invoke(Z.GetLevelTime(), true);
+            OnTimeBaseLevel?.Invoke(_levels[levelNumber].GetComponent<LevelTimeComponent>().GetLevelTime(), true);
         }
         else
         {
@@ -65,6 +67,8 @@ public class LevelManager : Singelton<LevelManager>
         }
         if (_levelNumber < _levels.Count)
         {
+            
+            PlayerPrefs.SetInt("CurrentLevel", _levelNumber);
             LoadLevel(_levelNumber);
         }
         else
@@ -75,7 +79,8 @@ public class LevelManager : Singelton<LevelManager>
 
     private void RestartLevel()
     {
-        PlayerPrefs.SetInt("RestartLevel", _levelNumber);
+        PlayerPrefs.SetInt("CurrentLevel", _levelNumber);
+        GameManager.Instance.ClearSavedGameState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

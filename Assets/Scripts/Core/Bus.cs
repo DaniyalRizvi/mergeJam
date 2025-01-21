@@ -32,7 +32,6 @@ public class Bus : MonoBehaviour
     private int _currentSize;
 
     public Colors busColor;
-    public Texture busTexture;
     public bool isMergable = true;
     public Transform gateTransform;
     internal Rigidbody Rb;
@@ -50,13 +49,22 @@ public class Bus : MonoBehaviour
         
     }
 
+    public int MaxBuCapacity()
+    {
+        return VehicleRenderModelsOnInitilization.VehicleMaxCapacity();
+    }
+
+    public Slot GetAssignedSlot()
+    {
+        return AssignedSlot;
+    }
+
     public void UpdateVisual()
     {
         VehicleRenderModels.UpdateVisual(busColor.GetColor()); 
     }
     
-    public void AssignSlot(Slot clickedSlot)
-    {
+    public void AssignSlot(Slot clickedSlot){
         if (clickedSlot.isLocked)
         {
             Debug.Log("Slot is locked. Cannot assign a bus.");
@@ -77,4 +85,27 @@ public class Bus : MonoBehaviour
 
 
     }
+    
+    public BusSaveData ToBusData(int assignedSlotIndex)
+    {
+        return new BusSaveData
+        {
+            capacity = this.capacity,
+            currentSize = this.currentSize,
+            busColor = this.busColor,
+            position = transform.position,
+            slotIndex = assignedSlotIndex
+        };
+    }
+
+    public void FromBusData(BusSaveData data, Slot assignedSlot)
+    {
+        this.capacity = data.capacity;
+        this.currentSize = data.currentSize;
+        this.busColor = data.busColor;
+        transform.position = data.position;
+        AssignSlot(assignedSlot);
+        UpdateVisual();
+    }
+    
 }

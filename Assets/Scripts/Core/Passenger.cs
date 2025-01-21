@@ -9,6 +9,7 @@ public class Passenger : MonoBehaviour
     public Colors passengerColor;
     public bool hasBoarded;
     internal bool IsBoarding;
+    public int id;
     private Bus _selectedBus;
 
     private void Start()
