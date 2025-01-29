@@ -28,13 +28,15 @@ public class LevelEditor : Editor
         Level level = (Level)target;
         level.range = 7.5f;
         level.range = EditorGUILayout.FloatField("Range", level.range);
+        
+        level.isHard = EditorGUILayout.Toggle("Hard Level", level.isHard);
 
         EditorGUILayout.Space();
 
         // Display Passenger Colors
         EditorGUILayout.LabelField("Passenger Colors In Level", EditorStyles.boldLabel);
         HashSet<Colors> usedColors = GetUsedColors(colors);
-
+        
         for (int i = 0; i < colors.arraySize; i++)
         {
             SerializedProperty colorElement = colors.GetArrayElementAtIndex(i);
@@ -44,7 +46,8 @@ public class LevelEditor : Editor
             Colors currentColor = (Colors)color.enumValueIndex;
 
             // Prepare dropdown options excluding used colors except the current one
-            List<Colors> availableColors = GetAvailableColors(usedColors, currentColor);
+            //List<Colors> availableColors = GetAvailableColors(usedColors, currentColor);
+            List<Colors> availableColors = System.Enum.GetValues(typeof(Colors)).Cast<Colors>().ToList();
             List<string> availableColorNames = availableColors.ConvertAll(c => c.ToString());
 
             GUI.backgroundColor = currentColor.GetColor(); // Set background color
@@ -76,7 +79,8 @@ public class LevelEditor : Editor
         // Add Color Button
         if (GUILayout.Button("Add Color"))
         {
-            AddUniqueColor(colors, usedColors);
+            //AddUniqueColor(colors, usedColors);
+            colors.InsertArrayElementAtIndex(colors.arraySize);
         }
 
 

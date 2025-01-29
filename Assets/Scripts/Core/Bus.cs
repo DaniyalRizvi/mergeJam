@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -38,6 +40,7 @@ public class Bus : MonoBehaviour
     internal Slot AssignedSlot;
     public TMP_Text capacityText;
     public TMP_Text currentSizeText;
+    public bool slotAssigned=false;
 
     public void Init()
     {
@@ -63,28 +66,38 @@ public class Bus : MonoBehaviour
     {
         VehicleRenderModels.UpdateVisual(busColor.GetColor()); 
     }
-    
-    public void AssignSlot(Slot clickedSlot){
+
+    public void AssignSlot(Slot clickedSlot)
+    {
         if (clickedSlot.isLocked)
         {
             Debug.Log("Slot is locked. Cannot assign a bus.");
             return;
         }
+
         SoundManager.Instance.AddingVehiclesToSlotsSFX();
+        
         if (AssignedSlot != null)
             AssignedSlot.CurrentBus = null;
         AssignedSlot = clickedSlot;
 
-        capacityText.SetText(capacity.ToString());
-        currentSizeText.SetText(currentSize.ToString());
+        gameObject.GetComponent<BoxCollider>().isTrigger = true;
 
-         
+        //StartCoroutine(SetVehicle());
+    }
+
+    public IEnumerator SetVehicle()
+    {
+        yield return new WaitForSeconds(3f);
+
         VehicleRenderModelsOnInitilization.DisableAllData();
         VehicleRenderModels.ActiveVehicle(capacity);
 
+        //yield return new WaitForSeconds(0.5f);
 
-
+        
     }
+
     
     public BusSaveData ToBusData(int assignedSlotIndex)
     {
@@ -107,5 +120,16 @@ public class Bus : MonoBehaviour
         AssignSlot(assignedSlot);
         UpdateVisual();
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 7)
+        {
+            VehicleRenderModelsOnInitilization.DisableAllData();
+            VehicleRenderModels.ActiveVehicle(capacity);
+            VehicleRenderModels.ActiveVehicle(capacity);
+            capacityText.SetText(capacity.ToString());
+            currentSizeText.SetText(currentSize.ToString());
+        }
+    }
 }

@@ -65,6 +65,8 @@ public class TutorialManager : Singelton<TutorialManager>
         transform.rotation = targetRotation;
         isInAnimation = false;
         passengerOutlines.ForEach(x => x.enabled = true);
+
+        yield return new WaitForSeconds(0.5f);
         InitPanel("These are the passengers you need to accommodate." + "\nMake sure to match the colors! Passengers only board vehicles of the same color.");
     }
     
@@ -204,7 +206,7 @@ public class TutorialManager : Singelton<TutorialManager>
             outlineTwo.OutlineWidth = 5f;
             Busses.Add(outlineTwo.gameObject);
         }
-        InitPanel("Some vehicles are trash items. These take up space in the vehicle slots." + 
+        InitPanel("Some vehicles are unwanted vehicles. These take up space in the vehicle slots." + 
         "\nTo get rid of trash items, merge two trash items together to free up space.");
     }
     public bool IsFirstTrashDone;
@@ -252,7 +254,7 @@ public class TutorialManager : Singelton<TutorialManager>
         //    Busses.Add(outlineOne.gameObject);
         //}
         #endregion
-        InitPanel("Some vehicles are trash items. These take up space in the vehicle slots." +
+        InitPanel("Some vehicles are unwanted vehicles. These take up space in the vehicle slots." +
         "\nTo get rid of trash items, merge two trash items together to free up space.");
 
         IsFirstTrashDone = true;
@@ -278,7 +280,7 @@ public class TutorialManager : Singelton<TutorialManager>
             Busses.Clear();
             Busses.Add(outline.gameObject);
         }
-        InitPanel("Tap To The Second Trash vehicle to move it to the vehicle slot.");
+        InitPanel("Tap To The Second unwanted vehicle to move it to the vehicle slot.");
         IsFirstTrashDone = false;
 
     }

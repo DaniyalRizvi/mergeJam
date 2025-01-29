@@ -80,5 +80,6 @@ public class PowerUpsManager : Singelton<PowerUpsManager>
 public enum PowerUpType
 {
     Rocket,
-    Fan
+    Fan,
+    Jump,
 }

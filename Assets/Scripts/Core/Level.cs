@@ -14,6 +14,7 @@ public class Level : MonoBehaviour
 {
     [Min(2.5f)]
     public float range;
+    public bool isHard;
     public List<BusType> busTypes;
     public List<ColorCount> colors;
     private List<Slot> _slots;
@@ -63,7 +64,7 @@ public class Level : MonoBehaviour
         }
     }
 
-    private Vector3 GetRandomSpawnPoint(Transform spawnPoint)
+    public Vector3 GetRandomSpawnPoint(Transform spawnPoint)
     {
         float theta = Random.Range(0f, 2f * Mathf.PI);
         float phi = Random.Range(0f, Mathf.PI / 2f);
@@ -166,11 +167,11 @@ public class Level : MonoBehaviour
             });
         }
 
-        string json = JsonUtility.ToJson(saveData, true);
-        string filePath = Path.Combine(Application.persistentDataPath, "LevelSaveData.json");
-        File.WriteAllText(filePath, json);
+        //string json = JsonUtility.ToJson(saveData, true);
+        //string filePath = Path.Combine(Application.persistentDataPath, "LevelSaveData.json");
+        //File.WriteAllText(filePath, json);
 
-        Debug.Log("Level state saved to: " + filePath);
+        //Debug.Log("Level state saved to: " + filePath);
     }
 
     public bool LoadLevelStateFromJson()
@@ -212,7 +213,7 @@ public class Level : MonoBehaviour
             var slot = _slots[busData.slotIndex];
             var newBus = InstantiateBus(busData.busColor, busData.capacity, busData.currentSize);
             newBus.AssignSlot(slot);
-            slot.AssignBus(newBus);
+           // slot.AssignBus(newBus);
         }
 
         // Restore passengers
@@ -350,3 +351,5 @@ public class ColorCount
     public Colors color;
     public int count;
 }
+
+

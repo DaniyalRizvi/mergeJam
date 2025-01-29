@@ -21,6 +21,7 @@ public class UIManager : Singelton<UIManager>
     [FormerlySerializedAs("_levelFailedUI")] public GameObject levelFailedUI;
     [FormerlySerializedAs("_shopUI")] public GameObject shopUI;
     [FormerlySerializedAs("_openShopBtn")] public Button openShopBtn;
+    public GameObject hardLevelUI;
     public Button watchAdBtn;
     [FormerlySerializedAs("_gemsText")] public TMP_Text gemsText;
     public List<ShopItem> iapHolders;
@@ -110,17 +111,56 @@ public class UIManager : Singelton<UIManager>
 
     private void SetupHolders(Level currentLevel)
     {
-        foreach (var pah in pahHolder.GetComponentsInChildren<PassengerAmountHolder>())
+        var children = pahHolder.GetComponentsInChildren<PassengerAmountHolder>().ToList();
+        Debug.Log(children.Count);
+        foreach (var pah in children)
         {
-            Destroy(pah.gameObject);
+            pah.gameObject.SetActive(true);
+            //Destroy(pah.gameObject);
         }
+        Debug.Log(children.Count);
         foreach (var color in currentLevel.colors)
         {
-            PassengerAmountHolder pah = Instantiate(Resources.Load<GameObject>("Passenger Amount Holder")).GetComponent<PassengerAmountHolder>();
-            pah.Init(color.color, color.count);
-            pah.transform.SetParent(pahHolder.transform);
-            pah.transform.localScale= Vector3.one;
+            bool colorMatched = false;
+
+            children = pahHolder.GetComponentsInChildren<PassengerAmountHolder>().ToList();
+            foreach (var child in children)
+            {
+                PassengerAmountHolder existingPah = child.GetComponent<PassengerAmountHolder>();
+                Debug.Log(existingPah);
+                if (existingPah != null && existingPah.Color == color.color)
+                {
+                    existingPah.AddAmount(color.count); // Assuming AddAmount is a method in PassengerAmountHolder to add to the count
+                    colorMatched = true;
+                    break;
+                }
+            }
+
+            if (!colorMatched)
+            {
+                Debug.Log("Hereeee");
+                PassengerAmountHolder pah = Instantiate(Resources.Load<GameObject>("Passenger Amount Holder")).GetComponent<PassengerAmountHolder>();
+                pah.Init(color.color, color.count);
+                pah.transform.SetParent(pahHolder.transform);
+                pah.transform.localScale = Vector3.one;
+            }
         }
+        
+        children = pahHolder.GetComponentsInChildren<PassengerAmountHolder>().ToList();
+
+        foreach (var child in children)
+        {
+            if(child.GetAmount()==0)
+                Destroy(child.gameObject);
+        }
+
+        // foreach (var color in currentLevel.colors)
+        // {
+        //     PassengerAmountHolder pah = Instantiate(Resources.Load<GameObject>("Passenger Amount Holder")).GetComponent<PassengerAmountHolder>();
+        //     pah.Init(color.color, color.count);
+        //     pah.transform.SetParent(pahHolder.transform);
+        //     pah.transform.localScale= Vector3.one;
+        // }
     }
 
     public void UpdateHolder(Colors color)

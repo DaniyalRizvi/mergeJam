@@ -8,6 +8,10 @@ public class PassengerAmountHolder : MonoBehaviour
 {
     public Image image;
     public TMP_Text amountText;
+    public Image blue;
+    public Image red;
+    public Image pink;
+    public Image green;
     internal Colors Color;
     private int _amount;
 
@@ -17,6 +21,35 @@ public class PassengerAmountHolder : MonoBehaviour
         _amount = amount;
         image.color = color.GetColor();
         amountText.text = amount.ToString();
+
+        if (Color == Colors.Blue)
+        {
+            blue.gameObject.SetActive(true);
+        }
+        else if (Color == Colors.Red)
+        {
+            red.gameObject.SetActive(true);
+        }
+        else if (Color == Colors.Pink)
+        {
+            pink.gameObject.SetActive(true);
+        }
+        else if (Color == Colors.Green)
+        {
+            green.gameObject.SetActive(true);
+        }
+    }
+
+    public int GetAmount()
+    {
+        return _amount;
+    }
+
+    public void AddAmount(int amount)
+    {
+        _amount += amount;
+        amountText.text = _amount.ToString();
+        Debug.Log("Amount: "+_amount);
     }
    bool IsInAnimaiton;
     public void UpdateAmount()

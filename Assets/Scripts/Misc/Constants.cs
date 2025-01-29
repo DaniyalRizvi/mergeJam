@@ -17,4 +17,5 @@ public static class Constants
     
     //NOTE: Floats
     public const float FanForce = 20f;
+    public const float JumpForce = 20f;
 }

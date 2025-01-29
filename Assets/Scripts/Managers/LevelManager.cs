@@ -4,6 +4,7 @@ using System.Linq;
 using Managers;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : Singelton<LevelManager>
@@ -55,6 +56,17 @@ public class LevelManager : Singelton<LevelManager>
         if (GameObject.Find("LevelText"))
             GameObject.Find("LevelText").GetComponent<TMP_Text>().SetText($"Level No: {_levelNumber + 1}"); 
         UIManager.Instance.ResetUI();
+
+        if (_levels[levelNumber].isHard)
+        {
+            UIManager.Instance.hardLevelUI.SetActive(true);
+            Invoke("DisableHardLevelUI",1f);
+        }
+    }
+
+    private void DisableHardLevelUI()
+    {
+        UIManager.Instance.hardLevelUI.SetActive(false);
     }
 
 
@@ -91,5 +103,27 @@ public class LevelManager : Singelton<LevelManager>
         var allColors = Enum.GetValues(typeof(Colors)).Cast<Colors>();
         var levelColors = _levels[_levelNumber].colors.Select(colorCount => colorCount.color);
         return allColors.Except(levelColors).ToList();
+    }
+
+    public void ApplyJump(Level level, Bus bus)
+    {
+        var spawnPoint = level.gameObject.GetComponentInChildren<SpawnPoint>().transform;
+        spawnPoint.rotation = Quaternion.identity;
+        spawnPoint.position = GetRandomSpawnPoint(spawnPoint);
+        bus.gameObject.transform.position = spawnPoint.position;
+        bus.transform.SetParent(spawnPoint, true);
+    }
+    
+    public Vector3 GetRandomSpawnPoint(Transform spawnPoint)
+    {
+        float theta = Random.Range(0f, 2f * Mathf.PI);
+        float phi = Random.Range(0f, Mathf.PI / 2f);
+
+        float x = Mathf.Sin(phi) * Mathf.Cos(theta);
+        float z = Mathf.Sin(phi) * Mathf.Sin(theta);
+        float y = Mathf.Cos(phi);
+
+        Vector3 randomDirection = new Vector3(x, y, z) * 7.5f;
+        return spawnPoint.position + new Vector3(0, 7.5f, 0) + randomDirection;
     }
 }

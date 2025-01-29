@@ -41,11 +41,18 @@ public class PowerUpsRequiredGemsFunction : MonoBehaviour
             {
                 PowerUpsManager.Instance.AddPowerUp(PowerUpType.Fan, 5);
             }
+            
             else if (PowerUpEventHandler.powerUpType == PowerUpType.Rocket)
             {
 
                 PowerUpsManager.Instance.AddPowerUp(PowerUpType.Rocket, 5);
             }
+            
+            else if (PowerUpEventHandler.powerUpType == PowerUpType.Jump)
+            {
+                PowerUpsManager.Instance.AddPowerUp(PowerUpType.Jump, 5);
+            }
+            
             PowerUpButton.interactable = true;
             Debug.Log("Reward Added!");
         }
@@ -71,11 +78,13 @@ public class PowerUpsRequiredGemsFunction : MonoBehaviour
 
                 PowerUpsManager.Instance.AddPowerUp(PowerUpType.Rocket, 1);
             }
+            
+            else if (PowerUpEventHandler.powerUpType == PowerUpType.Jump)
+            {
+                PowerUpsManager.Instance.AddPowerUp(PowerUpType.Jump, 1);
+            }
+            
             PowerUpButton.interactable = true;
-
         }
-        
-
     }
-
 }

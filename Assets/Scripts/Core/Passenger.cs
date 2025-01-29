@@ -9,8 +9,9 @@ public class Passenger : MonoBehaviour
     public Colors passengerColor;
     public bool hasBoarded;
     internal bool IsBoarding;
+    public GameObject vfx;
     public int id;
-    private Bus _selectedBus;
+    public Bus _selectedBus;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class Passenger : MonoBehaviour
 
     public void TryBoardBus(Bus bus, Action<bool> onComplete)
     {
-        if(IsBoarding)
+        if(IsBoarding && _selectedBus!=null)
             return;
         StartCoroutine(TryBoardBus(bus, 5f, onComplete));
     }
@@ -41,7 +42,7 @@ public class Passenger : MonoBehaviour
         if (bus.currentSize > 0)
         {
             _selectedBus = bus;
-            _selectedBus.currentSize--;
+             _selectedBus.currentSize--;
         }
         else
         {
@@ -75,6 +76,7 @@ public class Passenger : MonoBehaviour
 
             yield return null;
         }
+        Debug.Log("JJJJJJJ");
 
         while (true)
         {
@@ -124,5 +126,26 @@ public class Passenger : MonoBehaviour
         hasBoarded = true;
         onComplete?.Invoke(hasBoarded);
     }
+
+    public void MovePlayerToPosition(Vector3 nextPassenger)
+    {
+        int speed = 5;
+        while (Vector3.Distance(transform.position, nextPassenger) > 0.1f)
+            {
+                    transform.position = Vector3.MoveTowards(transform.position, nextPassenger,
+                        speed * Time.deltaTime);
+
+                    Vector3 direction = nextPassenger - transform.position;
+
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f* Time.deltaTime);
+
+                    PassengerAnimator.IsWalking(true);
+            }
+            PassengerAnimator.IsWalking(false);
+        }
+    
+    
+    
 
 }

@@ -157,25 +157,25 @@ public class InputManager : Singelton<InputManager>
 
             if (clickedBus != null)
             {
-                if (_selectedBus != null)
-                {
-                    if (_selectedBus.AssignedSlot != null && clickedBus.AssignedSlot != null)
-                    {
-                       
-                       
-                        var currentSlot = clickedBus.AssignedSlot;
-                        var newSlot = _selectedBus.AssignedSlot;
-                        _selectedBus.AssignSlot(currentSlot);
-                        newSlot.AssignBus(clickedBus);
-                        clickedBus.AssignSlot(newSlot);
-                        currentSlot.AssignBus(_selectedBus);
-                        GameManager.Instance.TriggerCascadingMerge(currentSlot,out _);
-                        DeselectBus();
-                       
-                    }
-
-                    return;
-                }
+                // if (_selectedBus != null)
+                // {
+                //     if (_selectedBus.AssignedSlot != null && clickedBus.AssignedSlot != null)
+                //     {
+                //        Debug.Log("HTFTFTGBDF");
+                //        
+                //         var currentSlot = clickedBus.AssignedSlot;
+                //         var newSlot = _selectedBus.AssignedSlot;
+                //         _selectedBus.AssignSlot(currentSlot);
+                //         newSlot.AssignBus(clickedBus);
+                //         clickedBus.AssignSlot(newSlot);
+                //         currentSlot.AssignBus(_selectedBus);
+                //         //GameManager.Instance.TriggerCascadingMerge(currentSlot,out _);
+                //         DeselectBus();
+                //        
+                //     }
+                //
+                //     return;
+                // }
 
                 DeselectBus();
                 SelectBus(clickedBus);
@@ -209,7 +209,8 @@ public class InputManager : Singelton<InputManager>
     void SelectBus(Bus bus)
     {
         _selectedBus = bus;
-        _selectedBus.gameObject.AddComponent<Outline>();
+        if(_selectedBus.gameObject.GetComponent<Outline>()==null)
+            _selectedBus.gameObject.AddComponent<Outline>();
         if (bus.AssignedSlot == null)
             TryMoveBusToSlot();
         if (TutorialManager.Instance)
@@ -232,7 +233,7 @@ public class InputManager : Singelton<InputManager>
 
     void TryMoveBusToSlot(Slot clickedSlot)
     { 
-        GameManager.Instance.PlaceBusInSlot(_selectedBus, clickedSlot);
+        //GameManager.Instance.PlaceBusInSlot(_selectedBus, clickedSlot);
     }
 
     public void DeselectBus()
