@@ -5,8 +5,8 @@ using UnityEngine;
 public class Slot : MonoBehaviour
 {
     internal Bus CurrentBus;
-    private Transform _referencePoint;
-    private Transform _standTransform;
+    public Transform _referencePoint;
+    public Transform _standTransform;
     public float moveSpeed = 200f; // Speed at which the vehicle moves.
     public float rotateSpeed = 200f; // Speed of rotation during alignment.
     public bool isLocked;
@@ -111,65 +111,43 @@ public class Slot : MonoBehaviour
             }
         }
     }
-    
+
     private IEnumerator MoveToSlot()
     {
-
-        yield return new WaitForSeconds(0.5f);
-        
-        
-        // Get random starting rotation and move to upright position
-        Quaternion initialRotation = CurrentBus.transform.rotation;
-        Quaternion uprightRotation = Quaternion.Euler(0, initialRotation.eulerAngles.y, 0);
-        
+        CurrentBus.GetComponent<SquashAndStretch>().enabled = true;
         Vector3 initialPosition = CurrentBus.transform.position;
-        initialPosition.y += 4f;
-
-        CurrentBus.transform.position = initialPosition;
-
-        yield return new WaitForSeconds(0.5f);
-        
-        InputManager.Instance.DeselectBus();
-        
-        //Debug.Log(gameObject.name+" V: "+Vector3.Distance(CurrentBus.transform.position, _referencePoint.transform.position));
-        
-        // Move and rotate to the vehicle slot
-        while (Vector3.Distance(CurrentBus.transform.position, _referencePoint.transform.position) > 1f && !vehiclePlaced) 
-                //|| Quaternion.Angle(CurrentBus.transform.rotation, uprightRotation) > 1f)
-            {
-                //Debug.Log(gameObject.name+" V: "+Vector3.Distance(CurrentBus.transform.position, _referencePoint.transform.position));
-                // Move towards the slot
-                CurrentBus.transform.position = Vector3.MoveTowards(CurrentBus.transform.position,
-                    _referencePoint.transform.position, moveSpeed * Time.deltaTime*3);
-
-                // Rotate to upright position
-                //CurrentBus.transform.rotation = Quaternion.RotateTowards(CurrentBus.transform.rotation, uprightRotation, rotateSpeed * Time.deltaTime);
-
-                yield return null;
-            }
-
-        Vector3 position = _referencePoint.transform.position;
-        position.y += 2;
-        CurrentBus.transform.position = position;
-
-
+        Quaternion initialRotation = CurrentBus.transform.rotation;
+        Vector3 targetPosition = _referencePoint.transform.position;
         Quaternion targetRotation = Quaternion.Euler(0, _referencePoint.transform.eulerAngles.y, 0);
-        while (Quaternion.Angle(CurrentBus.transform.rotation, targetRotation) > 1f )
+
+        float riseHeight = 4f;
+        float riseDuration = 0.5f;
+        float moveDuration = 1f;
+        float elapsedTime = 0f;
+
+        Vector3 raisedPosition = initialPosition + Vector3.up * riseHeight;
+        while (elapsedTime < riseDuration)
         {
-            CurrentBus.transform.rotation = Quaternion.RotateTowards(CurrentBus.transform.rotation, 
-                targetRotation, rotateSpeed * Time.deltaTime*2);
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / riseDuration;
+            CurrentBus.transform.position = Vector3.Lerp(initialPosition, raisedPosition, t);
             yield return null;
         }
-        
+
+        elapsedTime = 0f;
+        while (elapsedTime < moveDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / moveDuration;
+            CurrentBus.transform.position = Vector3.Lerp(raisedPosition, targetPosition, t);
+            CurrentBus.transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, t);
+
+            yield return null;
+        }
+        CurrentBus.transform.position = targetPosition;
         CurrentBus.transform.rotation = targetRotation;
-        CurrentBus.transform.position = _referencePoint.transform.position;
-
-        // Align to the slot's rotation
-        
-        // Snap to the final position and rotation
-        
         busMoving = true;
-
+        CurrentBus.GetComponent<SquashAndStretch>().enabled = false;
     }
 
 
@@ -200,7 +178,7 @@ public class Slot : MonoBehaviour
 
     void MergeBus()
     {
-        GameManager.Instance. TriggerCascadingMerge(this, out Bus remainingBus);
+        GameManager.Instance.TriggerCascadingMerge(this, out Bus remainingBus);
         //GameManager.Instance.BoardPassengersToBus(remainingBus);
     }
 }

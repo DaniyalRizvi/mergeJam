@@ -14,6 +14,7 @@ public class GameManager : Singelton<GameManager>
     [SerializeField] private GameObject FanPowerUpVFX;
     [SerializeField] private GameObject JumpPowerUpVFX;
     [SerializeField] private GameObject levelCompletedVFX;
+    [SerializeField] private GameObject springVFX;
     public GameObject SlotVFX;
     private List<Slot> _slots = new();
     private List<Passenger> _passengers = new();
@@ -55,32 +56,32 @@ public class GameManager : Singelton<GameManager>
         // {
         //     mergeHappened = false;
 
-            for (int i =_slots.Count-1; i > 0; i--)
+        for (int i = _slots.Count - 1; i > 0; i--)
+        {
+            var leftSlot = _slots[i - 1];
+            var rightSlot = _slots[i];
+
+            //mergeHappened = true;
+
+            if (CanMerge(leftSlot, rightSlot))
             {
-                var leftSlot = _slots[i - 1];
-                var rightSlot = _slots[i];
+                Debug.Log("HEREHRHEH");
+                StartCoroutine(MergeAnimation(i - 1, leftSlot, rightSlot));
+                //TryMergeBuses(leftSlot, rightSlot);
+                //StartCoroutine(WaitToMergeBuses(leftSlot,rightSlot));
 
-                //mergeHappened = true;
-
-                if (CanMerge(leftSlot, rightSlot))
-                {
-                    Debug.Log("HEREHRHEH");
-                    StartCoroutine(MergeAnimation(i-1,leftSlot, rightSlot));
-                    //TryMergeBuses(leftSlot, rightSlot);
-                    //StartCoroutine(WaitToMergeBuses(leftSlot,rightSlot));
-
-                    //_level.SaveLevelStateToJson(); 
-                }
-                else
-                {
-                        BoardPassengersToBus(i);
-                }
+                //_level.SaveLevelStateToJson(); 
             }
+            else
+            {
+                BoardPassengersToBus(i);
+            }
+        }
 
-            //CheckAllSlots();
+        //CheckAllSlots();
 
 
-            // } while (mergeHappened);
+        // } while (mergeHappened);
     }
 
     private bool CanMerge(Slot leftSlot, Slot rightSlot)
@@ -108,134 +109,96 @@ public class GameManager : Singelton<GameManager>
     //     MergeAnimation(leftSlot, rightSlot);
     // }
 
-    private IEnumerator  MergeAnimation(int leftIndex,Slot leftSlot, Slot rightSlot)
+    private IEnumerator MergeAnimation(int leftIndex, Slot leftSlot, Slot rightSlot)
     {
-        Debug.Log("Here");
+        Debug.Log("Merge animation started");
         var leftBus = leftSlot.CurrentBus;
         var rightBus = rightSlot.CurrentBus;
-
-        yield return new WaitForSeconds(0.5f);
-            
+        if (leftBus == null || rightBus == null)
+        {
+            Debug.LogError("One of the buses is missing. Cannot merge.");
+            yield break;
+        }
         Vector3 leftInitialPosition = leftBus.transform.position;
         Vector3 leftHoverPosition = leftInitialPosition + Vector3.up * hoverHeight;
         Vector3 rightInitialPosition = rightBus.transform.position;
         Vector3 rightHoverPosition = rightInitialPosition + Vector3.up * hoverHeight;
-        
 
-        // Move both buses up slightly
-        if (leftBus != null && rightBus != null)
+        float moveSpeedMultiplier = 2f;
+        while (Vector3.Distance(leftBus.transform.position, leftHoverPosition) > 0.1f || Vector3.Distance(rightBus.transform.position, rightHoverPosition) > 0.1f)
         {
-            while (Vector3.Distance(leftBus.transform.position, leftHoverPosition) > 0.1f && rightBus != null) 
-                   //|| Vector3.Distance(rightBus.transform.position, rightHoverPosition) > 0.1f)
-            {
-                leftBus.transform.position = Vector3.MoveTowards(leftBus.transform.position, leftHoverPosition,
-                    mergeMoveSpeed * Time.deltaTime);
-                rightBus.transform.position = Vector3.MoveTowards(rightBus.transform.position, rightHoverPosition,
-                    mergeMoveSpeed * Time.deltaTime);
-                yield return null;
-            }
+            leftBus.transform.position = Vector3.MoveTowards(leftBus.transform.position, leftHoverPosition, mergeMoveSpeed * moveSpeedMultiplier * Time.deltaTime);
+            rightBus.transform.position = Vector3.MoveTowards(rightBus.transform.position, rightHoverPosition, mergeMoveSpeed * moveSpeedMultiplier * Time.deltaTime);
+            yield return null;
         }
+        Debug.Log("Buses hovered");
 
-        Debug.Log("Here2");
-
-        // Move the right bus towards the left bus
-        if (rightBus != null)
+        while (Vector3.Distance(rightBus.transform.position, leftBus.transform.position) > 1f)
         {
-            while (Vector3.Distance(rightBus.transform.position, leftBus.transform.position) > 1f)
-            {
-                Debug.Log("WSWSWSWSWSWS");
-                Debug.Log(Vector3.Distance(rightBus.transform.position, leftBus.transform.position));
-                rightBus.transform.position = Vector3.MoveTowards(rightBus.transform.position,
-                    leftBus.transform.position, moveSpeed * Time.deltaTime);
-                yield return null;
-            }
+            rightBus.transform.position = Vector3.MoveTowards(rightBus.transform.position,
+                leftBus.transform.position, moveSpeed * moveSpeedMultiplier * Time.deltaTime);
+            yield return null;
         }
-
-        Debug.Log("Here3");
-        // Trigger explosion effect
+        Debug.Log("Buses merged");
         if (MergeVFX != null)
         {
             MergeVFX.SetActive(false);
-            Vector3 MergePos = leftBus.transform.position;
-            MergePos.y = MergeVFX.transform.position.y;
-            MergeVFX.transform.position = MergePos;
+            Vector3 mergePos = leftBus.transform.position;
+            mergePos.y = MergeVFX.transform.position.y;
+            MergeVFX.transform.position = mergePos;
             MergeVFX.SetActive(true);
         }
-        Debug.Log("Here4");
+        Debug.Log("Explosion effect triggered");
 
-        // Destroy the original buses
-        //Destroy(leftBus.gameObject);
-//        Destroy(rightBus.gameObject);
-
-        // Spawn the new merged vehicle
-     //   GameObject newVehicle = Instantiate(mergedVehiclePrefab, leftHoverPosition, Quaternion.identity);
-     
         leftBus.capacity += rightBus.capacity;
-     
-        Debug.Log("TTTTT");
         leftBus.VehicleRenderModels.ActiveVehicle(leftBus.capacity);
         leftBus.UpdateVisual();
-     
-        Debug.Log("right bus size: "+rightBus.currentSize);
         leftBus.currentSize += rightBus.currentSize;
+
         leftBus.AssignSlot(leftSlot);
         leftSlot.AssignMergeBus(leftBus);
         rightSlot.ClearSlot();
-        
-        if (!_level.colors.Exists(i=>i.color == leftSlot.CurrentBus.busColor))
-            {
-                if (TutorialManager.Instance)
-                {
-                    TutorialManager.Instance.tutorialCase++;
-                    //TutorialManager.Instance.InitFan();
-                    TutorialManager.Instance.InitFanPanel();
-                    Debug.LogError("InitFan");
-                }
-                SoundManager.Instance.TrashItemDeletionSFX();
-                //Rocket PowerUps
-                MergeEffect(leftSlot.CurrentBus.transform);
-                Destroy(leftSlot.CurrentBus.gameObject);
-                leftSlot.ClearSlot();
-                yield return null;
-            }
-            SoundManager.Instance.ItemMergeSoundSFX();
 
-        //Hover the new vehicle until the explosion effect fades
+        if (!_level.colors.Exists(i => i.color == leftSlot.CurrentBus.busColor))
+        {
+            if (TutorialManager.Instance)
+            {
+                TutorialManager.Instance.tutorialCase++;
+                TutorialManager.Instance.InitFanPanel();
+                Debug.LogError("InitFan");
+            }
+            SoundManager.Instance.TrashItemDeletionSFX();
+            MergeEffect(leftSlot.CurrentBus.transform);
+            Destroy(leftSlot.CurrentBus.gameObject);
+            leftSlot.ClearSlot();
+            yield return null;
+        }
+        SoundManager.Instance.ItemMergeSoundSFX();
+
         Vector3 hoverTargetPosition = leftHoverPosition;
         float hoverStartTime = Time.time;
-        
-            while (Time.time - hoverStartTime < hoverDuration)
-            {
-                if (leftBus != null)
-                    leftBus.transform.position = Vector3.Lerp(leftBus.transform.position, hoverTargetPosition, Time.deltaTime * 2f);
-                yield return null;
-            }
-        
 
-        //Move the new vehicle down to the slot
-        Vector3 slotPosition = leftSlot.transform.position;
-        if (leftBus != null)
+        while (Time.time - hoverStartTime < hoverDuration)
         {
-            while (Vector3.Distance(leftBus.transform.position, slotPosition) > 0.1f)
-            {
-                leftBus.transform.position = Vector3.MoveTowards(leftBus.transform.position, slotPosition,
-                    mergeMoveSpeed * Time.deltaTime);
-                yield return null;
-            }
+            if (leftBus != null)
+                leftBus.transform.position = Vector3.Lerp(leftBus.transform.position, hoverTargetPosition, Time.deltaTime * 4f); // Increase hover speed
+            yield return null;
         }
-        
-        
+
+        Vector3 slotPosition = leftSlot.transform.position;
+        while (Vector3.Distance(leftBus.transform.position, slotPosition) > 0.1f)
+        {
+            leftBus.transform.position = Vector3.MoveTowards(leftBus.transform.position, slotPosition,
+                mergeMoveSpeed * moveSpeedMultiplier * Time.deltaTime);
+            yield return null;
+        }
+        Debug.Log("Merged bus placed in slot");
+
         NotifyPassengersOfNewBus(leftBus);
         BoardPassengersToBus(leftIndex);
-
-        // Finalize the position
-        //leftBus.transform.position = slotPosition;
-        yield return new WaitForSeconds(0.5f);
-        //CheckAllSlots();
-        rightSlot.vehiclePlaced = false;
-        
+        Debug.Log("Merge animation completed");
     }
-    
+
     // private void TryMergeBuses(Slot leftSlot, Slot rightSlot)
     // {
     //     var leftBus = leftSlot.CurrentBus;
@@ -482,5 +445,12 @@ public class GameManager : Singelton<GameManager>
                 SoundManager.Instance.LevelCompleteSFX();
             }
         }
+    }
+
+    public IEnumerator ApplySpringVFX(Transform transform)
+    {
+        var springObj = Instantiate(springVFX, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Destroy(springObj);
     }
 }

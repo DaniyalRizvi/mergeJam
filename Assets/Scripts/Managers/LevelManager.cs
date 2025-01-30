@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LevelManager : Singelton<LevelManager>
 {
@@ -105,25 +106,37 @@ public class LevelManager : Singelton<LevelManager>
         return allColors.Except(levelColors).ToList();
     }
 
-    public void ApplyJump(Level level, Bus bus)
+    public void ApplyJump(Level level, Bus bus, Transform referencePoint)
     {
+        StartCoroutine(GameManager.Instance.ApplySpringVFX(referencePoint));
+        bus.GetComponent<SquashAndStretch>().enabled = true;
         var spawnPoint = level.gameObject.GetComponentInChildren<SpawnPoint>().transform;
-        spawnPoint.rotation = Quaternion.identity;
-        spawnPoint.position = GetRandomSpawnPoint(spawnPoint);
-        bus.gameObject.transform.position = spawnPoint.position;
-        bus.transform.SetParent(spawnPoint, true);
+        Vector3 tempPos = level.GetRandomSpawnPoint(spawnPoint);
+        tempPos.y = 1.1f;
+        StartCoroutine(MoveFromSlot(bus, tempPos, spawnPoint));
     }
-    
-    public Vector3 GetRandomSpawnPoint(Transform spawnPoint)
+
+    public IEnumerator MoveFromSlot(Bus bus, Vector3 targetPosition, Transform spawnPoint)
     {
-        float theta = Random.Range(0f, 2f * Mathf.PI);
-        float phi = Random.Range(0f, Mathf.PI / 2f);
+        Vector3 initialPosition = bus.transform.position;
+        Quaternion initialRotation = bus.transform.rotation;
+        float moveDuration = 1f;
+        float elapsedTime = 0f;
+        float jumpHeight = 2f;
 
-        float x = Mathf.Sin(phi) * Mathf.Cos(theta);
-        float z = Mathf.Sin(phi) * Mathf.Sin(theta);
-        float y = Mathf.Cos(phi);
+        while (elapsedTime < moveDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / moveDuration;
+            Vector3 position = Vector3.Lerp(initialPosition, targetPosition, t);
+            position.y += Mathf.Sin(t * Mathf.PI) * jumpHeight;
+            bus.transform.position = position;
 
-        Vector3 randomDirection = new Vector3(x, y, z) * 7.5f;
-        return spawnPoint.position + new Vector3(0, 7.5f, 0) + randomDirection;
+            yield return null;
+        }
+
+        bus.transform.position = targetPosition;
+        bus.transform.SetParent(spawnPoint, true);
+        bus.GetComponent<SquashAndStretch>().enabled = false;
     }
 }

@@ -105,20 +105,24 @@ public class PowerUpEventHandler : MonoBehaviour
             
             else if (powerUpType == PowerUpType.Fan)
             {
+                GetComponent<Button>().interactable = false;
                 GameManager.Instance.FanPowerUps();
                 _powerUp.Execute(CreateData());
                 PowerUpsManager.Instance.UsePowerUp(powerUpType);
                 SetText();
+                GetComponent<Button>().interactable = true;
                 return;
             }
             
             else if (powerUpType == PowerUpType.Jump)
             {
+                GetComponent<Button>().interactable = false;
                 GameManager.Instance.JumpPowerUps();
                 var JumpData = CreateData() as JumpData;
                 _powerUp.Execute(JumpData);
                 PowerUpsManager.Instance.UsePowerUp(powerUpType);
                 SetText();
+                GetComponent<Button>().interactable = true;
                 return;
             }
         }
