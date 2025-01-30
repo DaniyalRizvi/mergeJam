@@ -28,7 +28,7 @@ public class Passenger : MonoBehaviour
     {
         if (IsBoarding && _selectedBus != null)
             return;
-        StartCoroutine(TryBoardBus(bus, 5f, onComplete));
+        StartCoroutine(TryBoardBus(bus, 8f, onComplete));
     }
 
     public void UpdateBusAfterMerge(Bus bus)

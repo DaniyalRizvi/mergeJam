@@ -20,6 +20,7 @@ public class GameManager : Singelton<GameManager>
     private List<Passenger> _passengers = new();
     public Level _level;
     public Action OnLevelComplete;
+    public bool PlacingBus;
     public bool rocketPowerUp;
     public int maxCount;
     private IEnumerator Start()
@@ -277,11 +278,9 @@ public class GameManager : Singelton<GameManager>
 
     public void BoardPassengersToBus(int i)
     {
-        Debug.Log(i);
         if (i < 0)
             return;
-
-        Debug.Log(_passengers.Count);
+        
         if (_passengers.Count <= 0)
             return;
 
@@ -304,7 +303,7 @@ public class GameManager : Singelton<GameManager>
                             CheckLevelCompletion();
                             Debug.Log("Passenger boarded and removed from queue");
                             MovePassengersForward();
-                            BoardPassengersToBus(i);
+                            //BoardPassengersToBus(i);
                         }
                     });
                 }
@@ -368,11 +367,20 @@ public class GameManager : Singelton<GameManager>
             levelCompletedVFX.SetActive(false);
             GemsManager.Instance.AddGems(10);
             levelCompletedVFX.SetActive(true);
-            UIManager.Instance.ShowLevelCompleteUI();
-            OnLevelComplete?.Invoke();
-            SoundManager.Instance.LevelCompleteSFX();
-            ClearSavedGameState();
+            Invoke("SetLevelCompleteUI",1f);
         }
+        else
+        {
+            BoardPassengersToBus(_slots.Count-1);
+        }
+    }
+
+    private void SetLevelCompleteUI()
+    {
+        UIManager.Instance.ShowLevelCompleteUI();
+        OnLevelComplete?.Invoke();
+        SoundManager.Instance.LevelCompleteSFX();
+        ClearSavedGameState();
     }
     
     public void ClearSavedGameState()
@@ -395,6 +403,7 @@ public class GameManager : Singelton<GameManager>
         var clickedSlot = _slots.FirstOrDefault(slot => slot.isEmpty && !slot.isLocked);
         if (clickedSlot != null && !rocketPowerUp)
         {
+            PlacingBus=true;
             selectedBus.AssignSlot(clickedSlot);
             clickedSlot.AssignBus(selectedBus);
             //TriggerCascadingMerge(clickedSlot, out Bus remainingBus);

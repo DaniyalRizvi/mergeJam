@@ -754,6 +754,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9999d4e7d2ac2428c635e533da42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _referencePoint: {fileID: 0}
+  _standTransform: {fileID: 0}
   moveSpeed: 200
   rotateSpeed: 200
   isLocked: 0
@@ -8557,6 +8559,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9999d4e7d2ac2428c635e533da42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _referencePoint: {fileID: 0}
+  _standTransform: {fileID: 0}
   moveSpeed: 200
   rotateSpeed: 200
   isLocked: 0
@@ -23315,6 +23319,7 @@ GameObject:
   - component: {fileID: 549905836}
   - component: {fileID: 549905838}
   - component: {fileID: 549905837}
+  - component: {fileID: 549905839}
   m_Layer: 5
   m_Name: HandIcon
   m_TagString: Untagged
@@ -23338,7 +23343,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -0.020080566, y: 276.28796}
+  m_AnchoredPosition: {x: -0.020080566, y: -220}
   m_SizeDelta: {x: 112, y: 208}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &549905837
@@ -23379,6 +23384,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549905835}
   m_CullTransparentMesh: 1
+--- !u!95 &549905839
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549905835}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e14e4e66b1aac5045ac8638a556a6e5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &580666064
 GameObject:
   m_ObjectHideFlags: 0
@@ -25557,6 +25583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9999d4e7d2ac2428c635e533da42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _referencePoint: {fileID: 0}
+  _standTransform: {fileID: 0}
   moveSpeed: 200
   rotateSpeed: 200
   isLocked: 0
@@ -46250,7 +46278,9 @@ MonoBehaviour:
   RocketPowerupsVFX: {fileID: 163710048}
   MergeVFX: {fileID: 1733949700}
   FanPowerUpVFX: {fileID: 366093513}
+  JumpPowerUpVFX: {fileID: 0}
   levelCompletedVFX: {fileID: 0}
+  springVFX: {fileID: 0}
   SlotVFX: {fileID: 742723381}
   _level: {fileID: 0}
   rocketPowerUp: 0
@@ -49305,6 +49335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9999d4e7d2ac2428c635e533da42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _referencePoint: {fileID: 0}
+  _standTransform: {fileID: 0}
   moveSpeed: 200
   rotateSpeed: 200
   isLocked: 0
@@ -80754,6 +80786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9999d4e7d2ac2428c635e533da42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _referencePoint: {fileID: 0}
+  _standTransform: {fileID: 0}
   moveSpeed: 200
   rotateSpeed: 200
   isLocked: 0
@@ -88214,6 +88248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9999d4e7d2ac2428c635e533da42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _referencePoint: {fileID: 0}
+  _standTransform: {fileID: 0}
   moveSpeed: 200
   rotateSpeed: 200
   isLocked: 0
