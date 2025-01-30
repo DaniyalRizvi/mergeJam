@@ -54,6 +54,7 @@ public class SettingPanel : MonoBehaviour
         for (int i = 0; i < SoundsSFXButtons.Length; i++)
         {
             int Count = i;
+            SoundSfxButtonsCallback(Count);
             SoundsSFXButtons[i].Button.onClick.AddListener(() =>
             {
                 SoundSfxButtonsCallback(Count);
@@ -64,6 +65,7 @@ public class SettingPanel : MonoBehaviour
         for (int i = 0; i < MusicButtons.Length; i++)
         {
             int Count = i;
+            MusicButtonsCallback(Count);
             MusicButtons[i].Button.onClick.AddListener(() =>
             {
                 MusicButtonsCallback(Count);
@@ -74,8 +76,10 @@ public class SettingPanel : MonoBehaviour
     }
     private void SoundSfxButtonsCallback(int Index)
     {
+        Debug.Log("Here");
         isSFXOn = Index != 0;
         CurrentSFXIndex = Index;
+        Debug.Log("Index: "+Index);
         SoundManager.Instance.SfxAudioSourceState(isSFXOn);
         for (int i = 0; i < SoundsSFXButtons.Length; i++)
         {
@@ -84,6 +88,8 @@ public class SettingPanel : MonoBehaviour
             else
                 SoundsSFXButtons[i].SelectedImageState(false);
         }
+
+        SaveData();
     }
 
     private void MusicButtonsCallback(int Index)
@@ -98,6 +104,8 @@ public class SettingPanel : MonoBehaviour
             else
                 MusicButtons[i].SelectedImageState(false);
         }
+
+        SaveData();
     }
     private void SaveData()
     {

@@ -278,21 +278,15 @@ public class GameManager : Singelton<GameManager>
     public void BoardPassengersToBus(int i)
     {
         Debug.Log(i);
-        if(i<0)
+        if (i < 0)
             return;
+
         Debug.Log(_passengers.Count);
-        if(_passengers.Count<=0)
+        if (_passengers.Count <= 0)
             return;
 
-        // var matchingPassengers = _passengers
-        //     .Where(p => p.passengerColor == bus.busColor && !p.hasBoarded && !p.IsBoarding)
-        //     .ToList();
-
-
-        // foreach (var passenger in _passengers)
-        // {
         var bus = _slots[i].CurrentBus;
-       
+
         if (bus != null)
         {
             Debug.Log(bus.currentSize);
@@ -308,31 +302,41 @@ public class GameManager : Singelton<GameManager>
                             _passengers.Remove(passenger);
                             Destroy(passenger.gameObject);
                             CheckLevelCompletion();
-                            Debug.Log("HHH");
+                            Debug.Log("Passenger boarded and removed from queue");
+                            MovePassengersForward();
                             BoardPassengersToBus(i);
                         }
-                        //QueuePassangers(passenger.gameObject.transform.position);
                     });
-
                 }
                 else
                 {
-                    BoardPassengersToBus(i-1);
+                    BoardPassengersToBus(i - 1);
                 }
             }
             else
             {
-                BoardPassengersToBus(i-1);
+                BoardPassengersToBus(i - 1);
             }
         }
         else
         {
-            BoardPassengersToBus(i-1);
+            BoardPassengersToBus(i - 1);
         }
-        
-
-        // }
     }
+
+    private void MovePassengersForward()
+    {
+        if (_passengers.Count > 1)
+        {
+            for (int j = 1; j < _passengers.Count; j++)
+            {
+                var previousPassengerPosition = _passengers[j - 1].transform.position;
+                _passengers[j].MovePlayerToPosition(previousPassengerPosition);
+            }
+        }
+    }
+
+
 
     // public void CheckAllSlots()
     // {
