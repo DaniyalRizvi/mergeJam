@@ -86,6 +86,16 @@ public class Bus : MonoBehaviour
         //StartCoroutine(SetVehicle());
     }
 
+    public void ClearSlot()
+    {
+        if (AssignedSlot == null)
+            return;
+        AssignedSlot = null;
+        gameObject.GetComponent<BoxCollider>().isTrigger = false;
+        capacityText.SetText("");
+        currentSizeText.SetText("");
+    }
+
     public IEnumerator SetVehicle()
     {
         yield return new WaitForSeconds(3f);

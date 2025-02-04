@@ -15,9 +15,10 @@ public class LevelManager : Singelton<LevelManager>
     public Action OnLevelComplete;
     public Action OnLevelRestart;
     public Action<float,bool> OnTimeBaseLevel;
+    public Transform passengerRef;
     void Start()
     {
-        if (PlayerPrefs.GetInt("TutorialCompleted") == 1)
+        if (PlayerPrefs.GetInt("LevelTutorialCompleted") == 1)
         {
             if (PlayerPrefs.HasKey("CurrentLevel"))
             {
@@ -27,6 +28,8 @@ public class LevelManager : Singelton<LevelManager>
 
         _levels = FindObjectsOfType<Level>().ToList();
         _levels.SortByName();
+        
+        passengerRef = _levels[_levelNumber].GetComponentInChildren<passengerRef>().transform;
 
         Application.targetFrameRate = 1000;
         OnLevelComplete += OnLevelCompleted;
@@ -82,7 +85,14 @@ public class LevelManager : Singelton<LevelManager>
         {
             
             PlayerPrefs.SetInt("CurrentLevel", _levelNumber);
-            LoadLevel(_levelNumber);
+
+            if (_levelNumber == 25 || _levelNumber == 13 || _levelNumber == 27 || _levelNumber == 35)
+            {
+                PlayerPrefs.SetInt("LevelTutorialCompleted",0);
+                SceneManager.LoadScene("MergeJamTutorial");
+            }
+            else
+                LoadLevel(_levelNumber);
         }
         else
         {
@@ -112,7 +122,7 @@ public class LevelManager : Singelton<LevelManager>
         bus.GetComponent<SquashAndStretch>().enabled = true;
         var spawnPoint = level.gameObject.GetComponentInChildren<SpawnPoint>().transform;
         Vector3 tempPos = level.GetRandomSpawnPoint(spawnPoint);
-        tempPos.y = 1.1f;
+        tempPos.y = 2.5f;
         StartCoroutine(MoveFromSlot(bus, tempPos, spawnPoint));
     }
 
@@ -137,6 +147,8 @@ public class LevelManager : Singelton<LevelManager>
 
         bus.transform.position = targetPosition;
         bus.transform.SetParent(spawnPoint, true);
+        bus.GetComponent<Rigidbody>().isKinematic = false;
         bus.GetComponent<SquashAndStretch>().enabled = false;
+        GameManager.Instance.movingBack = false;
     }
 }

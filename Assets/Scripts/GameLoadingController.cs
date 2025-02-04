@@ -49,14 +49,15 @@ public class GameLoadingController : MonoBehaviour
 
         LoadingImage.DOFillAmount(1, LoadingTime).OnComplete(() =>
         {
-            if (PlayerPrefs.GetInt("TutorialCompleted")==0)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
-            else
-            {
+            // if (PlayerPrefs.GetInt("LevelTutorialCompleted")==0)
+            // {
+            //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            // }
+            // else
+            // {
+            PlayerPrefs.SetInt("LevelTutorialCompleted",1);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
-            }
+            //}
         });
 
     }

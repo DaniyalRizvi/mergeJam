@@ -138,6 +138,12 @@ public class Passenger : MonoBehaviour
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            
+            Vector3 direction = targetPosition - transform.position;
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f * Time.deltaTime);
+            
             yield return null;
         }
     }

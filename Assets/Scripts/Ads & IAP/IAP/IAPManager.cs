@@ -87,10 +87,11 @@ namespace IAP
         {
             if (IsInitialized()) return;
 
-            StandardPurchasingModule.Instance().useFakeStoreAlways = true;
+            StandardPurchasingModule.Instance().useFakeStoreAlways = false;
+            //StandardPurchasingModule.Instance().useFakeStoreAlways = true;
             var module = StandardPurchasingModule.Instance();
-            //module.useFakeStoreAlways = true;
-            module.useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
+            module.useFakeStoreAlways = false;
+            //module.useFakeStoreUIMode = FakeStoreUIMode.StandardUser;
 
             var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
             builder = LoadShopData(builder);

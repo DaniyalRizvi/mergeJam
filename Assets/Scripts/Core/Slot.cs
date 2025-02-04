@@ -115,6 +115,7 @@ public class Slot : MonoBehaviour
     private IEnumerator MoveToSlot()
     {
         CurrentBus.GetComponent<SquashAndStretch>().enabled = true;
+        busMoving = true;
         Vector3 initialPosition = CurrentBus.transform.position;
         Quaternion initialRotation = CurrentBus.transform.rotation;
         Vector3 targetPosition = _referencePoint.transform.position;
@@ -146,7 +147,8 @@ public class Slot : MonoBehaviour
         }
         CurrentBus.transform.position = targetPosition;
         CurrentBus.transform.rotation = targetRotation;
-        busMoving = true;
+        busMoving = false;
+        GameManager.Instance.PlacingBus=false;
         CurrentBus.GetComponent<SquashAndStretch>().enabled = false;
     }
 
@@ -156,7 +158,7 @@ public class Slot : MonoBehaviour
         if (CurrentBus != null)
         { 
             //Debug.Log($"Clearing slot: {name}, Bus: {CurrentBus.name}");
-            Destroy(CurrentBus.gameObject);
+            //Destroy(CurrentBus.gameObject);
             CurrentBus = null;
            
         }
