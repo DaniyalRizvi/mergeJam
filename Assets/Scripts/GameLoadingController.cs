@@ -50,7 +50,10 @@ public class GameLoadingController : MonoBehaviour
         LoadingImage.DOFillAmount(1, LoadingTime).OnComplete(() =>
         {
             Debug.Log("LevelTutorialCompleted: "+PlayerPrefs.GetInt("LevelTutorialCompleted"));
-            if (PlayerPrefs.GetInt("LevelTutorialCompleted")==0)
+            if (PlayerPrefs.GetInt("LevelTutorialCompleted")==0 || 
+                (PlayerPrefs.GetInt("CurrentLevel")==1 && PlayerPrefs.GetInt("TrashTutorial")==0)|| 
+                (PlayerPrefs.GetInt("RocketTutorial")==0 && PlayerPrefs.GetInt("CurrentLevel")==2) ||
+                (PlayerPrefs.GetInt("FanTutorial")==0 && PlayerPrefs.GetInt("CurrentLevel")==3))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }

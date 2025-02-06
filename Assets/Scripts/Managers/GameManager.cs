@@ -204,7 +204,7 @@ public class GameManager : Singelton<GameManager>
             if (TutorialManager.Instance)
             {
                 TutorialManager.Instance.tutorialCase++;
-                TutorialManager.Instance.InitFanPanel();
+                //TutorialManager.Instance.InitFanPanel();
                 Debug.LogError("InitFan");
             }
             SoundManager.Instance.TrashItemDeletionSFX();

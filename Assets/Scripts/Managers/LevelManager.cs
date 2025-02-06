@@ -18,13 +18,25 @@ public class LevelManager : Singelton<LevelManager>
     public Transform passengerRef;
     void Start()
     {
-        if (PlayerPrefs.GetInt("LevelTutorialCompleted") == 1)
+        
+        _levelNumber = PlayerPrefs.GetInt("CurrentLevel");
+
+        if (PlayerPrefs.GetInt("LevelTutorialCompleted")==0 || 
+            (PlayerPrefs.GetInt("TrashTutorial") == 0 && _levelNumber==1) || 
+            (PlayerPrefs.GetInt("RocketTutorial")==0 && _levelNumber==2) ||
+            (PlayerPrefs.GetInt("FanTutorial")==0 && _levelNumber==3))
         {
-            if (PlayerPrefs.HasKey("CurrentLevel"))
-            {
-                _levelNumber = PlayerPrefs.GetInt("CurrentLevel");
-            }
+            PlayerPrefs.SetInt("ActualCurrentLevel",PlayerPrefs.GetInt("CurrentLevel"));
+            PlayerPrefs.SetInt("CurrentLevel",0);
+            _levelNumber = 0;
         }
+        
+        
+
+        //else if (_levelNumber == 1 && PlayerPrefs.GetInt("TrashTutorial") == 1 && PlayerPrefs.GetInt("TrashTutorialPlayed") == 0)
+        ////
+        //    PlayTrashTutorial();
+        //}
 
         _levels = FindObjectsOfType<Level>().ToList();
         _levels.SortByName();
@@ -38,41 +50,9 @@ public class LevelManager : Singelton<LevelManager>
         Debug.LogError($"LevelNumber is: {_levelNumber}"); 
         //PlayerPrefs.SetInt("TrashTutorial", 0);
         //PlayerPrefs.SetInt("TrashTutorialPlayed", 0);
-        if (_levelNumber == 1 && PlayerPrefs.GetInt("TrashTutorial") == 0)
-        {
-            PlayerPrefs.SetInt("TrashTutorial", 1);
-           // SceneManager.LoadScene("MergeJamTutorial");
-        }
+        
+        LoadLevel(_levelNumber);
 
-        else if (_levelNumber == 2 && PlayerPrefs.GetInt("RocketTutorial") == 0)
-        {
-            PlayRocketTutorial();
-            PlayerPrefs.SetInt("RocketTutorial", 1);
-
-        }
-        else if (_levelNumber == 3 && PlayerPrefs.GetInt("FanTutorial") == 0)
-        {
-            PlayFanTutorial();
-            PlayerPrefs.SetInt("FanTutorial", 1);
-
-        }
-
-        else if (_levelNumber == 4 && PlayerPrefs.GetInt("JumpTutorial") == 0)
-        {
-            PlayJumpTutorial();
-            PlayerPrefs.SetInt("JumpTutorial", 1);
-
-        }
-
-        else if (_levelNumber == 1 && PlayerPrefs.GetInt("TrashTutorial") == 1)
-        {
-            PlayTrashTutorial();
-        }
-
-        else
-        {
-            LoadLevel(_levelNumber);
-        }
     }
 
     void PlayTrashTutorial()
@@ -142,7 +122,27 @@ public class LevelManager : Singelton<LevelManager>
         {
             
             PlayerPrefs.SetInt("CurrentLevel", _levelNumber);
-            LoadLevel(_levelNumber);
+
+            if (_levelNumber == 1 && PlayerPrefs.GetInt("TrashTutorial") == 0)
+            {
+                SceneManager.LoadScene("MergeJamTutorial");
+            }
+
+            else if (_levelNumber == 2 && PlayerPrefs.GetInt("RocketTutorial") == 0)
+            {
+                SceneManager.LoadScene("MergeJamTutorial");
+            }
+            else if (_levelNumber == 3 && PlayerPrefs.GetInt("FanTutorial") == 0)
+            {
+                SceneManager.LoadScene("MergeJamTutorial");
+
+            }
+            else if (_levelNumber == 4 && PlayerPrefs.GetInt("JumpTutorial") == 0)
+            {
+                SceneManager.LoadScene("MergeJamTutorial");
+            }
+            else
+                LoadLevel(_levelNumber);
         }
         else
         {
