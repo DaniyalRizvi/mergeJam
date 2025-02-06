@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 public class SoundManager : Singelton<SoundManager>
-{
+{   
     [SerializeField]
     private SoundsClipsCollectionSO SoundsClipsCollectionSO;
 

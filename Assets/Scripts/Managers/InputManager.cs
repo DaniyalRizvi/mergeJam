@@ -47,7 +47,6 @@ public class InputManager : Singelton<InputManager>
                 case 0:
                 {
                     TutorialManager.Instance.tutorialCase++;
-                    PlayerPrefs.SetInt("TutorialCase",TutorialManager.Instance.tutorialCase);
                     TutorialManager.Instance.HidePanel();
                     TutorialManager.Instance.MoveToPassengers();
                     return;
@@ -55,7 +54,6 @@ public class InputManager : Singelton<InputManager>
                 case 1:
                 {
                     TutorialManager.Instance.tutorialCase++;
-                    PlayerPrefs.SetInt("TutorialCase",TutorialManager.Instance.tutorialCase);
                     TutorialManager.Instance.HidePanel();
                     TutorialManager.Instance.MoveToBusses();
                     return;                                                                     
@@ -63,7 +61,6 @@ public class InputManager : Singelton<InputManager>
                 case 2:
                 {
                     TutorialManager.Instance.tutorialCase++;
-                    PlayerPrefs.SetInt("TutorialCase",TutorialManager.Instance.tutorialCase);
                     TutorialManager.Instance.HidePanel();
                     TutorialManager.Instance.InitFirstBus();
                     return;
@@ -71,7 +68,6 @@ public class InputManager : Singelton<InputManager>
                 case 3:
                 {
                         TutorialManager.Instance.tutorialCase++;
-                        PlayerPrefs.SetInt("TutorialCase",TutorialManager.Instance.tutorialCase);
                         TutorialManager.Instance.HidePanel();
                         TutorialManager.Instance.hand.SetActive(true);
                     return;
@@ -79,7 +75,7 @@ public class InputManager : Singelton<InputManager>
                 case 4:
                 {
                     TutorialManager.Instance.tutorialCase++;
-                    PlayerPrefs.SetInt("TutorialCase",TutorialManager.Instance.tutorialCase);
+                    
                     break;
                 }
                 case 6:
@@ -91,65 +87,55 @@ public class InputManager : Singelton<InputManager>
                 case 7:
                 {
                     TutorialManager.Instance.tutorialCase++;
-                    PlayerPrefs.SetInt("TutorialCase",TutorialManager.Instance.tutorialCase);
                     TutorialManager.Instance.MoveToFull();
                     break;
                 }
-                case 8:
-                    if (PlayerPrefs.GetInt("CurrentLevel") == 13)
-                    {
-                        TutorialManager.Instance.tutorialCase++;
-                        PlayerPrefs.SetInt("TutorialCase",TutorialManager.Instance.tutorialCase);
-                        TutorialManager.Instance.InitJump();
-                        TutorialManager.Instance.HidePanel();
-                    }
-                    break;
-                case 9:
-                {
-                    if (PlayerPrefs.GetInt("CurrentLevel") == 25)
-                    {
-                        TutorialManager.Instance.tutorialCase++;
-                        PlayerPrefs.SetInt("TutorialCase",TutorialManager.Instance.tutorialCase);
-                        TutorialManager.Instance.HidePanel();
-                        //TutorialManager.Instance.InitTrashItems();
-                        TutorialManager.Instance.InitFirstTrashItems();
-                    }
+                //case 8:
+                //    {
+                //        TutorialManager.Instance.tutorialCase++;
+                //        TutorialManager.Instance.HidePanel();
+                //        //TutorialManager.Instance.InitTrashItems();
+                //        TutorialManager.Instance.InitFirstTrashItems();
+                //        break;
+                //    }
+                //case 9:
+                //    {
+                //        //First Trash Done
+                //        TutorialManager.Instance.HidePanel();
+                //        TutorialManager.Instance.hand.SetActive(true);
+                //        break;
+                //    }
+                //case 10:
+                //    //Second Trash Done 
+                //    //Fand Button Active and Show hand On It
+                //    TutorialManager.Instance.tutorialCase++;
+                //    TutorialManager.Instance.InitFan();
+                //    TutorialManager.Instance.HidePanel();
 
-                    break;
-                }
-                case 10:
-                {
-                        //First Trash Done
-                        TutorialManager.Instance.HidePanel();
-                        TutorialManager.Instance.hand.SetActive(true);
-                        break;
-                }
-                case 11:
-                {
-                    if (PlayerPrefs.GetInt("CurrentLevel") == 27)
-                    {
-                        TutorialManager.Instance.tutorialCase++;
-                        PlayerPrefs.SetInt("TutorialCase",TutorialManager.Instance.tutorialCase);
-                        TutorialManager.Instance.InitRocket();
-                        TutorialManager.Instance.HidePanel();
-                    }
+                //    break;
+                //case 11:
+                //    TutorialManager.Instance.hand.SetActive(true);
 
-                    break;
-                }
-                case 12:
-                    //Second Trash Done 
-                    //Fand Button Active and Show hand On It
-                    if (PlayerPrefs.GetInt("CurrentLevel") == 35)
-                    {
-                        TutorialManager.Instance.tutorialCase++;
-                        PlayerPrefs.SetInt("TutorialCase",TutorialManager.Instance.tutorialCase);
-                        TutorialManager.Instance.InitFan();
-                        TutorialManager.Instance.HidePanel();
-                    }
+                //    //Show Rocket init here 
+                //    break;
+                //case 13:
 
-                    break;
-
-                
+                //    TutorialManager.Instance.tutorialCase++;
+                //    break;
+                //case 14:
+                //    Debug.Log("14");
+                //    TutorialManager.Instance.tutorialCase++;
+                //    TutorialManager.Instance.InitRocket();
+                //    TutorialManager.Instance.HidePanel();
+                //    break;
+                //case 15:
+                //    TutorialManager.Instance.hand.SetActive(true);
+                //    break;
+                //case 16:
+                //    Debug.Log("16");
+                //    TutorialManager.Instance.tutorialCase++;
+                //    TutorialManager.Instance.InitJump();
+                //    break;
                 default:
                     break;
             }

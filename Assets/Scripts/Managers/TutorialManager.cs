@@ -40,6 +40,24 @@ public class TutorialManager : Singelton<TutorialManager>
     {
         if (PlayerPrefs.HasKey("TutorialCase"))
             tutorialCase = PlayerPrefs.GetInt("TutorialCase");
+
+        if (PlayerPrefs.GetInt("TrashTutorial") == 1 && PlayerPrefs.GetInt("TrashTutorialPlayed") == 0)
+        {
+            StartCoroutine(PlayTrashTutorial());
+        }
+    }
+
+    public IEnumerator PlayTrashTutorial()
+    {
+        //HidePanel();
+        yield return new WaitForSeconds(0.5f);
+        InitFirstTrashItems();
+        yield return new WaitForSeconds(2f);
+        InitSecondTrashItems();
+        yield return new WaitForSeconds(2f);
+
+        PlayerPrefs.SetInt("TrashTutorialPlayed", 1);
+        //TutorialCompleted();
     }
 
     public void InitPanel(string text)
@@ -132,6 +150,7 @@ public class TutorialManager : Singelton<TutorialManager>
         }
 
         PlayerPrefs.SetInt("LevelTutorialCompleted",1);
+        Debug.Log("LevelTutorialCompleted: "+PlayerPrefs.GetInt("LevelTutorialCompleted"));
         HidePanel();
         StartCoroutine(MoveToFullCoroutine());
         
@@ -158,7 +177,7 @@ public class TutorialManager : Singelton<TutorialManager>
         transform.rotation = targetRotation;
         isInAnimation = false;
         InitPanel("Great! You're ready to start the game.");
-        TutorialManager.Instance.TutorialCompleted();
+        TutorialCompleted();
     }
 
     public void InitFirstBus()
@@ -282,6 +301,7 @@ public class TutorialManager : Singelton<TutorialManager>
         "\nTo get rid of trash items, merge two trash items together to free up space.");
 
         IsFirstTrashDone = true;
+        HidePanel();
     }
     public void InitSecondTrashItems()
     {
@@ -306,7 +326,6 @@ public class TutorialManager : Singelton<TutorialManager>
         }
         InitPanel("Tap To The Second unwanted vehicle to move it to the vehicle slot.");
         IsFirstTrashDone = false;
-
     }
 
     public void InitFan()

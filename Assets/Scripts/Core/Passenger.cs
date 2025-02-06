@@ -12,9 +12,11 @@ public class Passenger : MonoBehaviour
     public GameObject vfx;
     public int id;
     public Bus _selectedBus;
+    public Vector3 myPosition;
 
     private void Start()
     {
+        myPosition = this.transform.position;
         UpdateVisual();
     }
 
@@ -24,16 +26,17 @@ public class Passenger : MonoBehaviour
         PassengerAnimator.transform.GetChild(1).GetComponent<Renderer>().material.color = passengerColor.GetColor();
     }
 
+    public void UpdateBusAfterMerge(Bus bus)
+    {
+        _selectedBus = bus;
+    }
+
+
     public void TryBoardBus(Bus bus, Action<bool> onComplete)
     {
         if (IsBoarding && _selectedBus != null)
             return;
         StartCoroutine(TryBoardBus(bus, 8f, onComplete));
-    }
-
-    public void UpdateBusAfterMerge(Bus bus)
-    {
-        _selectedBus = bus;
     }
 
     private IEnumerator TryBoardBus(Bus bus, float speed, Action<bool> onComplete)

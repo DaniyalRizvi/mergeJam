@@ -58,21 +58,18 @@ public class PowerUpEventHandler : MonoBehaviour
             GameManager.Instance.FanPowerUps();
             TutorialManager.Instance.tutorialCase++;
             //TutorialManager.Instance.InitRocket();
-            //TutorialManager.Instance.InitRocketPanel();
-            TutorialManager.Instance.TutorialCompleted();
+            TutorialManager.Instance.InitRocketPanel();
         }
 
         if (TutorialManager.Instance && powerUpType == PowerUpType.Rocket)
         {
             TutorialManager.Instance.tutorialCase++;
-            //TutorialManager.Instance.InitJumpPanel();
-            TutorialManager.Instance.TutorialCompleted();
+            TutorialManager.Instance.InitJumpPanel();
         }
 
         if (TutorialManager.Instance && powerUpType == PowerUpType.Jump)
         {
             TutorialManager.Instance.tutorialCase++;
-            TutorialManager.Instance.TutorialCompleted();
         }
 
         GetComponent<Button>().interactable = false;

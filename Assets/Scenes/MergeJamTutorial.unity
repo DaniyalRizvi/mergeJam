@@ -983,6 +983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels: []
+  passengerRef: {fileID: 0}
 --- !u!4 &86884404
 Transform:
   m_ObjectHideFlags: 0
@@ -24213,6 +24214,7 @@ MonoBehaviour:
   - color: 1
     count: 16
   loadingData: 0
+  passengerRef: {fileID: 0}
 --- !u!4 &606434554
 Transform:
   m_ObjectHideFlags: 0
@@ -47019,10 +47021,14 @@ MonoBehaviour:
   levelCompletedVFX: {fileID: 0}
   springVFX: {fileID: 8389016175309470762, guid: 2aa33a63fe646414486114036b4d8da4, type: 3}
   SlotVFX: {fileID: 742723381}
+  _passengers: []
   _level: {fileID: 0}
   PlacingBus: 0
+  movingBack: 0
+  MergingBus: 0
   rocketPowerUp: 0
   maxCount: 0
+  myQueuePositions: []
   mergeMoveSpeed: 20
   moveSpeed: 30
   hoverHeight: 5
