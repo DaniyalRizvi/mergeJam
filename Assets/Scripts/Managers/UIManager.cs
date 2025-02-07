@@ -24,6 +24,7 @@ public class UIManager : Singelton<UIManager>
     public GameObject hardLevelUI;
     public Button watchAdBtn;
     [FormerlySerializedAs("_gemsText")] public TMP_Text gemsText;
+    [FormerlySerializedAs("_gemsText")] public TMP_Text levelgemsText;
     public List<ShopItem> iapHolders;
 
     IEnumerator Start()
@@ -112,7 +113,6 @@ public class UIManager : Singelton<UIManager>
     private void SetupHolders(Level currentLevel)
     {
         var children = pahHolder.GetComponentsInChildren<PassengerAmountHolder>().ToList();
-        Debug.Log(children.Count);
         foreach (var pah in children)
         {
             pah.gameObject.SetActive(true);

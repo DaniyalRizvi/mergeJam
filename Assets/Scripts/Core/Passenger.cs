@@ -12,9 +12,11 @@ public class Passenger : MonoBehaviour
     public GameObject vfx;
     public int id;
     public Bus _selectedBus;
+    public Vector3 myPosition;
 
     private void Start()
     {
+        myPosition = this.transform.position;
         UpdateVisual();
     }
 
@@ -24,16 +26,17 @@ public class Passenger : MonoBehaviour
         PassengerAnimator.transform.GetChild(1).GetComponent<Renderer>().material.color = passengerColor.GetColor();
     }
 
-    public void TryBoardBus(Bus bus, Action<bool> onComplete)
-    {
-        if(IsBoarding && _selectedBus!=null)
-            return;
-        StartCoroutine(TryBoardBus(bus, 5f, onComplete));
-    }
-
     public void UpdateBusAfterMerge(Bus bus)
     {
         _selectedBus = bus;
+    }
+
+
+    public void TryBoardBus(Bus bus, Action<bool> onComplete)
+    {
+        if (IsBoarding && _selectedBus != null)
+            return;
+        StartCoroutine(TryBoardBus(bus, 10f, onComplete));
     }
 
     private IEnumerator TryBoardBus(Bus bus, float speed, Action<bool> onComplete)
@@ -42,7 +45,7 @@ public class Passenger : MonoBehaviour
         if (bus.currentSize > 0)
         {
             _selectedBus = bus;
-             _selectedBus.currentSize--;
+            _selectedBus.currentSize--;
         }
         else
         {
@@ -63,7 +66,7 @@ public class Passenger : MonoBehaviour
                     Vector3 direction = _selectedBus.gateTransform.position - transform.position;
 
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f* Time.deltaTime);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f * Time.deltaTime);
 
                     PassengerAnimator.IsWalking(true);
                 }
@@ -108,18 +111,18 @@ public class Passenger : MonoBehaviour
             switch (TutorialManager.Instance.tutorialCase)
             {
                 case 5:
-                {
-                    TutorialManager.Instance.tutorialCase++;
-                    TutorialManager.Instance.InitSecondBus();
-                    break;
-                }
+                    {
+                        TutorialManager.Instance.tutorialCase++;
+                        TutorialManager.Instance.InitSecondBus();
+                        break;
+                    }
                 case 6:
-                {
-                    TutorialManager.Instance.tutorialCase++;
-                    TutorialManager.Instance.InitPanel(
-                        "When two vehicles of the same color and size merge, they form a higher-capacity vehicle!");
-                    break;
-                }
+                    {
+                        TutorialManager.Instance.tutorialCase++;
+                        TutorialManager.Instance.InitPanel(
+                            "When two vehicles of the same color and size merge, they form a higher-capacity vehicle!");
+                        break;
+                    }
             }
         }
         UIManager.Instance.UpdateHolder(passengerColor);
@@ -127,25 +130,24 @@ public class Passenger : MonoBehaviour
         onComplete?.Invoke(hasBoarded);
     }
 
-    public void MovePlayerToPosition(Vector3 nextPassenger)
+    public void MovePlayerToPosition(Vector3 targetPosition)
     {
-        int speed = 5;
-        while (Vector3.Distance(transform.position, nextPassenger) > 0.1f)
-            {
-                    transform.position = Vector3.MoveTowards(transform.position, nextPassenger,
-                        speed * Time.deltaTime);
+        StartCoroutine(MoveToPosition(targetPosition));
+    }
 
-                    Vector3 direction = nextPassenger - transform.position;
+    private IEnumerator MoveToPosition(Vector3 targetPosition)
+    {
+        float moveSpeed = 10f;
+        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            
+            Vector3 direction = targetPosition - transform.position;
 
-                    Quaternion targetRotation = Quaternion.LookRotation(direction);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f* Time.deltaTime);
-
-                    PassengerAnimator.IsWalking(true);
-            }
-            PassengerAnimator.IsWalking(false);
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f * Time.deltaTime);
+            
+            yield return null;
         }
-    
-    
-    
-
+    }
 }

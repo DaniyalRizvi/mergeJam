@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using Managers;
 using UnityEngine;
 
@@ -10,23 +11,42 @@ public class GameManager : Singelton<GameManager>
 {
     //public VehicleDataManager VehicleDataManager;
     [SerializeField] private GameObject RocketPowerupsVFX;
-    [SerializeField] private GameObject MergeVFX;
+    [SerializeField] public GameObject MergeVFX;
     [SerializeField] private GameObject FanPowerUpVFX;
     [SerializeField] private GameObject JumpPowerUpVFX;
     [SerializeField] private GameObject levelCompletedVFX;
     [SerializeField] private GameObject springVFX;
     public GameObject SlotVFX;
     private List<Slot> _slots = new();
-    private List<Passenger> _passengers = new();
+    [SerializeField]private List<Passenger> _passengers = new();
     public Level _level;
     public Action OnLevelComplete;
+    public bool PlacingBus;
+    public bool movingBack;
+    public bool MergingBus;
     public bool rocketPowerUp;
     public int maxCount;
+    private Coroutine myCoroutine;
+    private Coroutine boardCoroutine;
+    public List<Vector3> myQueuePositions = new List<Vector3>();
+
     private IEnumerator Start()
     {
+        SoundManager.Instance.SetSlotVFX();
         yield return new WaitUntil(() => DTAdsManager.Instance && DTAdsManager.Instance.isInitialised);
-        Debug.Log("Ads Initialized: "+DTAdsManager.Instance.isInitialised);
+        Debug.Log("Ads Initialized: " + DTAdsManager.Instance.isInitialised);
         DTAdsManager.Instance.ShowAd(Constants.BannerID);
+        InitializePassengerPositions();
+    }
+
+
+    private void InitializePassengerPositions()
+    {
+        myQueuePositions.Clear();
+        foreach (var passenger in _passengers)
+        {
+            myQueuePositions.Add(passenger.myPosition);
+        }
     }
 
     public bool CurrentBusExistInGame(Colors CurrentBusColor)
@@ -65,8 +85,13 @@ public class GameManager : Singelton<GameManager>
 
             if (CanMerge(leftSlot, rightSlot))
             {
+                MergingBus = true;
                 Debug.Log("HEREHRHEH");
-                StartCoroutine(MergeAnimation(i - 1, leftSlot, rightSlot));
+                if (myCoroutine != null)
+                {
+                    StopCoroutine(myCoroutine);
+                }
+                myCoroutine = StartCoroutine(MergeAnimation(i - 1, leftSlot, rightSlot));
                 //TryMergeBuses(leftSlot, rightSlot);
                 //StartCoroutine(WaitToMergeBuses(leftSlot,rightSlot));
 
@@ -74,9 +99,19 @@ public class GameManager : Singelton<GameManager>
             }
             else
             {
-                BoardPassengersToBus(i);
+                if (boardCoroutine != null)
+                {
+                    StopCoroutine(boardCoroutine);
+                }
+                boardCoroutine = StartCoroutine(BoardPassengerCoroutin(i - 1));
+                //BoardPassengersToBus(i-1);
             }
+            // else
+            // {
+            //     BoardPassengersToBus(i);
+            // }
         }
+
 
         //CheckAllSlots();
 
@@ -89,7 +124,7 @@ public class GameManager : Singelton<GameManager>
         return leftSlot?.CurrentBus != null &&
                rightSlot?.CurrentBus != null &&
                leftSlot.CurrentBus.busColor == rightSlot.CurrentBus.busColor &&
-               leftSlot.CurrentBus.capacity == rightSlot.CurrentBus.capacity && rightSlot.vehiclePlaced && leftSlot.vehiclePlaced ;
+               leftSlot.CurrentBus.capacity == rightSlot.CurrentBus.capacity && rightSlot.vehiclePlaced && leftSlot.vehiclePlaced;
     }
 
     // IEnumerator WaitToMergeBuses(Slot leftSlot, Slot rightSlot)
@@ -98,9 +133,9 @@ public class GameManager : Singelton<GameManager>
     //     Debug.Log("HEREREER");
     //     TryMergeBuses(leftSlot,rightSlot);
     // }
-    
+
     public float mergeMoveSpeed = 20f; // Speed of movement during merge.
-    public float moveSpeed = 30; // Speed of movement during merge.
+    public float moveSpeed = 0.15f; // Speed of movement during merge.
     public float hoverHeight = 5f; // Height for hovering during merge.
     public float hoverDuration = 1f;
 
@@ -114,6 +149,8 @@ public class GameManager : Singelton<GameManager>
         Debug.Log("Merge animation started");
         var leftBus = leftSlot.CurrentBus;
         var rightBus = rightSlot.CurrentBus;
+        yield return new WaitUntil(() => !leftSlot.busMoving && !rightSlot.busMoving);
+        rightSlot.ClearSlot();
         if (leftBus == null || rightBus == null)
         {
             Debug.LogError("One of the buses is missing. Cannot merge.");
@@ -124,19 +161,22 @@ public class GameManager : Singelton<GameManager>
         Vector3 rightInitialPosition = rightBus.transform.position;
         Vector3 rightHoverPosition = rightInitialPosition + Vector3.up * hoverHeight;
 
-        float moveSpeedMultiplier = 2f;
+        float moveSpeedMultiplier = 2.2f;
         while (Vector3.Distance(leftBus.transform.position, leftHoverPosition) > 0.1f || Vector3.Distance(rightBus.transform.position, rightHoverPosition) > 0.1f)
         {
             leftBus.transform.position = Vector3.MoveTowards(leftBus.transform.position, leftHoverPosition, mergeMoveSpeed * moveSpeedMultiplier * Time.deltaTime);
-            rightBus.transform.position = Vector3.MoveTowards(rightBus.transform.position, rightHoverPosition, mergeMoveSpeed * moveSpeedMultiplier * Time.deltaTime);
+            if (rightBus != null)
+                rightBus.transform.position = Vector3.MoveTowards(rightBus.transform.position, rightHoverPosition, mergeMoveSpeed * moveSpeedMultiplier * Time.deltaTime);
             yield return null;
         }
         Debug.Log("Buses hovered");
 
         while (Vector3.Distance(rightBus.transform.position, leftBus.transform.position) > 1f)
         {
-            rightBus.transform.position = Vector3.MoveTowards(rightBus.transform.position,
-                leftBus.transform.position, moveSpeed * moveSpeedMultiplier * Time.deltaTime);
+            // rightBus.transform.position = Vector3.MoveTowards(rightBus.transform.position,
+            //     leftBus.transform.position, moveSpeed * moveSpeedMultiplier * Time.deltaTime); 
+            rightBus.transform.position = Vector3.Lerp(rightBus.transform.position,
+                leftBus.transform.position, moveSpeed * Time.deltaTime);
             yield return null;
         }
         Debug.Log("Buses merged");
@@ -157,14 +197,14 @@ public class GameManager : Singelton<GameManager>
 
         leftBus.AssignSlot(leftSlot);
         leftSlot.AssignMergeBus(leftBus);
-        rightSlot.ClearSlot();
+        Destroy(rightBus.gameObject);
 
         if (!_level.colors.Exists(i => i.color == leftSlot.CurrentBus.busColor))
         {
             if (TutorialManager.Instance)
             {
                 TutorialManager.Instance.tutorialCase++;
-                TutorialManager.Instance.InitFanPanel();
+                //TutorialManager.Instance.InitFanPanel();
                 Debug.LogError("InitFan");
             }
             SoundManager.Instance.TrashItemDeletionSFX();
@@ -186,16 +226,19 @@ public class GameManager : Singelton<GameManager>
         }
 
         Vector3 slotPosition = leftSlot.transform.position;
-        while (Vector3.Distance(leftBus.transform.position, slotPosition) > 0.1f)
+        if (leftBus)
         {
-            leftBus.transform.position = Vector3.MoveTowards(leftBus.transform.position, slotPosition,
-                mergeMoveSpeed * moveSpeedMultiplier * Time.deltaTime);
-            yield return null;
+            while (Vector3.Distance(leftBus.transform.position, slotPosition) > 0.1f)
+            {
+                leftBus.transform.position = Vector3.MoveTowards(leftBus.transform.position, slotPosition,
+                    mergeMoveSpeed * moveSpeedMultiplier * Time.deltaTime);
+                yield return null;
+            }
+            Debug.Log("Merged bus placed in slot");
         }
-        Debug.Log("Merged bus placed in slot");
-
+        MergingBus = false;
         NotifyPassengersOfNewBus(leftBus);
-        BoardPassengersToBus(leftIndex);
+        StartCoroutine(BoardPassengersToBus(leftIndex));//ReboardToBus(leftIndex);
         Debug.Log("Merge animation completed");
     }
 
@@ -258,7 +301,7 @@ public class GameManager : Singelton<GameManager>
         GameManager.Instance.FanPowerUpVFX.SetActive(true);
 
     }
-    
+
     public void JumpPowerUps()
     {
         SoundManager.Instance.PlayFanPowerUpSFX();
@@ -275,81 +318,90 @@ public class GameManager : Singelton<GameManager>
         }
     }
 
-    public void BoardPassengersToBus(int i)
+    public IEnumerator BoardPassengerCoroutin(int index)
     {
-        Debug.Log(i);
-        if(i<0)
-            return;
-        Debug.Log(_passengers.Count);
-        if(_passengers.Count<=0)
-            return;
-
-        // var matchingPassengers = _passengers
-        //     .Where(p => p.passengerColor == bus.busColor && !p.hasBoarded && !p.IsBoarding)
-        //     .ToList();
-
-
-        // foreach (var passenger in _passengers)
-        // {
-        var bus = _slots[i].CurrentBus;
-       
-        if (bus != null)
-        {
-            Debug.Log(bus.currentSize);
-            if (bus.currentSize > 0)
-            {
-                var passenger = _passengers[0];
-                if (passenger.passengerColor == bus.busColor && !passenger.hasBoarded && !passenger.IsBoarding)
-                {
-                    passenger.TryBoardBus(bus, hasBoarded =>
-                    {
-                        if (hasBoarded)
-                        {
-                            _passengers.Remove(passenger);
-                            Destroy(passenger.gameObject);
-                            CheckLevelCompletion();
-                            Debug.Log("HHH");
-                            BoardPassengersToBus(i);
-                        }
-                        //QueuePassangers(passenger.gameObject.transform.position);
-                    });
-
-                }
-                else
-                {
-                    BoardPassengersToBus(i-1);
-                }
-            }
-            else
-            {
-                BoardPassengersToBus(i-1);
-            }
-        }
-        else
-        {
-            BoardPassengersToBus(i-1);
-        }
-        
-
-        // }
+        yield return new WaitWhile(() => PlacingBus);
+        StartCoroutine(BoardPassengersToBus(index));
     }
 
-    // public void CheckAllSlots()
-    // {
-    //     for(int i=0; i<_slots.Count;i++)
-    //     {
-    //         if(_slots[i].CurrentBus!=null)
-    //             BoardPassengersToBus(i);
-    //     }
-    // }
+    public IEnumerator BoardPassengersToBus(int index)
+    {
+        if (index < 0 || index >= _slots.Count)
+            yield break;
+
+        if (PlacingBus || movingBack)
+            yield break;
+
+        var bus = _slots[index].CurrentBus;
+        if (bus != null)
+        {
+            if (bus.currentSize > 0)
+            {
+                Passenger passenger = _passengers[0];
+                if (passenger.passengerColor == bus.busColor && !passenger.hasBoarded && !passenger.IsBoarding)
+                {
+                    yield return StartCoroutine(TryBoardPassenger(passenger, bus));
+
+                }
+                else if (index - 1 >= 0)
+                {
+                    yield return new WaitForSeconds(0.1f);
+                    StartCoroutine(BoardPassengersToBus(index - 1));
+                }
+            }
+
+            else if (index - 1 >= 0)
+            {
+                yield return new WaitForSeconds(0.1f);
+                StartCoroutine(BoardPassengersToBus(index - 1));
+            }
+        }
+
+        else if (index - 1 >= 0)
+        {
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(BoardPassengersToBus(index - 1));
+        }
+    }
+
+    private IEnumerator TryBoardPassenger(Passenger passenger, Bus bus)
+    {
+        bool hasBoarded = false;
+        passenger.TryBoardBus(bus, boarded =>
+        {
+            hasBoarded = boarded;
+        });
+
+        yield return new WaitUntil(() => hasBoarded);
+
+        if (hasBoarded)
+        {
+            _passengers.Remove(passenger);
+            MoveAllPassengersForward();
+            passenger.gameObject.SetActive(false);
+            Destroy(passenger.gameObject);
+            CheckLevelCompletion();
+        }
+    }
+
+    private void MoveAllPassengersForward()
+    {
+        for (int i = 0; i < _passengers.Count; i++)
+        {
+            if (i < myQueuePositions.Count)
+            {
+                _passengers[i].MovePlayerToPosition(myQueuePositions[i]);
+            }
+        }
+    }
 
     public void QueuePassangers(Vector3 position)
     {
         var newPosition = position;
-        
+
         for (int i = 1; i < _passengers.Count; i++)
         {
-            if(_passengers[i].IsBoarding)
+            if (_passengers[i].IsBoarding)
                 return;
             position = _passengers[i].transform.position;
             _passengers[i].MovePlayerToPosition(newPosition);
@@ -364,13 +416,23 @@ public class GameManager : Singelton<GameManager>
             levelCompletedVFX.SetActive(false);
             GemsManager.Instance.AddGems(10);
             levelCompletedVFX.SetActive(true);
-            UIManager.Instance.ShowLevelCompleteUI();
-            OnLevelComplete?.Invoke();
-            SoundManager.Instance.LevelCompleteSFX();
-            ClearSavedGameState();
+            SoundManager.Instance.ConfettiSoundSFX();
+            Invoke("SetLevelCompleteUI", 1f);
+        }
+        else
+        {
+            StartCoroutine(BoardPassengersToBus(_slots.Count - 1));
         }
     }
-    
+
+    private void SetLevelCompleteUI()
+    {
+        UIManager.Instance.ShowLevelCompleteUI();
+        OnLevelComplete?.Invoke();
+        SoundManager.Instance.LevelCompleteSFX();
+        ClearSavedGameState();
+    }
+
     public void ClearSavedGameState()
     {
         string filePath = Path.Combine(Application.persistentDataPath, "LevelSaveData.json");
@@ -391,16 +453,17 @@ public class GameManager : Singelton<GameManager>
         var clickedSlot = _slots.FirstOrDefault(slot => slot.isEmpty && !slot.isLocked);
         if (clickedSlot != null && !rocketPowerUp)
         {
+            PlacingBus = true;
             selectedBus.AssignSlot(clickedSlot);
-            clickedSlot.AssignBus(selectedBus);
+            StartCoroutine(clickedSlot.AssignBus(selectedBus));
             //TriggerCascadingMerge(clickedSlot, out Bus remainingBus);
             //StartCoroutine(BoardPassengersToBus(remainingBus));
             //InputManager.Instance.DeselectBus();
         }
-         
+
         StartCoroutine(nameof(CheckLooseCondition));
     }
- 
+
     // public void PlaceBusInSlot(Bus selectedBus, Slot clickedSlot)
     // {
     //     if (clickedSlot.isEmpty && !clickedSlot.isLocked)
@@ -413,9 +476,9 @@ public class GameManager : Singelton<GameManager>
     //     }
     //     StartCoroutine(nameof(CheckLooseCondition));
     // }
-    
-    
-    
+
+
+
     public void TriggerCascadingMerge(Slot clickedSlot, out Bus remainingBus)
     {
         Debug.Log("here");
@@ -429,16 +492,34 @@ public class GameManager : Singelton<GameManager>
         // }
         //Invoke("BoardPassengersToBus",3f);
     }
-    
-    
+
+
 
     private IEnumerator CheckLooseCondition()
     {
         var isSlotEmpty = _slots.Any(slot => slot.isEmpty && !slot.isLocked);
         if (!isSlotEmpty)
         {
-            yield return new WaitUntil(() => _passengers.Where(p => p.IsBoarding).All(p => p.hasBoarded));
-            if(_passengers.Count>0)
+            yield return new WaitUntil(() => !PlacingBus);
+            yield return new WaitUntil(() => !MergingBus); 
+            while (true)
+            {
+                yield return new WaitForSeconds(0.5f);
+
+                bool anyBoarding = _passengers.Any(p => p.IsBoarding);
+                if (!anyBoarding)
+                {
+                    yield return new WaitForSeconds(0.6f);
+
+                    if (!_passengers.Any(p => p.IsBoarding))
+                    {
+                        break;
+                    }
+                }
+
+                yield return new WaitUntil(() => _passengers.Where(p => p.IsBoarding).All(p => p.hasBoarded));
+            };
+            if (_passengers.Count > 0)
             {
                 ClearSavedGameState();
                 UIManager.Instance.ShowLevelFailedUI();
@@ -449,8 +530,15 @@ public class GameManager : Singelton<GameManager>
 
     public IEnumerator ApplySpringVFX(Transform transform)
     {
-        var springObj = Instantiate(springVFX, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(2f);
-        Destroy(springObj);
+        var position = transform.position;
+        //position.x += 0.5f;
+        position.z += 0.5f;
+
+        if (springVFX)
+        {
+            var springObj = Instantiate(springVFX, position, transform.rotation);
+            yield return new WaitForSeconds(2f);
+            Destroy(springObj);
+        }
     }
 }

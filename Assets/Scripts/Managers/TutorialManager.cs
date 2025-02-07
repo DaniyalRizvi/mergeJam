@@ -13,6 +13,9 @@ public class TutorialManager : Singelton<TutorialManager>
     public GameObject panel;
     public GameObject handIcon;
     public GameObject hand;
+    public GameObject imagePanel;
+    public GameObject passengerPanel;
+    public GameObject vehiclePanel;
     public TMP_Text panelText;
     public int tutorialCase = 0;
     public Transform mainCamera;
@@ -21,14 +24,57 @@ public class TutorialManager : Singelton<TutorialManager>
     public Transform homeTransform;
     public Transform fan;
     public Transform rocket;
+    public Transform jump;
     public List<Outline> passengerOutlines;
     public List<Outline> busOutlines;
     public bool isInAnimation = false;
     internal List<GameObject> Busses = new List<GameObject>();
+    public int customTrashIterator = 0;
+    public int customRocketIterator = 0;
+    public int customFanIterator = 0;
+    public int customJumpIterator = 0;
 
     public void HidePanel()
     {
         panel.SetActive(false);
+        imagePanel.SetActive(false);
+    }
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("TutorialCase"))
+            tutorialCase = PlayerPrefs.GetInt("TutorialCase");
+
+        Debug.Log("TrashTutorial: " + PlayerPrefs.GetInt("TrashTutorial") + " " + PlayerPrefs.GetInt("TrashTutorialPlayed"));
+
+        if (PlayerPrefs.GetInt("TrashTutorial") == 0 && PlayerPrefs.GetInt("LevelTutorialCompleted") == 1 && PlayerPrefs.GetInt("ActualCurrentLevel")==25)
+        {
+            StartCoroutine(PlayTrashTutorial());
+        }
+
+        else if (PlayerPrefs.GetInt("FanTutorial") == 0 && PlayerPrefs.GetInt("LevelTutorialCompleted") == 1&& PlayerPrefs.GetInt("ActualCurrentLevel")==35)
+        {
+            InitFanPanel();
+        }
+
+        else if (PlayerPrefs.GetInt("RocketTutorial") == 0 && PlayerPrefs.GetInt("LevelTutorialCompleted") == 1&& PlayerPrefs.GetInt("ActualCurrentLevel")==27)
+        {
+            InitCustomRocketPanel();
+        }
+
+        else if (PlayerPrefs.GetInt("JumpTutorial") == 0 && PlayerPrefs.GetInt("LevelTutorialCompleted") == 1&& PlayerPrefs.GetInt("ActualCurrentLevel")==13)
+        {
+            InitCustomJumpPanel();
+        }
+    }
+
+    public IEnumerator PlayTrashTutorial()
+    {
+        HidePanel();
+        yield return new WaitForSeconds(1f);
+        InitPanel("Tap this Trash vehicle to move it to the vehicle slot.");
+        yield return new WaitForSeconds(2f);
+        customTrashIterator++;
     }
 
     public void InitPanel(string text)
@@ -67,6 +113,11 @@ public class TutorialManager : Singelton<TutorialManager>
         passengerOutlines.ForEach(x => x.enabled = true);
 
         yield return new WaitForSeconds(0.5f);
+        
+        passengerPanel.SetActive(true);
+        vehiclePanel.SetActive(false);
+        imagePanel.SetActive(true);
+        
         InitPanel("These are the passengers you need to accommodate." + "\nMake sure to match the colors! Passengers only board vehicles of the same color.");
     }
     
@@ -97,6 +148,12 @@ public class TutorialManager : Singelton<TutorialManager>
         transform.rotation = targetRotation;
         isInAnimation = false;
         busOutlines.ForEach(x => x.enabled = true);
+        yield return new WaitForSeconds(0.5f);
+        
+        imagePanel.SetActive(true);
+        vehiclePanel.SetActive(true);
+        passengerPanel.SetActive(false);
+        
         InitPanel("These are the vehicles." + 
         "\nTap a vehicle to move it onto the vehicle slot." + 
         "\nBut be careful! You might not need every vehicle.");
@@ -109,6 +166,7 @@ public class TutorialManager : Singelton<TutorialManager>
             x.enabled = false;
         }
 
+        PlayerPrefs.SetInt("LevelTutorialCompleted",1);
         HidePanel();
         StartCoroutine(MoveToFullCoroutine());
         
@@ -135,6 +193,7 @@ public class TutorialManager : Singelton<TutorialManager>
         transform.rotation = targetRotation;
         isInAnimation = false;
         InitPanel("Great! You're ready to start the game.");
+        TutorialCompleted();
     }
 
     public void InitFirstBus()
@@ -214,7 +273,7 @@ public class TutorialManager : Singelton<TutorialManager>
     public void InitFirstTrashItems()
     {
         outlineOneRef = new Outline();
-       // InitPanel("Tap this Trash vehicle to move it to the vehicle slot.");
+        //InitPanel("Tap this Trash vehicle to move it to the vehicle slot.");
         handIcon.SetActive(false);
         hand.SetActive(false);//ZZ
         foreach (var x in busOutlines.Where(x => x != null))
@@ -258,6 +317,7 @@ public class TutorialManager : Singelton<TutorialManager>
         "\nTo get rid of trash items, merge two trash items together to free up space.");
 
         IsFirstTrashDone = true;
+        //HidePanel();
     }
     public void InitSecondTrashItems()
     {
@@ -282,17 +342,53 @@ public class TutorialManager : Singelton<TutorialManager>
         }
         InitPanel("Tap To The Second unwanted vehicle to move it to the vehicle slot.");
         IsFirstTrashDone = false;
+        // customTrashIterator++;
+        StartCoroutine(ResumeIterator());
+    }
 
+    public IEnumerator ResumeIterator()
+    {
+        yield return new WaitForSeconds(5f);
+        customTrashIterator++;
+        HidePanel();
+        hand.SetActive(true);
+        PlayerPrefs.SetInt("TrashTutorial", 1);
+        PlayerPrefs.SetInt("TrashTutorialPlayed", 1);
+        //Debug.Log();
+        PlayerPrefs.SetInt("CurrentLevel", 25);
+        PlayerPrefs.SetInt("ActualCurrentLevel", 0);
+        TutorialCompleted();
     }
 
     public void InitFan()
     {
         StartCoroutine(InitFanCoroutine());
     }
+
     public void InitFanPanel()
     {
+        HidePanel();
+        Debug.LogError($"Case 0 FanTutorial: {customFanIterator}");
         InitPanel("The Fan rearranges the vehicle pile, making vehicles at the bottom easier to access.");
+        customFanIterator++;
     }
+    
+    public void InitCustomRocketPanel()
+    {
+        HidePanel();
+        Debug.LogError($"Case 0 RocketTutorial: {customRocketIterator}");
+        InitPanel("Rockets destroy a trash item, clearing space for you to easily select required items.");
+        customRocketIterator++;
+    }
+    
+    public void InitCustomJumpPanel()
+    {
+        HidePanel();
+        Debug.LogError($"Case 0 JumpTutorial: {customJumpIterator}");
+        InitPanel("Jump bounces the car back to the ground from the slot.");
+        customJumpIterator++;
+    }
+
     private IEnumerator InitFanCoroutine()
     {
         yield return null;
@@ -301,7 +397,7 @@ public class TutorialManager : Singelton<TutorialManager>
         float time = 0;
         const float duration = 1f;
         Vector3 startPosition = fan.localPosition;
-        Vector3 targetPosition = new Vector3(120, -800);
+        Vector3 targetPosition = new Vector3(250, -800);
         fan.GetComponent<Button>().interactable = false;
         fan.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
@@ -323,11 +419,13 @@ public class TutorialManager : Singelton<TutorialManager>
         isInAnimation = false;
         tutorialCase++;
         HidePanel();
+        customFanIterator++;
     }
 
     public void InitRocket()
     {
-        StartCoroutine(InitRocketCoroutine());
+        // StartCoroutine(InitRocketCoroutine());
+        StartCoroutine(InitCustomRocketCoroutine());
     }
     public void InitRocketPanel()
     {
@@ -355,7 +453,7 @@ public class TutorialManager : Singelton<TutorialManager>
         float time = 0;
         const float duration = 1f;
         Vector3 startPosition = rocket.localPosition;
-        Vector3 targetPosition = new Vector3(-120, -800);
+        Vector3 targetPosition = new Vector3(0, -800);
         rocket.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         var startScale = rocket.transform.localScale;
@@ -379,6 +477,94 @@ public class TutorialManager : Singelton<TutorialManager>
         HidePanel();
     }
 
+
+    private IEnumerator InitCustomRocketCoroutine()
+    {
+        yield return null;
+        //InitPanel("The Fan rearranges the vehicle pile, making vehicles at the bottom easier to access.");
+        isInAnimation = true;
+        float time = 0;
+        const float duration = 1f;
+        Vector3 startPosition = rocket.localPosition;
+        Vector3 targetPosition = new Vector3(0, -800);
+        rocket.GetComponent<Button>().interactable = false;
+        rocket.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        var startScale = rocket.transform.localScale;
+        var targetScale = Vector3.one;
+        while (time < duration)
+        {
+            rocket.transform.localPosition = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            rocket.transform.localScale = Vector3.Lerp(startScale, targetScale, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        rocket.transform.localPosition = targetPosition;
+        rocket.transform.localScale = targetScale;
+        Vector3 HandTargetPos = targetPosition + new Vector3(100, 0, -25);
+        hand.transform.localPosition = HandTargetPos;
+        hand.SetActive(true);
+        rocket.GetComponent<Button>().interactable = true;
+        isInAnimation = false;
+        tutorialCase++;
+        HidePanel();
+        customRocketIterator++;
+    }
+
+
+    public void InitJump()
+    {
+        StartCoroutine(InitJumpCoroutine());
+    }
+    public void InitJumpPanel()
+    {
+        StartCoroutine(InitJumpPanelCoroutine());
+    }
+
+    public IEnumerator InitJumpCoroutine()
+    {
+        HidePanel();
+        jump.GetComponent<Button>().interactable = false;
+        yield return new WaitForSeconds(0.1f);
+        isInAnimation = true;
+        float time = 0;
+        const float duration = 1f;
+        Vector3 startPosition = jump.localPosition;
+        Vector3 targetPosition = new Vector3(-250, -800);
+        jump.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        var startScale = jump.transform.localScale;
+        var targetScale = Vector3.one;
+        while (time < duration)
+        {
+            jump.transform.localPosition = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            jump.transform.localScale = Vector3.Lerp(startScale, targetScale, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        jump.transform.localPosition = targetPosition;
+        jump.transform.localScale = targetScale;
+        isInAnimation = false;
+
+        yield return new WaitForSeconds(.5f);
+        Vector3 HandTargetPos = targetPosition + new Vector3(100, 0, -25);
+        hand.transform.localPosition = HandTargetPos;
+        hand.SetActive(true);
+        jump.GetComponent<Button>().interactable = true;
+        HidePanel();
+        customJumpIterator++;
+    }
+
+    private IEnumerator InitJumpPanelCoroutine()
+    {
+        isInAnimation = true;
+        yield return new WaitForSeconds(2f);
+        isInAnimation = false;
+        HidePanel();
+        InitPanel("Jump bounces the car back to the ground from the slot.");
+        // tutorialCase++;
+    }
+
     public void TutorialCompleted()
     {
         Invoke(nameof(InitPanelAsync),2f);
@@ -386,16 +572,15 @@ public class TutorialManager : Singelton<TutorialManager>
 
     private void InitPanelAsync()
     {
+        HidePanel();
         InitPanel("Congratulations on completing the tutorial");
         Invoke(nameof(LoadGameScene), 2f);
     }
 
-
-
     private void LoadGameScene()
     {
         //SceneManager.LoadScene(sceneBuildIndex: 1);
-        PlayerPrefs.SetInt("TutorialCompleted",1);
+        //PlayerPrefs.SetInt("TutorialCompleted",1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

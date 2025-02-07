@@ -49,15 +49,27 @@ public class GameLoadingController : MonoBehaviour
 
         LoadingImage.DOFillAmount(1, LoadingTime).OnComplete(() =>
         {
-            // if (PlayerPrefs.GetInt("TutorialCompleted")==0)
-            // {
-            //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            // }
-            // else
-            // {
-            PlayerPrefs.SetInt("TutorialCompleted",1);
+            Debug.Log("LevelTutorialCompleted: "+PlayerPrefs.GetInt("LevelTutorialCompleted"));
+
+            Debug.Log("Actual Current LEvel: "+PlayerPrefs.GetInt("ActualCurrentLevel"));
+            if (PlayerPrefs.GetInt("ActualCurrentLevel") != 0)
+                PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("ActualCurrentLevel"));
+            
+            
+            if (PlayerPrefs.GetInt("LevelTutorialCompleted")==0 || 
+                (PlayerPrefs.GetInt("CurrentLevel")==25 && PlayerPrefs.GetInt("TrashTutorial")==0)|| 
+                (PlayerPrefs.GetInt("RocketTutorial")==0 && PlayerPrefs.GetInt("CurrentLevel")==27) ||
+                (PlayerPrefs.GetInt("FanTutorial")==0 && PlayerPrefs.GetInt("CurrentLevel")==35) ||
+                (PlayerPrefs.GetInt("JumpTutorial") == 0 &&  PlayerPrefs.GetInt("CurrentLevel") == 13))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else
+            {
+            //PlayerPrefs.SetInt("LevelTutorialCompleted",1);
+                Debug.Log(SceneManager.GetActiveScene().buildIndex+2);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
-            // }
+            }
         });
 
     }

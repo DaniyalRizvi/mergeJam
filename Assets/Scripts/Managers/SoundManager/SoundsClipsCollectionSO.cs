@@ -12,6 +12,7 @@ public class SoundsClipsCollectionSO : ScriptableObject
     [Space(10)] public AudioClip TrashItemDeletion;
     [Space(10)] public AudioClip ItemMergeSound;
     [Space(10)] public AudioClip AddingVehiclesToSlots;
+    [Space(10)] public AudioClip Confetti;
     
     
     

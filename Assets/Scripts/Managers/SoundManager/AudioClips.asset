@@ -18,5 +18,6 @@ MonoBehaviour:
   TrashItemDeletion: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
   ItemMergeSound: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   AddingVehiclesToSlots: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  Confetti: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
   LevelComplete: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}
   LevelFail: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}

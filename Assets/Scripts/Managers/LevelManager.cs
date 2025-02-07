@@ -15,26 +15,26 @@ public class LevelManager : Singelton<LevelManager>
     public Action OnLevelComplete;
     public Action OnLevelRestart;
     public Action<float,bool> OnTimeBaseLevel;
+    public Transform passengerRef;
     void Start()
     {
-        if (PlayerPrefs.GetInt("TutorialCompleted") == 1)
+        _levelNumber = PlayerPrefs.GetInt("CurrentLevel");
+        if (PlayerPrefs.GetInt("LevelTutorialCompleted") == 0 || (PlayerPrefs.GetInt("TrashTutorial") == 0 && _levelNumber == 25) || (PlayerPrefs.GetInt("FanTutorial") == 0 && _levelNumber == 35) ||
+            (PlayerPrefs.GetInt("RocketTutorial") == 0 && _levelNumber == 27) || (PlayerPrefs.GetInt("JumpTutorial") == 0 && _levelNumber == 13))
         {
-            if (PlayerPrefs.HasKey("CurrentLevel"))
-            {
-                _levelNumber = PlayerPrefs.GetInt("CurrentLevel");
-            }
+            PlayerPrefs.SetInt("ActualCurrentLevel", _levelNumber);
+            PlayerPrefs.SetInt("CurrentLevel", 0);
+            _levelNumber = 0;
         }
 
         _levels = FindObjectsOfType<Level>().ToList();
         _levels.SortByName();
-
         Application.targetFrameRate = 1000;
         OnLevelComplete += OnLevelCompleted;
         OnLevelRestart += RestartLevel;
         LoadLevel(_levelNumber);
-        
     }
-
+    
     private void LoadLevel(int levelNumber)
     {
         foreach (var level in _levels)
@@ -63,13 +63,14 @@ public class LevelManager : Singelton<LevelManager>
             UIManager.Instance.hardLevelUI.SetActive(true);
             Invoke("DisableHardLevelUI",1f);
         }
+
+        PowerupHandler.Instance.SetPanel();
     }
 
     private void DisableHardLevelUI()
     {
         UIManager.Instance.hardLevelUI.SetActive(false);
     }
-
 
     private void OnLevelCompleted()
     {
@@ -78,12 +79,41 @@ public class LevelManager : Singelton<LevelManager>
         {
             DTAdsManager.Instance.ShowAd(Constants.InterstitialId);
         }
+
         if (_levelNumber < _levels.Count)
         {
-            
             PlayerPrefs.SetInt("CurrentLevel", _levelNumber);
-            LoadLevel(_levelNumber);
+
+            if (_levelNumber == 25 && PlayerPrefs.GetInt("TrashTutorial") == 0)
+            {
+                PlayerPrefs.SetInt("ActualCurrentLevel", 25);
+                SceneManager.LoadScene("MergeJamTutorial");
+            }
+
+            else if (_levelNumber == 35 && PlayerPrefs.GetInt("FanTutorial") == 0)
+            {
+                PlayerPrefs.SetInt("ActualCurrentLevel", 35);
+                SceneManager.LoadScene("MergeJamTutorial");
+            }
+
+            else if (_levelNumber == 27 && PlayerPrefs.GetInt("RocketTutorial") == 0)
+            {
+                PlayerPrefs.SetInt("ActualCurrentLevel", 27);
+                SceneManager.LoadScene("MergeJamTutorial");
+            }
+
+            else if (_levelNumber == 13 && PlayerPrefs.GetInt("JumpTutorial") == 0)
+            {
+                PlayerPrefs.SetInt("ActualCurrentLevel", 13);
+                SceneManager.LoadScene("MergeJamTutorial");
+            }
+
+            else
+            {
+                LoadLevel(_levelNumber);
+            }
         }
+
         else
         {
             Debug.Log("All levels completed!");
@@ -112,7 +142,7 @@ public class LevelManager : Singelton<LevelManager>
         bus.GetComponent<SquashAndStretch>().enabled = true;
         var spawnPoint = level.gameObject.GetComponentInChildren<SpawnPoint>().transform;
         Vector3 tempPos = level.GetRandomSpawnPoint(spawnPoint);
-        tempPos.y = 1.1f;
+        tempPos.y = 2.5f;
         StartCoroutine(MoveFromSlot(bus, tempPos, spawnPoint));
     }
 
@@ -137,6 +167,8 @@ public class LevelManager : Singelton<LevelManager>
 
         bus.transform.position = targetPosition;
         bus.transform.SetParent(spawnPoint, true);
+        bus.GetComponent<Rigidbody>().isKinematic = false;
         bus.GetComponent<SquashAndStretch>().enabled = false;
+        GameManager.Instance.movingBack = false;
     }
 }

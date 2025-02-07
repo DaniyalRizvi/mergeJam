@@ -15,7 +15,8 @@ public class PowerUpEventHandler : MonoBehaviour
     public PowerUpType powerUpType;
     
     private IPowerUp _powerUp;
-    
+
+    public TMP_Text text;
     private bool canUse => PowerUpsManager.Instance.CanUsePowerUp(powerUpType);
     private bool _isOnCooldown = false;
 
@@ -56,14 +57,19 @@ public class PowerUpEventHandler : MonoBehaviour
         {
             GameManager.Instance.FanPowerUps();
             TutorialManager.Instance.tutorialCase++;
-            //TutorialManager.Instance.InitRocket();
-            TutorialManager.Instance.InitRocketPanel();
+            //TutorialManager.Instance.InitRocketPanel();
         }
+
         if (TutorialManager.Instance && powerUpType == PowerUpType.Rocket)
         {
-            
             TutorialManager.Instance.tutorialCase++;
-            TutorialManager.Instance.TutorialCompleted();
+            //GameManager.Instance.FanPowerUps();
+            //TutorialManager.Instance.InitJumpPanel();
+        }
+
+        if (TutorialManager.Instance && powerUpType == PowerUpType.Jump)
+        {
+            TutorialManager.Instance.tutorialCase++;
         }
 
         GetComponent<Button>().interactable = false;
@@ -84,7 +90,7 @@ public class PowerUpEventHandler : MonoBehaviour
             GetComponent<PowerUpsRequiredGemsFunction>().PowerUpButtonStatus(false);
         }
 
-        var text = GetComponentInChildren<TMP_Text>();
+        //var text = GetComponentInChildren<TMP_Text>();
         var amount = PowerUpsManager.Instance.GetPowerUpAmount(powerUpType);
         text.SetText($"{amount}");
     }

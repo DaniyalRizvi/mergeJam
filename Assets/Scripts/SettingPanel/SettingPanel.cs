@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class SettingPanel : MonoBehaviour
 {
     [Header("Add Button         0=Off 1=On State")]
-    [SerializeField] private MusicAndSoundButton[] SoundsSFXButtons;
+    [SerializeField] private GameObject[] SoundsSFXButtons;
     [SerializeField] private bool isSFXOn;
     [SerializeField] private int CurrentSFXIndex;
     [Space(15)]
     [Header("Add Button         0=Off 1=On State")]
-    [SerializeField] private MusicAndSoundButton[] MusicButtons;
+    [SerializeField] private GameObject[] MusicButtons;
     [SerializeField] private bool isMusicOn;
     [SerializeField] private int CurrentMusicIndex;
 
@@ -22,13 +22,10 @@ public class SettingPanel : MonoBehaviour
     {
         // Load saved preferences
         //isMusicOn = PlayerPrefs.GetInt(Constants.MusicKey, 1) == 1; // Default: On
-        //isSFXOn = PlayerPrefs.GetInt(Constants.SoundsSFXKey, 1) == 1;     // Default: On
-        SaveButton.onClick.AddListener(() => {
-            SaveData();
-            SettingPanelState(false);
-        });
+        //isSFXOn = PlayerPrefs.GetInt(Constants.SoundsSFXKey, 1) == 1;     // Default: O
+        
         BackButton.onClick.AddListener(() => {
-            LoadData();
+            //LoadData();
             SettingPanelState(false);
         });
 
@@ -41,10 +38,10 @@ public class SettingPanel : MonoBehaviour
     private void OnDestroy()
     {
         for (int i = 0; i < SoundsSFXButtons.Length; i++)
-            SoundsSFXButtons[i].Button.onClick.RemoveAllListeners();
+            SoundsSFXButtons[i].GetComponent<Button>().onClick.RemoveAllListeners();
 
         for (int i = 0; i < MusicButtons.Length; i++)
-            MusicButtons[i].Button.onClick.RemoveAllListeners();
+            MusicButtons[i].GetComponent<Button>().onClick.RemoveAllListeners();
 
     }
 
@@ -53,50 +50,49 @@ public class SettingPanel : MonoBehaviour
 
         for (int i = 0; i < SoundsSFXButtons.Length; i++)
         {
-            int Count = i;
-            SoundsSFXButtons[i].Button.onClick.AddListener(() =>
+            SoundSfxButtonsCallback();
+            SoundsSFXButtons[i].GetComponent<Button>().onClick.AddListener(() =>
             {
-                SoundSfxButtonsCallback(Count);
+                if (PlayerPrefs.GetInt(Constants.SoundsSFXKey) == 0)
+                    PlayerPrefs.SetInt(Constants.SoundsSFXKey,1);
+                    else
+                    PlayerPrefs.SetInt(Constants.SoundsSFXKey,0);
+                SoundSfxButtonsCallback();
             });
         }
 
 
         for (int i = 0; i < MusicButtons.Length; i++)
         {
-            int Count = i;
-            MusicButtons[i].Button.onClick.AddListener(() =>
+            MusicButtonsCallback();
+            MusicButtons[i].GetComponent<Button>().onClick.AddListener(() =>
             {
-                MusicButtonsCallback(Count);
+                if (PlayerPrefs.GetInt(Constants.MusicKey) == 0)
+                    PlayerPrefs.SetInt(Constants.MusicKey,1);
+                else
+                    PlayerPrefs.SetInt(Constants.MusicKey,0);
+                MusicButtonsCallback();
             });
         }
 
         LoadData();
     }
-    private void SoundSfxButtonsCallback(int Index)
+    private void SoundSfxButtonsCallback()
     {
-        isSFXOn = Index != 0;
-        CurrentSFXIndex = Index;
-        SoundManager.Instance.SfxAudioSourceState(isSFXOn);
+        SoundManager.Instance.SfxAudioSourceState(PlayerPrefs.GetInt(Constants.SoundsSFXKey)==1);
         for (int i = 0; i < SoundsSFXButtons.Length; i++)
         {
-            if (Index == i)
-                SoundsSFXButtons[i].SelectedImageState(true);
-            else
-                SoundsSFXButtons[i].SelectedImageState(false);
+            SoundsSFXButtons[i].gameObject.SetActive(PlayerPrefs.GetInt(Constants.SoundsSFXKey)==i);
         }
+        
     }
 
-    private void MusicButtonsCallback(int Index)
+    private void MusicButtonsCallback()
     {
-        isMusicOn = Index != 0;
-        CurrentMusicIndex = Index;
-        SoundManager.Instance.MusicAudioSourceState(isMusicOn);
+        SoundManager.Instance.MusicAudioSourceState(PlayerPrefs.GetInt(Constants.MusicKey)==1);
         for (int i = 0; i < MusicButtons.Length; i++)
         {
-            if (Index == i)
-                MusicButtons[i].SelectedImageState(true);
-            else
-                MusicButtons[i].SelectedImageState(false);
+                MusicButtons[i].gameObject.SetActive(PlayerPrefs.GetInt(Constants.MusicKey)==i);
         }
     }
     private void SaveData()
@@ -107,8 +103,8 @@ public class SettingPanel : MonoBehaviour
     }
     private void LoadData()
     {
-        SoundSfxButtonsCallback(PlayerPrefs.GetInt(Constants.SoundsSFXKey, 1));
-        MusicButtonsCallback(PlayerPrefs.GetInt(Constants.MusicKey, 1));
+        //SoundSfxButtonsCallback(PlayerPrefs.GetInt(Constants.SoundsSFXKey, 1));
+        //MusicButtonsCallback(PlayerPrefs.GetInt(Constants.MusicKey, 1));
 
     }
 }

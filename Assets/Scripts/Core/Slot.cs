@@ -51,12 +51,12 @@ public class Slot : MonoBehaviour
         }
     }
 
-    public void AssignBus(Bus bus)
+    public IEnumerator AssignBus(Bus bus)
     {
         if (isLocked)
         {
             Debug.Log("Slot is locked. Cannot assign a bus.");
-            return;
+            yield return null;
         }
         Debug.Log("KKK");
 
@@ -68,15 +68,21 @@ public class Slot : MonoBehaviour
             bus.Rb.isKinematic = true;
 
         int currentLevel = PlayerPrefs.GetInt("CurrentLevel");
-        if (!LevelManager.Instance._levels[currentLevel].loadingData)
+        if (LevelManager.Instance._levels[currentLevel])
         {
-            if (!GameManager.Instance.CurrentBusExistInGame(CurrentBus.busColor))
+            if (!LevelManager.Instance._levels[currentLevel].loadingData)
             {
-                Debug.LogError("Bus NOT Exist");
-                if (TutorialManager.Instance)
+                if (!GameManager.Instance.CurrentBusExistInGame(CurrentBus.busColor))
                 {
-                    if (TutorialManager.Instance.IsFirstTrashDone)
-                        TutorialManager.Instance.InitSecondTrashItems();
+                    Debug.LogError("Bus NOT Exist");
+                    if (TutorialManager.Instance)
+                    {
+                        if (TutorialManager.Instance.IsFirstTrashDone)
+                        {
+                            yield return new WaitForSeconds(4f);
+                            TutorialManager.Instance.InitSecondTrashItems();
+                        }
+                    }
                 }
             }
         }
@@ -98,15 +104,18 @@ public class Slot : MonoBehaviour
             bus.Rb.isKinematic = true;
 
         int currentLevel = PlayerPrefs.GetInt("CurrentLevel");
-        if (!LevelManager.Instance._levels[currentLevel].loadingData)
+        if (LevelManager.Instance._levels[currentLevel])
         {
-            if (!GameManager.Instance.CurrentBusExistInGame(CurrentBus.busColor))
+            if (!LevelManager.Instance._levels[currentLevel].loadingData)
             {
-                Debug.LogError("Bus NOT Exist");
-                if (TutorialManager.Instance)
+                if (!GameManager.Instance.CurrentBusExistInGame(CurrentBus.busColor))
                 {
-                    if (TutorialManager.Instance.IsFirstTrashDone)
-                        TutorialManager.Instance.InitSecondTrashItems();
+                    Debug.LogError("Bus NOT Exist");
+                    if (TutorialManager.Instance)
+                    {
+                        if (TutorialManager.Instance.IsFirstTrashDone)
+                            TutorialManager.Instance.InitSecondTrashItems();
+                    }
                 }
             }
         }
@@ -115,6 +124,7 @@ public class Slot : MonoBehaviour
     private IEnumerator MoveToSlot()
     {
         CurrentBus.GetComponent<SquashAndStretch>().enabled = true;
+        busMoving = true;
         Vector3 initialPosition = CurrentBus.transform.position;
         Quaternion initialRotation = CurrentBus.transform.rotation;
         Vector3 targetPosition = _referencePoint.transform.position;
@@ -137,7 +147,7 @@ public class Slot : MonoBehaviour
         elapsedTime = 0f;
         while (elapsedTime < moveDuration)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.deltaTime*2;
             float t = elapsedTime / moveDuration;
             CurrentBus.transform.position = Vector3.Lerp(raisedPosition, targetPosition, t);
             CurrentBus.transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, t);
@@ -146,7 +156,8 @@ public class Slot : MonoBehaviour
         }
         CurrentBus.transform.position = targetPosition;
         CurrentBus.transform.rotation = targetRotation;
-        busMoving = true;
+        busMoving = false;
+        GameManager.Instance.PlacingBus=false;
         CurrentBus.GetComponent<SquashAndStretch>().enabled = false;
     }
 
@@ -156,7 +167,7 @@ public class Slot : MonoBehaviour
         if (CurrentBus != null)
         { 
             //Debug.Log($"Clearing slot: {name}, Bus: {CurrentBus.name}");
-            Destroy(CurrentBus.gameObject);
+            //Destroy(CurrentBus.gameObject);
             CurrentBus = null;
            
         }
