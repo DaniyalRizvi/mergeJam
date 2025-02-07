@@ -138,6 +138,7 @@ public class LevelManager : Singelton<LevelManager>
 
     public void ApplyJump(Level level, Bus bus, Transform referencePoint)
     {
+        //GameManager.Instance.RemoveReferenceFromPassenger();
         StartCoroutine(GameManager.Instance.ApplySpringVFX(referencePoint));
         bus.GetComponent<SquashAndStretch>().enabled = true;
         var spawnPoint = level.gameObject.GetComponentInChildren<SpawnPoint>().transform;

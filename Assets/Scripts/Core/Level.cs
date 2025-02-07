@@ -26,7 +26,7 @@ public class Level : MonoBehaviour
     public void Init()
     {
         if (Mathf.Approximately(range, 0))
-            range = 7.5f;
+            range = 5.5f;
         InitLevel();
 
         // Attempt to load saved state

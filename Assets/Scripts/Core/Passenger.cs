@@ -31,6 +31,15 @@ public class Passenger : MonoBehaviour
         _selectedBus = bus;
     }
 
+    public void ClearSelectedBus()
+    {
+        if (IsBoarding)
+        {
+            _selectedBus.currentSize++;
+            _selectedBus = null;
+            IsBoarding = false;
+        }
+    }
 
     public void TryBoardBus(Bus bus, Action<bool> onComplete)
     {
@@ -79,7 +88,6 @@ public class Passenger : MonoBehaviour
 
             yield return null;
         }
-        Debug.Log("JJJJJJJ");
 
         while (true)
         {
@@ -143,11 +151,14 @@ public class Passenger : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             
             Vector3 direction = targetPosition - transform.position;
-
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f * Time.deltaTime);
+            if (direction.sqrMagnitude > 0.001f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f * Time.deltaTime);
+            }
             
             yield return null;
         }
+        transform.position = targetPosition;
     }
 }

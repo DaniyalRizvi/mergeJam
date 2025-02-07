@@ -26,7 +26,7 @@ public class LevelEditor : Editor
         EditorGUILayout.LabelField("Level Settings", EditorStyles.boldLabel);
 
         Level level = (Level)target;
-        level.range = 7.5f;
+        level.range = 5.5f;
         level.range = EditorGUILayout.FloatField("Range", level.range);
         
         level.isHard = EditorGUILayout.Toggle("Hard Level", level.isHard);
