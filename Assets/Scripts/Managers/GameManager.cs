@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using Managers;
 using UnityEngine;
+using DG.Tweening;
 
 public class GameManager : Singelton<GameManager>
 {
@@ -36,11 +37,11 @@ public class GameManager : Singelton<GameManager>
         yield return new WaitUntil(() => DTAdsManager.Instance && DTAdsManager.Instance.isInitialised);
         Debug.Log("Ads Initialized: " + DTAdsManager.Instance.isInitialised);
         DTAdsManager.Instance.ShowAd(Constants.BannerID);
-        InitializePassengerPositions();
+        //InitializePassengerPositions();
     }
 
 
-    private void InitializePassengerPositions()
+    public void InitializePassengerPositions()
     {
         myQueuePositions.Clear();
         foreach (var passenger in _passengers)
@@ -86,12 +87,7 @@ public class GameManager : Singelton<GameManager>
             if (CanMerge(leftSlot, rightSlot))
             {
                 MergingBus = true;
-                Debug.Log("HEREHRHEH");
-                if (myCoroutine != null)
-                {
-                    StopCoroutine(myCoroutine);
-                }
-                myCoroutine = StartCoroutine(MergeAnimation(i - 1, leftSlot, rightSlot));
+                MergeAnimation(i - 1, leftSlot, rightSlot);
                 //TryMergeBuses(leftSlot, rightSlot);
                 //StartCoroutine(WaitToMergeBuses(leftSlot,rightSlot));
 
@@ -99,11 +95,8 @@ public class GameManager : Singelton<GameManager>
             }
             else
             {
-                if (boardCoroutine != null)
-                {
-                    StopCoroutine(boardCoroutine);
-                }
-                boardCoroutine = StartCoroutine(BoardPassengerCoroutin(i - 1));
+                BoardPassengersToBusTween(i - 1);
+                //boardCoroutine = StartCoroutine(BoardPassengerCoroutin(i - 1));
                 //BoardPassengersToBus(i-1);
             }
             // else
@@ -144,102 +137,86 @@ public class GameManager : Singelton<GameManager>
     //     MergeAnimation(leftSlot, rightSlot);
     // }
 
-    private IEnumerator MergeAnimation(int leftIndex, Slot leftSlot, Slot rightSlot)
+    private void MergeAnimation(int leftIndex, Slot leftSlot, Slot rightSlot)
     {
         Debug.Log("Merge animation started");
         var leftBus = leftSlot.CurrentBus;
         var rightBus = rightSlot.CurrentBus;
-        yield return new WaitUntil(() => !leftSlot.busMoving && !rightSlot.busMoving);
-        rightSlot.ClearSlot();
         if (leftBus == null || rightBus == null)
         {
             Debug.LogError("One of the buses is missing. Cannot merge.");
-            yield break;
+            return;
         }
-        Vector3 leftInitialPosition = leftBus.transform.position;
-        Vector3 leftHoverPosition = leftInitialPosition + Vector3.up * hoverHeight;
-        Vector3 rightInitialPosition = rightBus.transform.position;
-        Vector3 rightHoverPosition = rightInitialPosition + Vector3.up * hoverHeight;
+        
+        // Force the right bus to begin at the same Y as the left bus's starting Y.
+        Vector3 rightStart = rightBus.transform.position;
+        rightStart.y = leftBus.transform.position.y;
+        rightBus.transform.position = rightStart;
 
-        float moveSpeedMultiplier = 2.2f;
-        while (Vector3.Distance(leftBus.transform.position, leftHoverPosition) > 0.1f || Vector3.Distance(rightBus.transform.position, rightHoverPosition) > 0.1f)
+        // 1. Hover both buses upward by 4 units relative to the left bus's starting Y.
+        float commonHoverY = leftBus.transform.position.y + 4f;
+        Vector3 leftHover = new Vector3(leftBus.transform.position.x, commonHoverY, leftBus.transform.position.z);
+        Vector3 rightHover = new Vector3(rightBus.transform.position.x, commonHoverY, rightBus.transform.position.z);
+
+        Sequence seq = DOTween.Sequence();
+        // Both buses animate upward concurrently.
+        seq.Append(leftBus.transform.DOMove(leftHover, 0.3f).SetEase(Ease.OutQuad));
+        seq.Join(rightBus.transform.DOMove(rightHover, 0.3f).SetEase(Ease.OutQuad));
+
+        // 2. After a brief pause, have both buses move concurrently to a middle point.
+        seq.AppendInterval(0.05f);
+        Vector3 midPoint = new Vector3((leftHover.x + rightHover.x) * 0.5f, commonHoverY, (leftHover.z + rightHover.z) * 0.5f);
+        seq.Append(leftBus.transform.DOMove(midPoint, 0.3f).SetEase(Ease.Linear));
+        seq.Join(rightBus.transform.DOMove(midPoint, 0.3f).SetEase(Ease.Linear));
+
+        // 3. Merge the buses: update left bus properties and destroy right bus.
+        seq.AppendCallback(() =>
         {
-            leftBus.transform.position = Vector3.MoveTowards(leftBus.transform.position, leftHoverPosition, mergeMoveSpeed * moveSpeedMultiplier * Time.deltaTime);
-            if (rightBus != null)
-                rightBus.transform.position = Vector3.MoveTowards(rightBus.transform.position, rightHoverPosition, mergeMoveSpeed * moveSpeedMultiplier * Time.deltaTime);
-            yield return null;
-        }
-        Debug.Log("Buses hovered");
+            // Update left bus: merge capacities, update visuals, etc.
+            leftBus.capacity += rightBus.capacity;
+            leftBus.VehicleRenderModels.ActiveVehicle(leftBus.capacity);
+            leftBus.UpdateVisual();
+            leftBus.currentSize += rightBus.currentSize;
 
-        while (Vector3.Distance(rightBus.transform.position, leftBus.transform.position) > 1f)
-        {
-            // rightBus.transform.position = Vector3.MoveTowards(rightBus.transform.position,
-            //     leftBus.transform.position, moveSpeed * moveSpeedMultiplier * Time.deltaTime); 
-            rightBus.transform.position = Vector3.Lerp(rightBus.transform.position,
-                leftBus.transform.position, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-        Debug.Log("Buses merged");
-        if (MergeVFX != null)
-        {
-            MergeVFX.SetActive(false);
-            Vector3 mergePos = leftBus.transform.position;
-            mergePos.y = MergeVFX.transform.position.y;
-            MergeVFX.transform.position = mergePos;
-            MergeVFX.SetActive(true);
-        }
-        Debug.Log("Explosion effect triggered");
+            // Reassign left bus into the slot and destroy right bus.
+            leftBus.AssignSlot(leftSlot);
+            leftSlot.AssignMergeBus(leftBus);
+            Destroy(rightBus.gameObject);
 
-        leftBus.capacity += rightBus.capacity;
-        leftBus.VehicleRenderModels.ActiveVehicle(leftBus.capacity);
-        leftBus.UpdateVisual();
-        leftBus.currentSize += rightBus.currentSize;
-
-        leftBus.AssignSlot(leftSlot);
-        leftSlot.AssignMergeBus(leftBus);
-        Destroy(rightBus.gameObject);
-
-        if (!_level.colors.Exists(i => i.color == leftSlot.CurrentBus.busColor))
-        {
-            if (TutorialManager.Instance)
+            // If after merging the bus color is not available in the level, trigger extra behavior.
+            if (!_level.colors.Exists(i => i.color == leftBus.busColor))
             {
-                TutorialManager.Instance.tutorialCase++;
-                //TutorialManager.Instance.InitFanPanel();
-                Debug.LogError("InitFan");
+                if (TutorialManager.Instance)
+                {
+                    TutorialManager.Instance.tutorialCase++;
+                    Debug.LogError("InitFan");
+                }
+                SoundManager.Instance.TrashItemDeletionSFX();
+                MergeEffect(leftBus.transform);
+                Destroy(leftBus.gameObject);
+                leftSlot.ClearSlot();
+                return;
             }
-            SoundManager.Instance.TrashItemDeletionSFX();
-            MergeEffect(leftSlot.CurrentBus.transform);
-            Destroy(leftSlot.CurrentBus.gameObject);
-            leftSlot.ClearSlot();
-            yield return null;
-        }
-        SoundManager.Instance.ItemMergeSoundSFX();
+            SoundManager.Instance.ItemMergeSoundSFX();
+        });
 
-        Vector3 hoverTargetPosition = leftHoverPosition;
-        float hoverStartTime = Time.time;
+        // 4. After a brief hover, move the merged left bus to the left slot's final position.
+        seq.AppendInterval(hoverDuration);
+        Vector3 slotPos = leftSlot.transform.position;
+        seq.Append(leftBus.transform.DOMove(slotPos, 0.3f).SetEase(Ease.Linear));
 
-        while (Time.time - hoverStartTime < hoverDuration)
+        // 5. Final callback: clear merge flag, notify passengers, and resume boarding.
+        seq.AppendCallback(() =>
         {
-            if (leftBus != null)
-                leftBus.transform.position = Vector3.Lerp(leftBus.transform.position, hoverTargetPosition, Time.deltaTime * 4f); // Increase hover speed
-            yield return null;
-        }
+            MergingBus = false;
+            NotifyPassengersOfNewBus(leftBus);
+            //StartCoroutine(BoardPassengersToBus(leftIndex));
+            BoardPassengersToBusTween(leftIndex);
 
-        Vector3 slotPosition = leftSlot.transform.position;
-        if (leftBus)
-        {
-            while (Vector3.Distance(leftBus.transform.position, slotPosition) > 0.1f)
-            {
-                leftBus.transform.position = Vector3.MoveTowards(leftBus.transform.position, slotPosition,
-                    mergeMoveSpeed * moveSpeedMultiplier * Time.deltaTime);
-                yield return null;
-            }
-            Debug.Log("Merged bus placed in slot");
-        }
-        MergingBus = false;
-        NotifyPassengersOfNewBus(leftBus);
-        StartCoroutine(BoardPassengersToBus(leftIndex));//ReboardToBus(leftIndex);
-        Debug.Log("Merge animation completed");
+           // Debug.Log("Merge animation completed");
+        });
+
+        seq.Play();
     }
 
     // private void TryMergeBuses(Slot leftSlot, Slot rightSlot)
@@ -321,72 +298,112 @@ public class GameManager : Singelton<GameManager>
     public IEnumerator BoardPassengerCoroutin(int index)
     {
         yield return new WaitWhile(() => PlacingBus);
-        StartCoroutine(BoardPassengersToBus(index));
+        BoardPassengersToBusTween(index);
     }
 
-    public IEnumerator BoardPassengersToBus(int index)
+    // New method: Board all passengers using DOTween delayed calls instead of coroutine yields.
+    public void BoardPassengersToBusTween(int index)
     {
-        if (index < 0 || index >= _slots.Count)
-            yield break;
-
-        if (PlacingBus || movingBack)
-            yield break;
+        if (index < 0 || index >= _slots.Count) return;
+        
+        //Debug.Log("PlacingBus: " + PlacingBus);
+        Debug.Log("MergingBus: " + MergingBus);
+        // Wait until the busses have merged (and no bus is being placed) before proceeding
+        if (PlacingBus || MergingBus)
+        {
+            Debug.Log("Waiting for merging to complete before boarding...");
+            DOVirtual.DelayedCall(0.1f, () => { BoardPassengersToBusTween(index); });
+            return;
+        }
 
         var bus = _slots[index].CurrentBus;
         if (bus != null)
         {
             if (bus.currentSize > 0)
             {
-                Passenger passenger = _passengers[0];
-                if (passenger.passengerColor == bus.busColor && !passenger.hasBoarded && !passenger.IsBoarding)
+                List<Passenger> passengers = new List<Passenger>();
+                int count = 0;
+                foreach (var p in _passengers)
                 {
-                    yield return StartCoroutine(TryBoardPassenger(passenger, bus));
+                    if (p.passengerColor == bus.busColor && !p.hasBoarded && !p.IsBoarding)
+                    {
+                        count++;
+                        passengers.Add(p);
+                        if (count == bus.currentSize)
+                        {
+                            break;
+                        }
+                    }
+                    else break;
+                }
 
+                Debug.Log("Passengers: " + passengers.Count);
+                Debug.Log("Index: " + index);
+
+                if (passengers.Count > 0)
+                {
+                    // Kick off the boarding of these passengers using a DOTween delayed call.
+                    DOVirtual.DelayedCall(0.75f, () => { TryBoardPassengerTween(passengers, bus, index); });
                 }
                 else if (index - 1 >= 0)
                 {
-                    yield return new WaitForSeconds(0.1f);
-                    StartCoroutine(BoardPassengersToBus(index - 1));
+                    DOVirtual.DelayedCall(0.5f, () => { BoardPassengersToBusTween(index - 1); });
                 }
             }
-
             else if (index - 1 >= 0)
             {
-                yield return new WaitForSeconds(0.1f);
-                StartCoroutine(BoardPassengersToBus(index - 1));
+                DOVirtual.DelayedCall(0.5f, () => { BoardPassengersToBusTween(index - 1); });
             }
         }
-
         else if (index - 1 >= 0)
         {
-            yield return new WaitForSeconds(0.1f);
-            StartCoroutine(BoardPassengersToBus(index - 1));
+            DOVirtual.DelayedCall(0.5f, () => { BoardPassengersToBusTween(index - 1); });
         }
     }
 
-    private IEnumerator TryBoardPassenger(Passenger passenger, Bus bus)
+    // New method: Try to board all passengers using DOTween's delayed calls.
+    private void TryBoardPassengerTween(List<Passenger> passengers, Bus bus, int currentIndex)
     {
-        bool hasBoarded = false;
-        passenger.TryBoardBus(bus, boarded =>
+        foreach (var p in passengers)
         {
-            hasBoarded = boarded;
-        });
-
-        yield return new WaitUntil(() => hasBoarded);
-
-        if (hasBoarded)
-        {
-            _passengers.Remove(passenger);
-            MoveAllPassengersForward();
-            passenger.gameObject.SetActive(false);
-            Destroy(passenger.gameObject);
-            CheckLevelCompletion();
+            p.TryBoardBus(bus, boarded =>
+            {
+                _passengers.Remove(p);
+                p.gameObject.SetActive(false);
+                Destroy(p.gameObject);
+            });
         }
+        
+        DOVirtual.DelayedCall(0.1f, () =>
+        {
+            bool allBoarded = true;
+            // Check each boarding passenger in the provided list.
+            foreach (var p in passengers)
+            {
+                if (!p.hasBoarded)
+                {
+                    allBoarded = false;
+                    break;
+                }
+            }
+            if (allBoarded)
+            {
+                Debug.Log("All passengers boarded");
+                MoveAllPassengersForward();
+                CheckLevelCompletion();
+            }
+            else
+            {
+                // Retry after a short delay until all passengers are boarded.
+                TryBoardPassengerTween(passengers, bus, currentIndex);
+            }
+        });
     }
+
 
     private void MoveAllPassengersForward()
     {
-        for (int i = 0; i < _passengers.Count; i++)
+        for (int i =0; i < _passengers.Count; i++)
         {
             if (i < myQueuePositions.Count)
             {
@@ -421,7 +438,10 @@ public class GameManager : Singelton<GameManager>
         }
         else
         {
-            StartCoroutine(BoardPassengersToBus(_slots.Count - 1));
+            Debug.Log("Level completion check");
+            DOVirtual.DelayedCall(0.5f, () => { BoardPassengersToBusTween(_slots.Count - 1); });
+            //BoardPassengersToBusTween(_slots.Count - 1);
+            //StartCoroutine(BoardPassengersToBus(_slots.Count - 1));
         }
     }
 
@@ -540,5 +560,28 @@ public class GameManager : Singelton<GameManager>
             yield return new WaitForSeconds(2f);
             Destroy(springObj);
         }
+    }
+
+    // New method: Moves the bus from its current position to the target slot using DOTween.
+    public void MoveBusToSlot(Bus bus, Transform slotTransform, float duration = 1f)
+    {
+        // Create a DOTween sequence to move and rotate the bus simultaneously.
+        Sequence moveSequence = DOTween.Sequence();
+
+        // Tween the position to the slot's position.
+        moveSequence.Append(bus.transform.DOMove(slotTransform.position, duration).SetEase(Ease.InOutQuad));
+
+        // Tween the rotation to match the slot's rotation.
+        moveSequence.Join(bus.transform.DORotateQuaternion(slotTransform.rotation, duration).SetEase(Ease.InOutQuad));
+
+        // Optionally, put an OnComplete callback to trigger any extra logic once the move is done.
+        moveSequence.OnComplete(() =>
+        {
+            // For example, you might set a flag that the bus is now in position.
+            Debug.Log("Bus move complete");
+            // Additional code, if required.
+        });
+
+        moveSequence.Play();
     }
 }

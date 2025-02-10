@@ -65,6 +65,7 @@ public class LevelManager : Singelton<LevelManager>
         }
 
         PowerupHandler.Instance.SetPanel();
+        GameManager.Instance.InitializePassengerPositions();
     }
 
     private void DisableHardLevelUI()
@@ -140,7 +141,7 @@ public class LevelManager : Singelton<LevelManager>
     {
         //GameManager.Instance.RemoveReferenceFromPassenger();
         StartCoroutine(GameManager.Instance.ApplySpringVFX(referencePoint));
-        bus.GetComponent<SquashAndStretch>().enabled = true;
+        //bus.GetComponent<SquashAndStretch>().enabled = true;
         var spawnPoint = level.gameObject.GetComponentInChildren<SpawnPoint>().transform;
         Vector3 tempPos = level.GetRandomSpawnPoint(spawnPoint);
         tempPos.y = 2.5f;
@@ -169,7 +170,8 @@ public class LevelManager : Singelton<LevelManager>
         bus.transform.position = targetPosition;
         bus.transform.SetParent(spawnPoint, true);
         bus.GetComponent<Rigidbody>().isKinematic = false;
-        bus.GetComponent<SquashAndStretch>().enabled = false;
+        //bus.GetComponent<SquashAndStretch>().enabled = false;
         GameManager.Instance.movingBack = false;
+
     }
 }

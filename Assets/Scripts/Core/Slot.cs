@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 public class Slot : MonoBehaviour
 {
@@ -61,7 +62,7 @@ public class Slot : MonoBehaviour
         Debug.Log("KKK");
 
         CurrentBus = bus;
-        StartCoroutine(MoveToSlot());
+        MoveToSlot();
         //CurrentBus.transform.position = _referencePoint.transform.position;
         //CurrentBus.transform.rotation = _referencePoint.transform.rotation;
         if(bus.Rb!=null)
@@ -121,44 +122,50 @@ public class Slot : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveToSlot()
+    private void MoveToSlot()
     {
-        CurrentBus.GetComponent<SquashAndStretch>().enabled = true;
+        //CurrentBus.GetComponent<SquashAndStretch>().enabled = true;
         busMoving = true;
         Vector3 initialPosition = CurrentBus.transform.position;
         Quaternion initialRotation = CurrentBus.transform.rotation;
         Vector3 targetPosition = _referencePoint.transform.position;
+        // Use the _referencePoint's y rotation for a consistent facing direction
         Quaternion targetRotation = Quaternion.Euler(0, _referencePoint.transform.eulerAngles.y, 0);
 
-        float riseHeight = 4f;
-        float riseDuration = 0.5f;
-        float moveDuration = 1f;
-        float elapsedTime = 0f;
+        // Use fixed durations to ensure consistent movement
+        // Calculate durations based on a desired speed if necessary:
+        // For example, if you want 10 units upward at 30 units/sec, duration = 10 / 30 ≈ 0.33 sec.
+        float verticalDuration = 0.33f; // approximate duration for 10 units upward
+        float horizontalDuration = 0.5f; // set duration for horizontal movement (adjust as needed)
 
-        Vector3 raisedPosition = initialPosition + Vector3.up * riseHeight;
-        while (elapsedTime < riseDuration)
+        // Create a DOTween sequence using duration-based tweens
+        Sequence seq = DOTween.Sequence();
+
+        // 1. Vertical tween: move upward by 10 units.
+        seq.Append(CurrentBus.transform
+            .DOMove(initialPosition + Vector3.up * 10f, verticalDuration)
+            .SetEase(Ease.OutQuad));
+
+        // 2. Horizontal tween: move from the raised position to the target slot.
+        seq.Append(CurrentBus.transform
+            .DOMove(targetPosition, horizontalDuration)
+            .SetEase(Ease.Linear));
+
+        // 3. Concurrently rotate to face the slot.
+        seq.Join(CurrentBus.transform
+            .DORotateQuaternion(targetRotation, horizontalDuration)
+            .SetEase(Ease.Linear));
+
+        seq.OnComplete(() =>
         {
-            elapsedTime += Time.deltaTime;
-            float t = elapsedTime / riseDuration;
-            CurrentBus.transform.position = Vector3.Lerp(initialPosition, raisedPosition, t);
-            yield return null;
-        }
+            CurrentBus.transform.position = targetPosition;
+            CurrentBus.transform.rotation = targetRotation;
+            busMoving = false;
+            GameManager.Instance.PlacingBus = false;
+            //CurrentBus.GetComponent<SquashAndStretch>().enabled = false;
+        });
 
-        elapsedTime = 0f;
-        while (elapsedTime < moveDuration)
-        {
-            elapsedTime += Time.deltaTime*2;
-            float t = elapsedTime / moveDuration;
-            CurrentBus.transform.position = Vector3.Lerp(raisedPosition, targetPosition, t);
-            CurrentBus.transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, t);
-
-            yield return null;
-        }
-        CurrentBus.transform.position = targetPosition;
-        CurrentBus.transform.rotation = targetRotation;
-        busMoving = false;
-        GameManager.Instance.PlacingBus=false;
-        CurrentBus.GetComponent<SquashAndStretch>().enabled = false;
+        seq.Play();
     }
 
 

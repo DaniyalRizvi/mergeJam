@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using DG.Tweening;
 
 public class Passenger : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class Passenger : MonoBehaviour
     {
         if (IsBoarding && _selectedBus != null)
             return;
-        StartCoroutine(TryBoardBus(bus, 10f, onComplete));
+        StartCoroutine(TryBoardBus(bus, 8f, onComplete));
     }
 
     private IEnumerator TryBoardBus(Bus bus, float speed, Action<bool> onComplete)
@@ -140,25 +141,20 @@ public class Passenger : MonoBehaviour
 
     public void MovePlayerToPosition(Vector3 targetPosition)
     {
-        StartCoroutine(MoveToPosition(targetPosition));
-    }
-
-    private IEnumerator MoveToPosition(Vector3 targetPosition)
-    {
         float moveSpeed = 10f;
-        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        float distance = Vector3.Distance(transform.position, targetPosition);
+        float duration = distance / moveSpeed;
+
+        // Use DOTween to move the passenger to the target position with linear easing.
+        transform.DOMove(targetPosition, duration).SetEase(Ease.Linear);
+
+        // Calculate the final rotation that faces the target.
+        Vector3 direction = targetPosition - transform.position;
+        if (direction.sqrMagnitude > 0.001f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-            
-            Vector3 direction = targetPosition - transform.position;
-            if (direction.sqrMagnitude > 0.001f)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f * Time.deltaTime);
-            }
-            
-            yield return null;
+            Quaternion finalRotation = Quaternion.LookRotation(direction);
+            // Tween the rotation concurrently with the movement.
+            transform.DORotateQuaternion(finalRotation, duration).SetEase(Ease.Linear);
         }
-        transform.position = targetPosition;
     }
 }

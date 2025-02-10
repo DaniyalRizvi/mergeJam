@@ -20,6 +20,7 @@ public class PassengerAmountHolder : MonoBehaviour
         Color = color;
         _amount = amount;
         image.color = color.GetColor();
+        amountText.color=color.GetColor();
         amountText.text = amount.ToString();
 
         if (Color == Colors.Blue)
