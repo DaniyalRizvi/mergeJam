@@ -18,9 +18,11 @@ public class Jump : IPowerUp
             {
                 if (slots[i].CurrentBus != null)
                 {
-                    LevelManager.Instance.ApplyJump(level, slots[i].CurrentBus, slots[i].transform);
+                    var bus = slots[i].CurrentBus;
                     slots[i].CurrentBus.ClearSlot();
                     slots[i].CurrentBus = null;
+                    slots[i].vehiclePlaced=false;
+                    LevelManager.Instance.ApplyJump(level, bus, slots[i].transform);
                     break;
                 }
             }

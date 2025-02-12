@@ -81,17 +81,14 @@ public class SoundManager : Singelton<SoundManager>
     {
         if (!effectsAudioSource.mute)
         {
-            Debug.Log("Played");
             effectsAudioSource.PlayOneShot(SoundsClipsCollectionSO.Confetti);
         }
     }
 
     public void AddingVehiclesToSlotsSFX()
     {
-        Debug.Log("Effective Audio Source: "+effectsAudioSource.mute);
         if (!effectsAudioSource.mute)
         {
-            Debug.Log("Played");
             effectsAudioSource.PlayOneShot(SoundsClipsCollectionSO.AddingVehiclesToSlots);
         }
     }

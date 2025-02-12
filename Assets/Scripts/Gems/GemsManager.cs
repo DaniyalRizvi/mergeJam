@@ -17,6 +17,8 @@ public class GemsManager : Singelton<GemsManager>
 
     public void AddGems(int amount)
     {
+        Debug.Log("Gems: "+_gemAmount);
+        Debug.Log("Add Gems: " + amount);
         if (amount > 0)
         {
             _gemAmount += amount;
@@ -26,6 +28,7 @@ public class GemsManager : Singelton<GemsManager>
         {
             Debug.LogWarning("AddGems called with non-positive amount.");
         }
+        Debug.Log("Gems: "+_gemAmount);
     }
 
     public bool UseGems(int amount)

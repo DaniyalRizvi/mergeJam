@@ -31,6 +31,18 @@ public class Bus : MonoBehaviour
                 currentSizeText.SetText(value.ToString());
         }
     }
+
+    public void SetCurrentSize()
+    {
+        if (AssignedSlot != null)
+        {
+            if(currentSize>0)
+            capacityText.SetText(currentSize.ToString());
+            else
+            capacityText.SetText("FULL");
+        }
+    }
+
     private int _currentSize;
 
     public Colors busColor;

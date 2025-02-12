@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class Slot : MonoBehaviour
 {
-    internal Bus CurrentBus;
+    public Bus CurrentBus;
     public Transform _referencePoint;
     public Transform _standTransform;
     public float moveSpeed = 200f; // Speed at which the vehicle moves.
@@ -59,7 +59,6 @@ public class Slot : MonoBehaviour
             Debug.Log("Slot is locked. Cannot assign a bus.");
             yield return null;
         }
-        Debug.Log("KKK");
 
         CurrentBus = bus;
         MoveToSlot();

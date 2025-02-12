@@ -10,9 +10,9 @@ public class PowerupHandler : Singelton<PowerupHandler>
     // Start is called before the first frame update
     public void SetPanel()
     {
-            Fan.gameObject.SetActive(false);
-            Jump.gameObject.SetActive(false);
-            Rocket.gameObject.SetActive(false);
+        Fan.gameObject.SetActive(false);
+        Jump.gameObject.SetActive(false);
+        Rocket.gameObject.SetActive(false);
             
          Debug.Log("Current Level T: "+PlayerPrefs.GetInt("CurrentLevel"));
             

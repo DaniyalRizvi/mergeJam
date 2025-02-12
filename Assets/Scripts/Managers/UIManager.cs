@@ -80,7 +80,8 @@ public class UIManager : Singelton<UIManager>
         if (placementid.Equals(Constants.RewardedID))
         {
             GemsManager.Instance.UseGems(10);
-            GemsManager.Instance.AddGems(200);
+            GemsManager.Instance.AddGems(20);
+            levelgemsText.text="20";
             Debug.Log("Reward Added!");
         }
     }
@@ -95,6 +96,8 @@ public class UIManager : Singelton<UIManager>
     {
         watchAdBtn.interactable = true;
         levelCompleteUI.SetActive(true);  
+        GemsManager.Instance.AddGems(10);
+        levelgemsText.text="10";
     }
     
     public void ShowLevelFailedUI()
@@ -107,7 +110,7 @@ public class UIManager : Singelton<UIManager>
     {
         levelCompleteUI.SetActive(false);
         levelFailedUI.SetActive(false);
-        SetupHolders(LevelManager.Instance.GetCurrentLevel());
+        SetupHolders(LevelManager.Instance._levels[PlayerPrefs.GetInt("CurrentLevel")]);
     }
 
     private void SetupHolders(Level currentLevel)
@@ -116,9 +119,10 @@ public class UIManager : Singelton<UIManager>
         foreach (var pah in children)
         {
             pah.gameObject.SetActive(true);
+            pah.SetAmount(0);
             //Destroy(pah.gameObject);
         }
-        Debug.Log(children.Count);
+        //Debug.Log(children.Count);
         foreach (var color in currentLevel.colors)
         {
             bool colorMatched = false;
@@ -127,7 +131,7 @@ public class UIManager : Singelton<UIManager>
             foreach (var child in children)
             {
                 PassengerAmountHolder existingPah = child.GetComponent<PassengerAmountHolder>();
-                Debug.Log(existingPah);
+                //Debug.Log(existingPah);
                 if (existingPah != null && existingPah.Color == color.color)
                 {
                     existingPah.AddAmount(color.count); // Assuming AddAmount is a method in PassengerAmountHolder to add to the count
@@ -138,7 +142,7 @@ public class UIManager : Singelton<UIManager>
 
             if (!colorMatched)
             {
-                Debug.Log("Hereeee");
+                //Debug.Log("Hereeee");
                 PassengerAmountHolder pah = Instantiate(Resources.Load<GameObject>("Passenger Amount Holder")).GetComponent<PassengerAmountHolder>();
                 pah.Init(color.color, color.count);
                 pah.transform.SetParent(pahHolder.transform);

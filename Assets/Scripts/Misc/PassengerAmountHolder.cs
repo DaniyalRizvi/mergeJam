@@ -46,6 +46,12 @@ public class PassengerAmountHolder : MonoBehaviour
         return _amount;
     }
 
+    public void SetAmount(int amount)
+    {
+        _amount = amount;
+        amountText.text = _amount.ToString();
+    }
+
     public void AddAmount(int amount)
     {
         _amount += amount;

@@ -205,7 +205,7 @@ public class PowerUpEventHandler : MonoBehaviour
 
     private IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         _isOnCooldown = false;
     }
 

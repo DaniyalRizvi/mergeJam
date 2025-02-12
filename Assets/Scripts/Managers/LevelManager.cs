@@ -18,6 +18,7 @@ public class LevelManager : Singelton<LevelManager>
     public Transform passengerRef;
     void Start()
     {
+       //_levelNumber=20;
         _levelNumber = PlayerPrefs.GetInt("CurrentLevel");
         if (PlayerPrefs.GetInt("LevelTutorialCompleted") == 0 || (PlayerPrefs.GetInt("TrashTutorial") == 0 && _levelNumber == 25) || (PlayerPrefs.GetInt("FanTutorial") == 0 && _levelNumber == 35) ||
             (PlayerPrefs.GetInt("RocketTutorial") == 0 && _levelNumber == 27) || (PlayerPrefs.GetInt("JumpTutorial") == 0 && _levelNumber == 13))
@@ -63,7 +64,6 @@ public class LevelManager : Singelton<LevelManager>
             UIManager.Instance.hardLevelUI.SetActive(true);
             Invoke("DisableHardLevelUI",1f);
         }
-
         PowerupHandler.Instance.SetPanel();
         GameManager.Instance.InitializePassengerPositions();
     }
@@ -111,6 +111,7 @@ public class LevelManager : Singelton<LevelManager>
 
             else
             {
+                //SceneManager.LoadScene("MergeJam");
                 LoadLevel(_levelNumber);
             }
         }
@@ -125,6 +126,7 @@ public class LevelManager : Singelton<LevelManager>
     {
         PlayerPrefs.SetInt("CurrentLevel", _levelNumber);
         GameManager.Instance.ClearSavedGameState();
+        //LoadLevel(_levelNumber);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -137,10 +139,13 @@ public class LevelManager : Singelton<LevelManager>
         return allColors.Except(levelColors).ToList();
     }
 
+   
+
     public void ApplyJump(Level level, Bus bus, Transform referencePoint)
     {
         //GameManager.Instance.RemoveReferenceFromPassenger();
         StartCoroutine(GameManager.Instance.ApplySpringVFX(referencePoint));
+        GameManager.Instance.MovePassengerBack(bus);
         //bus.GetComponent<SquashAndStretch>().enabled = true;
         var spawnPoint = level.gameObject.GetComponentInChildren<SpawnPoint>().transform;
         Vector3 tempPos = level.GetRandomSpawnPoint(spawnPoint);
