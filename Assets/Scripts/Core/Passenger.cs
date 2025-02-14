@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using DG.Tweening;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Passenger : MonoBehaviour
 {
@@ -44,10 +46,21 @@ public class Passenger : MonoBehaviour
 
     public void TryBoardBus(Bus bus, Action<bool> onComplete)
     {
-        if (IsBoarding && _selectedBus != null)
+        if (bus == null)
+        {
             return;
+        }
+
+        if (_selectedBus == null)
+        {
+            _selectedBus = bus;
+        }
+
+        if (IsBoarding) return;
+
         StartCoroutine(TryBoardBus(bus, 5f, onComplete));
     }
+
 
     private IEnumerator TryBoardBus(Bus bus, float speed, Action<bool> onComplete)
     {
@@ -64,12 +77,9 @@ public class Passenger : MonoBehaviour
         }
 
         IsBoarding = true;
-        // Wait until merging is done and tween the passenger to the gate.
         yield return StartCoroutine(TweenPassengerToGate(speed));
 
-        Debug.Log("MergingBus: "+GameManager.Instance.MergingBus);
-
-        if (TutorialManager.Instance)
+        /*if (TutorialManager.Instance)
         {
             switch (TutorialManager.Instance.tutorialCase)
             {
@@ -87,7 +97,7 @@ public class Passenger : MonoBehaviour
                         break;
                     }
             }
-        }
+        }*/
         UIManager.Instance.UpdateHolder(passengerColor);
         hasBoarded = true;
         //_selectedBus.SetCurrentSize();
@@ -96,13 +106,13 @@ public class Passenger : MonoBehaviour
 
     public void MovePlayerToPosition(Vector3 targetPosition)
     {
+
         float moveSpeed = 10f;
         float distance = Vector3.Distance(transform.position, targetPosition);
         float duration = distance / moveSpeed;
 
         // Use DOTween to move the passenger to the target position with linear easing.
         transform.DOMove(targetPosition, duration).SetEase(Ease.Linear);
-
         // Calculate the final rotation that faces the target.
         Vector3 direction = targetPosition - transform.position;
         if (direction.sqrMagnitude > 0.001f)
@@ -113,33 +123,53 @@ public class Passenger : MonoBehaviour
         }
     }
 
-    // This coroutine replaces the while-loop that moves the passenger to the bus gate.
     private IEnumerator TweenPassengerToGate(float speed)
     {
-        // Function to (re)create a tween sequence toward the currently assigned bus's gate.
-        Sequence CreateMoveTween()
+        Sequence moveSeq = null;
+
+        void StartMoveSequence()
         {
+            if (_selectedBus == null || _selectedBus.gateTransform == null) return;
+
             Vector3 startPos = transform.position;
             Vector3 targetPos = _selectedBus.gateTransform.position;
             float distance = Vector3.Distance(startPos, targetPos);
             float duration = distance / speed;
-            
-            Sequence seq = DOTween.Sequence();
-            seq.AppendCallback(() => PassengerAnimator.IsWalking(true));
-            seq.Append(transform.DOMove(targetPos, duration).SetEase(Ease.Linear));
-            seq.Join(transform.DORotateQuaternion(Quaternion.LookRotation(targetPos - transform.position), duration)
+
+            moveSeq = DOTween.Sequence();
+            moveSeq.AppendCallback(() => PassengerAnimator.IsWalking(true));
+            moveSeq.Append(transform.DOMove(targetPos, duration).SetEase(Ease.Linear));
+            moveSeq.Join(transform.DORotateQuaternion(Quaternion.LookRotation(targetPos - transform.position), duration)
                 .SetEase(Ease.Linear));
-            seq.AppendCallback(() => PassengerAnimator.IsWalking(false));
-            return seq;
+            moveSeq.AppendCallback(() =>
+            {
+                PassengerAnimator.IsWalking(false);
+                hasBoarded = true;
+                IsBoarding = false;
+
+                Debug.Log($"Passenger {id} boarded bus {_selectedBus.name} and calling RemovePassenger");
+
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.RemovePassenger(this);
+                }
+            });
         }
-        
-        // Create initial tween sequence.
-        Sequence moveSeq = CreateMoveTween();
-        
-        // Loop until the tween completes.
-        while (moveSeq != null && moveSeq.IsActive() && !moveSeq.IsComplete())
+
+        StartMoveSequence();
+
+        while (true)
         {
-            // First, check merging status.
+            if (this == null)
+            {
+                yield break;
+            }
+
+            if (GameManager.Instance == null)
+            {
+                yield break;
+            }
+
             if (GameManager.Instance.MergingBus)
             {
                 if (moveSeq.IsPlaying())
@@ -147,24 +177,53 @@ public class Passenger : MonoBehaviour
                     moveSeq.Pause();
                     PassengerAnimator.IsWalking(false);
                 }
+
                 yield return new WaitUntil(() => !GameManager.Instance.MergingBus);
-                if (!moveSeq.IsPlaying())
+                Slot busSlot = GameManager.Instance._slots.FirstOrDefault(slot => slot.CurrentBus == _selectedBus);
+
+                if (busSlot != null && busSlot.vehiclePlaced)
                 {
-                    moveSeq.Play();
-                    PassengerAnimator.IsWalking(true);
+                    Debug.Log($"Passenger {id} resumes boarding to the same bus {_selectedBus.name} after merge.");
+                    StartMoveSequence(); // Resume movement to the same bus
+                }
+                else
+                {
+                    Bus foundBus = GameManager.Instance.FindBestBusForPassenger(this);
+                    if (foundBus != null)
+                    {
+                        _selectedBus = foundBus;
+                        Debug.Log($"Passenger {id} found a new bus after merge: {_selectedBus.name}");
+                        StartMoveSequence();
+                    }
+                    else
+                    {
+                        Debug.LogError($"Passenger {id} couldn't find any bus after merge!");
+                        yield break;
+                    }
                 }
             }
-            // Additionally, check if the current bus or its gateTransform has been destroyed.
-            if (_selectedBus == null || _selectedBus.gateTransform == null)
-            {
-                // Kill the current tween.
-                moveSeq.Kill();
-                // Wait until _selectedBus becomes valid again.
-                yield return new WaitUntil(() => _selectedBus != null && _selectedBus.gateTransform != null);
-                // Create a new tween from the current position to the new _selectedBus's gate.
-                moveSeq = CreateMoveTween();
-            }
+
             yield return null;
         }
+    }
+
+
+    public void StartMovingToBus()
+    {
+        if (_selectedBus == null)
+        {
+            Bus latestBus = GameManager.Instance.GetLatestBusForPassenger(this);
+            if (latestBus != null)
+            {
+                _selectedBus = latestBus;
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        StopAllCoroutines();
+        StartCoroutine(TweenPassengerToGate(5f));
     }
 }

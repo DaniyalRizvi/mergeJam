@@ -18,8 +18,8 @@ public class GameManager : Singelton<GameManager>
     [SerializeField] private GameObject levelCompletedVFX;
     [SerializeField] private GameObject springVFX;
     public GameObject SlotVFX;
-    private List<Slot> _slots = new();
-    [SerializeField]private List<Passenger> _passengers = new();
+    public List<Slot> _slots = new();
+    [SerializeField] public List<Passenger> _passengers = new();
     public Level _level;
     public Action OnLevelComplete;
     public bool PlacingBus;
@@ -28,7 +28,9 @@ public class GameManager : Singelton<GameManager>
     public bool rocketPowerUp;
     public int maxCount;
     public List<Vector3> myQueuePositions = new List<Vector3>();
-    bool levelCompleted = false;
+    bool levelCompleted = false; 
+    public bool isBoardingInProgress = false;
+
     // Flag to cancel pending board tween calls.
     //private bool _cancelBoardTween = false;
 
@@ -38,7 +40,7 @@ public class GameManager : Singelton<GameManager>
         yield return new WaitUntil(() => DTAdsManager.Instance && DTAdsManager.Instance.isInitialised);
         Debug.Log("Ads Initialized: " + DTAdsManager.Instance.isInitialised);
         DTAdsManager.Instance.ShowAd(Constants.BannerID);
-        //InitializePassengerPositions();
+        InitializePassengerPositions();
     }
 
 
@@ -65,6 +67,7 @@ public class GameManager : Singelton<GameManager>
         _slots = slots;
         _passengers = passengers;
         _level = level;
+        InitializePassengerPositions();
     }
 
 
@@ -146,7 +149,7 @@ public class GameManager : Singelton<GameManager>
             Debug.LogError("One of the buses is missing. Cannot merge.");
             return;
         }
-        
+
         // Force the right bus to begin at the same Y as the left bus's starting Y.
         Vector3 rightStart = rightBus.transform.position;
         rightStart.y = leftBus.transform.position.y;
@@ -207,15 +210,15 @@ public class GameManager : Singelton<GameManager>
         // 5. Final callback: clear merge flag, notify passengers, and resume boarding.
         seq.AppendCallback(() =>
         {
-            if(leftIndex-1>=0)
-                MergingBus = CanMerge(_slots[leftIndex-1],_slots[leftIndex]);
+            if (leftIndex - 1 >= 0)
+                MergingBus = CanMerge(_slots[leftIndex - 1], _slots[leftIndex]);
             else
-                MergingBus=false;
+                MergingBus = false;
             NotifyPassengersOfNewBus(leftBus);
             //StartCoroutine(BoardPassengersToBus(leftIndex));
             BoardPassengersToBusTween(leftIndex);
 
-           // Debug.Log("Merge animation completed");
+            // Debug.Log("Merge animation completed");
         });
 
         seq.Play();
@@ -290,18 +293,16 @@ public class GameManager : Singelton<GameManager>
 
     private void NotifyPassengersOfNewBus(Bus newBus)
     {
-        Debug.Log("NotifyPassengersOfNewBus: "+newBus.busColor);
-        var passengersToRedirect = _passengers.Where(p => p.IsBoarding && p.passengerColor == newBus.busColor).ToList();
-        if(passengersToRedirect.Count<=0){
-            if(_passengers[0].passengerColor == newBus.busColor){
-                passengersToRedirect.Add(_passengers[0]);
+        foreach (var passenger in _passengers)
+        {
+            if (passenger.IsBoarding && passenger.passengerColor == newBus.busColor)
+            {
+                passenger.UpdateBusAfterMerge(newBus);
+                passenger.StartMovingToBus();
             }
         }
-        foreach (var passenger in passengersToRedirect)
-        {
-            passenger.UpdateBusAfterMerge(newBus);
-        }
     }
+
 
     public IEnumerator BoardPassengerCoroutin(int index)
     {
@@ -309,140 +310,190 @@ public class GameManager : Singelton<GameManager>
         BoardPassengersToBusTween(index);
     }
 
-    
-    // New method: Board all passengers using DOTween delayed calls instead of coroutine yields.
     public void BoardPassengersToBusTween(int index)
     {
-        if (index < 0 || index >= _slots.Count) return;
-    
-        
-        //Debug.Log("PlacingBus: " + PlacingBus);
-        //Debug.Log("MergingBus: " + MergingBus);
-        // Wait until the busses have merged (and no bus is being placed) before proceeding
+        if (index < 0 || index >= _slots.Count || isBoardingInProgress) return;
+
+        var bus = _slots[index].CurrentBus;
+        if (bus == null || bus.currentSize <= 0) return;
+
         if (PlacingBus || MergingBus)
         {
-            //Debug.Log("Waiting for merging to complete before boarding...");
-            DOVirtual.DelayedCall(0.1f, () => { BoardPassengersToBusTween(index); });
+            DOVirtual.DelayedCall(0.1f, () => BoardPassengersToBusTween(index));
             return;
         }
 
-        var bus = _slots[index].CurrentBus;
-        if (bus != null)
+        if (bus.currentSize > 0)
         {
-            if (bus.currentSize > 0)
+            List<Passenger> passengers = new List<Passenger>();
+
+            int count = 0;
+            foreach (var p in _passengers)
             {
-                List<Passenger> passengers = new List<Passenger>();
-                int count = 0;
-                foreach (var p in _passengers)
+                if (!p.hasBoarded && !p.IsBoarding && p._selectedBus == null)
                 {
-                    if (p.passengerColor == bus.busColor && !p.hasBoarded && !p.IsBoarding)
+                    if (p.passengerColor == bus.busColor)
                     {
-                        count++;
                         passengers.Add(p);
-                        Debug.Log("bus.currentSize: "+bus.currentSize);
-                        if (count == bus.currentSize)
-                        {
-                            break;
-                        }
+                        count++;
+                        if (count == bus.currentSize) break;
                     }
                     else break;
                 }
-
-                Debug.Log("Passengers: " + passengers.Count);
-                //Debug.Log("Index: " + index);
-
-                if (passengers.Count > 0)
-                {
-                    // Kick off the boarding of these passengers using a DOTween delayed call.
-                    DOVirtual.DelayedCall(0.65f, () => { TryBoardPassengerTween(passengers,bus, index); });
-                }
-                else if (index - 1 >= 0)
-                {
-                    DOVirtual.DelayedCall(0.25f, () => { BoardPassengersToBusTween(index - 1); });
-                }
-            }
-            else if (index - 1 >= 0)
-            {
-                DOVirtual.DelayedCall(0.25f, () => { BoardPassengersToBusTween(index - 1); });
-            }
-        }
-        else if (index - 1 >= 0)
-        {
-            DOVirtual.DelayedCall(0.25f, () => { BoardPassengersToBusTween(index - 1); });
-        }
-    }
-
-    // New method: Try to board all passengers using DOTween's delayed calls.
-    private void TryBoardPassengerTween(List<Passenger> passengers,Bus bus, int currentIndex)
-    {
-
-        // Attempt to board each passenger.
-        foreach (var p in passengers)
-        {
-            if(!p.IsBoarding){
-            p.TryBoardBus(bus, boarded =>
-            {
-                // If this passenger is associated with a bus, remove it and clean up.
-                    _passengers.Remove(p);
-                    p.gameObject.SetActive(false);
-                    Destroy(p.gameObject);
-            });}
-        }
-
-        //if(PlayerPrefs.GetInt("LevelTutorialCompleted")==0)
-          //  return; 
-        // After a short delay, check if all passengers have boarded.
-        DOVirtual.DelayedCall(0.3f, () =>
-        {
-            bool allBoarded = true;
-            // Iterate through the list to check the boarding status.
-            foreach (var p in passengers)
-            {
-                if (!p.hasBoarded)
-                {
-                    allBoarded = false;
-                    break;
-                }
             }
 
-            if (allBoarded)
+            if (passengers.Count > 0)
             {
-                if(PlayerPrefs.GetInt("LevelTutorialCompleted")==1)
-                    MoveAllPassengersForward();
-                CheckLevelCompletion();
+                isBoardingInProgress = true; // Block next batch
+                DOVirtual.DelayedCall(0.65f, () =>
+                {
+                    TryBoardPassengerTween(passengers, bus, index);
+                });
             }
             else
             {
-                // Retry checking after the delay until all passengers are boarded.
-                TryBoardPassengerTween(passengers, bus, currentIndex);
+                Debug.Log("No available passengers to board.");
             }
+        }
+    }
+
+    public void RemovePassenger(Passenger passenger)
+    {
+        if (passenger == null || !_passengers.Contains(passenger))
+        {
+            return;
+        }
+
+        _passengers.Remove(passenger);
+        UIManager.Instance.UpdateHolder(passenger.passengerColor);
+
+        if (passenger.gameObject != null)
+        {
+            passenger.gameObject.SetActive(false);
+            Destroy(passenger.gameObject);
+        }
+        else
+        {
+            Debug.LogError($"Passenger {passenger.id} was already missing before removal!");
+        }
+
+        if (!_passengers.Any(p => p.IsBoarding))
+        {
+            isBoardingInProgress = false;
+
+            for (int i = 0; i < _slots.Count; i++)
+            {
+                BoardPassengersToBusTween(i);
+            }
+        }
+
+        CheckLevelCompletion();
+    }
+
+
+
+    public void TryBoardPassengerTween(List<Passenger> passengers, Bus bus, int currentIndex)
+    {
+        List<Passenger> boardedPassengers = new List<Passenger>();
+
+        foreach (var p in passengers)
+        {
+            if (!p.IsBoarding)
+            {
+                p.TryBoardBus(bus, boarded =>
+                {
+                    if (boarded)
+                    {
+                        boardedPassengers.Add(p);
+                        p.gameObject.SetActive(false);
+                        Destroy(p.gameObject);
+                    }
+                });
+            }
+        }
+
+        DOVirtual.DelayedCall(0.3f, () =>
+        {
+            foreach (var p in boardedPassengers)
+            {
+                _passengers.Remove(p);
+            }
+
+            if(PlayerPrefs.GetInt("LevelTutorialCompleted") == 1)
+                MoveAllPassengersForward();
+
+            if (TutorialManager.Instance && PlayerPrefs.GetInt("LevelTutorialCompleted") == 0)
+        {
+            switch (TutorialManager.Instance.tutorialCase)
+            {
+                case 5:
+                    {
+                        TutorialManager.Instance.tutorialCase++;
+                        TutorialManager.Instance.InitSecondBus();
+                        break;
+                    }
+                case 6:
+                    {
+                        TutorialManager.Instance.tutorialCase++;
+                        TutorialManager.Instance.InitPanel(
+                            "When two vehicles of the same color and size merge, they form a higher-capacity vehicle!");
+                        break;
+                    }
+            }
+        }
+
+
+
+            if (bus.currentSize > 0)
+            {
+                BoardPassengersToBusTween(currentIndex);
+            }
+            
         });
     }
 
-
     private void MoveAllPassengersForward()
     {
-        for (int i =0; i < _passengers.Count; i++)
+        if (_passengers.Count == 0)
+        {
+            return;
+        }
+        List<Passenger> waitingPassengers = _passengers.FindAll(p => !p.hasBoarded && !p.IsBoarding);
+        for (int i = 0; i < waitingPassengers.Count; i++)
         {
             if (i < myQueuePositions.Count)
             {
-                _passengers[i].MovePlayerToPosition(myQueuePositions[i]);
+                Vector3 targetPosition = myQueuePositions[i];
+                waitingPassengers[i].MovePlayerToPosition(targetPosition);
             }
         }
     }
 
-    public void QueuePassangers(Vector3 position)
+    public Bus GetLatestBusForPassenger(Passenger passenger)
     {
-        var newPosition = position;
-
-        for (int i = 1; i < _passengers.Count; i++)
+        foreach (var slot in _slots)
         {
-            if (_passengers[i].IsBoarding)
-                return;
-            position = _passengers[i].transform.position;
-            _passengers[i].MovePlayerToPosition(newPosition);
-            newPosition = position;
+            if (slot.CurrentBus != null && slot.CurrentBus.busColor == passenger.passengerColor)
+            {
+                return slot.CurrentBus;
+            }
         }
+
+        return null;
+    }
+
+
+    public Bus FindBestBusForPassenger(Passenger passenger)
+    {
+        foreach (var slot in _slots)
+        {
+            if (slot.CurrentBus != null && slot.CurrentBus.busColor == passenger.passengerColor && slot.CurrentBus.currentSize > 0)
+            {
+                return slot.CurrentBus;
+            }
+        }
+
+        return null; // ? No valid bus found
     }
 
     private void CheckLevelCompletion()
@@ -502,25 +553,10 @@ public class GameManager : Singelton<GameManager>
             //InputManager.Instance.DeselectBus();
         }
 
-        Debug.Log("PlacingBus: "+PlacingBus);
+        Debug.Log("PlacingBus: " + PlacingBus);
 
         StartCoroutine(CheckLooseCondition());
     }
-
-    // public void PlaceBusInSlot(Bus selectedBus, Slot clickedSlot)
-    // {
-    //     if (clickedSlot.isEmpty && !clickedSlot.isLocked)
-    //     {
-    //         selectedBus.AssignSlot(clickedSlot);
-    //         clickedSlot.AssignBus(selectedBus);
-    //         //TriggerCascadingMerge(clickedSlot, out Bus remainingBus);
-    //         //StartCoroutine(BoardPassengersToBus(remainingBus));
-    //         //InputManager.Instance.DeselectBus();
-    //     }
-    //     StartCoroutine(nameof(CheckLooseCondition));
-    // }
-
-
 
     public void TriggerCascadingMerge(Slot clickedSlot, out Bus remainingBus)
     {
@@ -541,27 +577,30 @@ public class GameManager : Singelton<GameManager>
     private IEnumerator CheckLooseCondition()
     {
         Debug.Log("Checking loose condition");
+
+        yield return new WaitUntil(() => !MergingBus);
+
+        yield return new WaitForSeconds(0.5f);
         // If there is any empty slot available, we should not trigger a loose condition.
         bool isSlotEmpty = _slots.Any(slot => slot.isEmpty && !slot.isLocked);
         if (!isSlotEmpty)
         {
             // First, wait until no bus is being placed or merged.
-            yield return new WaitUntil(() => !PlacingBus && !MergingBus);
-            
+
             // Enter a loop that continuously checks:
             // 1. Whether any merging is still active.
             // 2. Whether any bus on a slot, which still has boarding space, can board a waiting passenger.
             // 3. Whether any merge is possible between adjacent slots.
             while (true)
             {
-                Debug.Log("MergingBus: "+MergingBus);
-                
+                Debug.Log("MergingBus: " + MergingBus);
+
                 bool canAnyBusBoard = false;
                 foreach (var slot in _slots)
                 {
                     if (slot.CurrentBus != null && slot.CurrentBus.currentSize > 0)
                     {
-                        if (_passengers.Any(p => p.passengerColor == slot.CurrentBus.busColor 
+                        if (_passengers.Any(p => p.passengerColor == slot.CurrentBus.busColor
                             && !p.hasBoarded && !p.IsBoarding))
                         {
                             canAnyBusBoard = true;
@@ -569,7 +608,7 @@ public class GameManager : Singelton<GameManager>
                         }
                     }
                 }
-                
+
                 bool anyMergePossible = false;
                 // Check for a possible merge among adjacent slots.
                 for (int i = 1; i < _slots.Count; i++)
@@ -580,7 +619,9 @@ public class GameManager : Singelton<GameManager>
                         break;
                     }
                 }
-                
+
+                yield return new WaitUntil(() => !_passengers.Any(p => p.IsBoarding));
+
                 // If at least one boarding opportunity exists or if merging is possible, wait a bit and re-check.
                 if (canAnyBusBoard || anyMergePossible)
                 {
@@ -592,7 +633,7 @@ public class GameManager : Singelton<GameManager>
                     break;
                 }
             }
-            Debug.Log("Passengers Count: "+_passengers.Count);
+            Debug.Log("Passengers Count: " + _passengers.Count);
             // After leaving the loop, if there are still passengers waiting, trigger level failure.
             if (_passengers.Count > 0)
             {
@@ -603,10 +644,11 @@ public class GameManager : Singelton<GameManager>
         }
     }
 
-    public void MovePassengerBack(Bus bus){
+    public void MovePassengerBack(Bus bus)
+    {
         // Cancel any pending boarding tween logic.
         //_cancelBoardTween = true;
-      
+
         int count = 0;
         foreach (var p in _passengers)
         {

@@ -18,7 +18,7 @@ public class LevelManager : Singelton<LevelManager>
     public Transform passengerRef;
     void Start()
     {
-       //_levelNumber=20;
+        //_levelNumber=45;
         _levelNumber = PlayerPrefs.GetInt("CurrentLevel");
         if (PlayerPrefs.GetInt("LevelTutorialCompleted") == 0 || (PlayerPrefs.GetInt("TrashTutorial") == 0 && _levelNumber == 25) || (PlayerPrefs.GetInt("FanTutorial") == 0 && _levelNumber == 35) ||
             (PlayerPrefs.GetInt("RocketTutorial") == 0 && _levelNumber == 27) || (PlayerPrefs.GetInt("JumpTutorial") == 0 && _levelNumber == 13))
@@ -64,7 +64,10 @@ public class LevelManager : Singelton<LevelManager>
             UIManager.Instance.hardLevelUI.SetActive(true);
             Invoke("DisableHardLevelUI",1f);
         }
-        PowerupHandler.Instance.SetPanel();
+
+        
+            PowerupHandler.Instance.SetPanel();
+        
         GameManager.Instance.InitializePassengerPositions();
     }
 
@@ -111,8 +114,8 @@ public class LevelManager : Singelton<LevelManager>
 
             else
             {
-                //SceneManager.LoadScene("MergeJam");
-                LoadLevel(_levelNumber);
+                SceneManager.LoadScene("MergeJam");
+                //LoadLevel(_levelNumber);
             }
         }
 

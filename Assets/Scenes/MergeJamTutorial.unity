@@ -754,6 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9999d4e7d2ac2428c635e533da42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentBus: {fileID: 0}
   _referencePoint: {fileID: 0}
   _standTransform: {fileID: 0}
   moveSpeed: 200
@@ -8862,6 +8863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9999d4e7d2ac2428c635e533da42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentBus: {fileID: 0}
   _referencePoint: {fileID: 0}
   _standTransform: {fileID: 0}
   moveSpeed: 200
@@ -24161,7 +24163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95586dd3e70a2f046970a79eabb383e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 7.5
+  range: 4
   isHard: 0
   busTypes:
   - capacity: 1
@@ -26242,6 +26244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9999d4e7d2ac2428c635e533da42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentBus: {fileID: 0}
   _referencePoint: {fileID: 0}
   _standTransform: {fileID: 0}
   moveSpeed: 200
@@ -47025,6 +47028,7 @@ MonoBehaviour:
   levelCompletedVFX: {fileID: 0}
   springVFX: {fileID: 8389016175309470762, guid: 2aa33a63fe646414486114036b4d8da4, type: 3}
   SlotVFX: {fileID: 742723381}
+  _slots: []
   _passengers: []
   _level: {fileID: 0}
   PlacingBus: 0
@@ -47033,6 +47037,7 @@ MonoBehaviour:
   rocketPowerUp: 0
   maxCount: 0
   myQueuePositions: []
+  isBoardingInProgress: 0
   mergeMoveSpeed: 20
   moveSpeed: 30
   hoverHeight: 5
@@ -50159,6 +50164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9999d4e7d2ac2428c635e533da42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentBus: {fileID: 0}
   _referencePoint: {fileID: 0}
   _standTransform: {fileID: 0}
   moveSpeed: 200
@@ -65453,7 +65459,7 @@ Transform:
   m_GameObject: {fileID: 1562624492}
   serializedVersion: 2
   m_LocalRotation: {x: -0.35355127, y: 0.6123754, z: -0.35355437, w: -0.61237025}
-  m_LocalPosition: {x: 7, y: 4, z: 0}
+  m_LocalPosition: {x: 2.92, y: 4, z: 0}
   m_LocalScale: {x: 3, y: 1, z: 9}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -82165,6 +82171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9999d4e7d2ac2428c635e533da42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentBus: {fileID: 0}
   _referencePoint: {fileID: 0}
   _standTransform: {fileID: 0}
   moveSpeed: 200
@@ -89776,6 +89783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9999d4e7d2ac2428c635e533da42cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentBus: {fileID: 0}
   _referencePoint: {fileID: 0}
   _standTransform: {fileID: 0}
   moveSpeed: 200

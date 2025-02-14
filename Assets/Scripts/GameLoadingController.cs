@@ -17,6 +17,7 @@ public class GameLoadingController : MonoBehaviour
     public static bool AttPermission;
     private IEnumerator Start()
     {
+        // ByPassTutorials();
         if (PlayerPrefs.GetInt("firstTimeUser") == 0)
         {
             privacyPanel.SetActive(true);
@@ -74,6 +75,15 @@ public class GameLoadingController : MonoBehaviour
 
     }
     
+    public void ByPassTutorials()
+    {
+        PlayerPrefs.SetInt("LevelTutorialCompleted", 1);
+        PlayerPrefs.SetInt("TrashTutorial", 1);
+        PlayerPrefs.SetInt("RocketTutorial", 1);
+        PlayerPrefs.SetInt("FanTutorial", 1);
+        PlayerPrefs.SetInt("JumpTutorial", 1);
+    }
+
     public void TermAndCondition()
     {
         Application.OpenURL("http://cherrytop.games/privacy-policy.html");

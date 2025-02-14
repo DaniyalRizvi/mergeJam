@@ -169,9 +169,11 @@ public class PowerUpEventHandler : MonoBehaviour
         }
 
         // Instantiate rocket mesh
-        Vector3 rocketStartPosition = selectedBus.transform.position + new Vector3(10, 10, 0); // Adjust as needed
-        GameObject rocket = Instantiate(Resources.Load<GameObject>("RocketMesh"), rocketStartPosition, Quaternion.identity);
-        rocket.transform.rotation = Quaternion.LookRotation(selectedBus.transform.position - rocketStartPosition);
+        Transform rocketStartPosition = FindObjectOfType<RocketShoot>().transform; //selectedBus.transform.position + new Vector3(10, 10, 0); // Adjust as needed
+        GameObject rocket = Instantiate(Resources.Load<GameObject>("RocketMesh"), rocketStartPosition.position, Quaternion.identity);
+        rocket.transform.LookAt(selectedBus.transform);
+        rocket.GetComponent<Rigidbody>().AddForce(rocket.transform.forward * 50);
+        //rocket.transform.rotation = Quaternion.LookRotation(selectedBus.transform.position - rocketStartPosition.position);
     
         // Simulate rocket movement
         float duration = 0.5f;
