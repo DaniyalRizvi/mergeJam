@@ -18,11 +18,11 @@ public class LevelManager : Singelton<LevelManager>
     public Transform passengerRef;
     void Start()
     {
-        //_levelNumber=45;
+        //_levelNumber=26;
         _levelNumber = PlayerPrefs.GetInt("CurrentLevel");
         if (PlayerPrefs.GetInt("LevelTutorialCompleted") == 0 || (PlayerPrefs.GetInt("TrashTutorial") == 0 && _levelNumber == 25) || (PlayerPrefs.GetInt("FanTutorial") == 0 && _levelNumber == 35) ||
             (PlayerPrefs.GetInt("RocketTutorial") == 0 && _levelNumber == 27) || (PlayerPrefs.GetInt("JumpTutorial") == 0 && _levelNumber == 13))
-        {
+        {                
             PlayerPrefs.SetInt("ActualCurrentLevel", _levelNumber);
             PlayerPrefs.SetInt("CurrentLevel", 0);
             _levelNumber = 0;
@@ -142,13 +142,27 @@ public class LevelManager : Singelton<LevelManager>
         return allColors.Except(levelColors).ToList();
     }
 
-   
+    public void ApplyJump(Level level, Bus bus, Transform referencePoint){
+        StartCoroutine(ApplyJumpCoroutine(level, bus, referencePoint));
+    }
 
-    public void ApplyJump(Level level, Bus bus, Transform referencePoint)
+    public IEnumerator ApplyJumpCoroutine(Level level, Bus bus, Transform referencePoint)
     {
         //GameManager.Instance.RemoveReferenceFromPassenger();
+        while(true)
+        {
+            if(GameManager.Instance._passengers.Any(p => p.IsBoarding))
+            {
+                yield return new WaitForSeconds(0.5f);
+                Debug.Log("Waiting for passengers to board");
+            }
+            else
+            {
+                break;
+            }
+        }
         StartCoroutine(GameManager.Instance.ApplySpringVFX(referencePoint));
-        GameManager.Instance.MovePassengerBack(bus);
+            //GameManager.Instance.MovePassengerBack(bus);
         //bus.GetComponent<SquashAndStretch>().enabled = true;
         var spawnPoint = level.gameObject.GetComponentInChildren<SpawnPoint>().transform;
         Vector3 tempPos = level.GetRandomSpawnPoint(spawnPoint);

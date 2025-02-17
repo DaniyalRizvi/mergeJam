@@ -22,6 +22,7 @@ public class Jump : IPowerUp
                     slots[i].CurrentBus.ClearSlot();
                     slots[i].CurrentBus = null;
                     slots[i].vehiclePlaced=false;
+                    GameManager.Instance.movingBack=true;
                     LevelManager.Instance.ApplyJump(level, bus, slots[i].transform);
                     break;
                 }

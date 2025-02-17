@@ -150,8 +150,18 @@ public class PowerUpEventHandler : MonoBehaviour
         bool carSelected = false;
         Bus selectedBus = null;
 
+        foreach (var bus in LevelManager.Instance.GetCurrentLevel().gameObject.GetComponentsInChildren<Bus>())
+            {
+                var outline = bus.gameObject.AddComponent<Outline>();
+                outline.OutlineColor = Color.red;
+                outline.OutlineMode = Outline.Mode.OutlineAll;
+                outline.OutlineWidth = 3f;
+                outline.enabled = true;
+            }
+
         while (!carSelected)
         {
+            
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -162,6 +172,11 @@ public class PowerUpEventHandler : MonoBehaviour
                     {
                         carSelected = true;
                         GameManager.Instance.rocketPowerUp = true;
+                        foreach (var bus in LevelManager.Instance.GetCurrentLevel().gameObject.GetComponentsInChildren<Bus>())
+                        {
+                            var outline = bus.gameObject.GetComponent<Outline>();
+                            Destroy(outline);
+                        }
                     }
                 }
             }

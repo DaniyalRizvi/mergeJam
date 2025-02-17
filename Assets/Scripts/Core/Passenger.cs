@@ -58,7 +58,7 @@ public class Passenger : MonoBehaviour
 
         if (IsBoarding) return;
 
-        StartCoroutine(TryBoardBus(bus, 5f, onComplete));
+        StartCoroutine(TryBoardBus(bus, 8f, onComplete));
     }
 
 
@@ -181,7 +181,7 @@ public class Passenger : MonoBehaviour
                 yield return new WaitUntil(() => !GameManager.Instance.MergingBus);
                 Slot busSlot = GameManager.Instance._slots.FirstOrDefault(slot => slot.CurrentBus == _selectedBus);
 
-                if (busSlot != null && busSlot.vehiclePlaced)
+                if (busSlot != null && busSlot.vehiclePlaced && !GameManager.Instance.movingBack)
                 {
                     Debug.Log($"Passenger {id} resumes boarding to the same bus {_selectedBus.name} after merge.");
                     StartMoveSequence(); // Resume movement to the same bus

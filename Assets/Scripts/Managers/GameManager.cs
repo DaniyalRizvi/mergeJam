@@ -312,7 +312,7 @@ public class GameManager : Singelton<GameManager>
 
     public void BoardPassengersToBusTween(int index)
     {
-        if (index < 0 || index >= _slots.Count || isBoardingInProgress) return;
+        if (index < 0 || index >= _slots.Count || isBoardingInProgress || movingBack) return;
 
         var bus = _slots[index].CurrentBus;
         if (bus == null || bus.currentSize <= 0) return;
@@ -579,6 +579,7 @@ public class GameManager : Singelton<GameManager>
         Debug.Log("Checking loose condition");
 
         yield return new WaitUntil(() => !MergingBus);
+        yield return new WaitUntil(() => !_passengers.Any(p => p.IsBoarding));
 
         yield return new WaitForSeconds(0.5f);
         // If there is any empty slot available, we should not trigger a loose condition.
@@ -600,8 +601,8 @@ public class GameManager : Singelton<GameManager>
                 {
                     if (slot.CurrentBus != null && slot.CurrentBus.currentSize > 0)
                     {
-                        if (_passengers.Any(p => p.passengerColor == slot.CurrentBus.busColor
-                            && !p.hasBoarded && !p.IsBoarding))
+                        if (_passengers[0].passengerColor == slot.CurrentBus.busColor
+                            && !_passengers[0].hasBoarded && !_passengers[0].IsBoarding)
                         {
                             canAnyBusBoard = true;
                             break;
@@ -620,12 +621,17 @@ public class GameManager : Singelton<GameManager>
                     }
                 }
 
-                yield return new WaitUntil(() => !_passengers.Any(p => p.IsBoarding));
+                Debug.Log("canAnyBusBoard: " + canAnyBusBoard);
+                Debug.Log("anyMergePossible: " + anyMergePossible); 
+                Debug.Log("Passengers Count: " + _passengers.Any(p => p.IsBoarding));
+
+                //yield return new WaitUntil(() => !_passengers.Any(p => p.IsBoarding));
 
                 // If at least one boarding opportunity exists or if merging is possible, wait a bit and re-check.
-                if (canAnyBusBoard || anyMergePossible)
+                if (canAnyBusBoard || anyMergePossible || _passengers.Any(p => p.IsBoarding))
                 {
                     yield return new WaitForSeconds(0.5f);
+                    CheckLevelCompletion();
                 }
                 else
                 {
@@ -633,7 +639,6 @@ public class GameManager : Singelton<GameManager>
                     break;
                 }
             }
-            Debug.Log("Passengers Count: " + _passengers.Count);
             // After leaving the loop, if there are still passengers waiting, trigger level failure.
             if (_passengers.Count > 0)
             {
