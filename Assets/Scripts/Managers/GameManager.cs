@@ -22,10 +22,10 @@ public class GameManager : Singelton<GameManager>
     [SerializeField] public List<Passenger> _passengers = new();
     public Level _level;
     public Action OnLevelComplete;
-    public bool PlacingBus;
-    public bool movingBack;
-    public bool MergingBus;
-    public bool rocketPowerUp;
+    public bool PlacingBus=false;
+    public bool movingBack=false;
+    public bool MergingBus=false;
+    public bool rocketPowerUp=false;
     public int maxCount;
     public List<Vector3> myQueuePositions = new List<Vector3>();
     bool levelCompleted = false; 
@@ -310,24 +310,46 @@ public class GameManager : Singelton<GameManager>
         BoardPassengersToBusTween(index);
     }
 
+    public void CheckMissingReferences()
+    {
+       for(int i = 0; i < _passengers.Count; i++)
+       {
+        //Debug.Log("Checking missing references: "+_passengers[i]);
+        if(_passengers[i] == null)
+        {
+            _passengers.RemoveAt(i);
+        }
+       }
+    }
+
     public void BoardPassengersToBusTween(int index)
     {
+        //CheckMissingReferences();
+        isBoardingInProgress = _passengers.Any(p => p.IsBoarding);
         if (index < 0 || index >= _slots.Count || isBoardingInProgress || movingBack) return;
 
         var bus = _slots[index].CurrentBus;
-        if (bus == null || bus.currentSize <= 0) return;
+        if (bus == null || bus.currentSize <= 0){
+            //DOVirtual.DelayedCall(0.1f, () => BoardPassengersToBusTween(index-1));
+            return;
+        }
 
         if (PlacingBus || MergingBus)
         {
-            DOVirtual.DelayedCall(0.1f, () => BoardPassengersToBusTween(index));
+            DOVirtual.DelayedCall(0.3f, () => BoardPassengersToBusTween(index));
             return;
         }
+
+        Debug.Log("Bus: "+bus.currentSize);
 
         if (bus.currentSize > 0)
         {
             List<Passenger> passengers = new List<Passenger>();
 
+            Debug.Log("Passengers Count: "+_passengers.Count);
+            Debug.Log("Bus: "+bus.currentSize);
             int count = 0;
+            CheckMissingReferences();
             foreach (var p in _passengers)
             {
                 if (!p.hasBoarded && !p.IsBoarding && p._selectedBus == null)
@@ -341,6 +363,8 @@ public class GameManager : Singelton<GameManager>
                     else break;
                 }
             }
+
+            Debug.Log("Passengers Count: "+passengers.Count);
 
             if (passengers.Count > 0)
             {
@@ -642,7 +666,7 @@ public class GameManager : Singelton<GameManager>
             // After leaving the loop, if there are still passengers waiting, trigger level failure.
             if (_passengers.Count > 0)
             {
-                ClearSavedGameState();
+                //ClearSavedGameState();
                 UIManager.Instance.ShowLevelFailedUI();
                 SoundManager.Instance.LevelCompleteSFX();
             }

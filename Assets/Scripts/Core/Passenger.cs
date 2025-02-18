@@ -11,7 +11,7 @@ public class Passenger : MonoBehaviour
     [SerializeField] private PassengerAnimator PassengerAnimator;
     public Colors passengerColor;
     public bool hasBoarded;
-    internal bool IsBoarding;
+    public bool IsBoarding;
     public GameObject vfx;
     public int id;
     public Bus _selectedBus;
@@ -69,6 +69,7 @@ public class Passenger : MonoBehaviour
         {
             _selectedBus = bus;
             _selectedBus.currentSize--;
+            Debug.Log("Passenger: "+id+" boarded bus: "+bus.name+" current size: "+bus.currentSize);
         }
         else
         {

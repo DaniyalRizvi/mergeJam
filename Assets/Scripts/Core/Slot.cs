@@ -26,7 +26,7 @@ public class Slot : MonoBehaviour
         if (isLocked)
         {
             _lockedIcon = Instantiate(Resources.Load<GameObject>("Unlock Icon"), transform, false);
-            _lockedIcon = Instantiate(Resources.Load<GameObject>("TrafficCones"), transform, false);
+            //_lockedIcon = Instantiate(Resources.Load<GameObject>("TrafficCones"), transform, false);
         }
     }
 
