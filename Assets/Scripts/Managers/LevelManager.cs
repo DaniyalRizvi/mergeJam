@@ -18,7 +18,6 @@ public class LevelManager : Singelton<LevelManager>
     public Transform passengerRef;
     void Start()
     {
-        //_levelNumber=41;
         _levelNumber = PlayerPrefs.GetInt("CurrentLevel");
         if (PlayerPrefs.GetInt("LevelTutorialCompleted") == 0 || (PlayerPrefs.GetInt("TrashTutorial") == 0 && _levelNumber == 25) || (PlayerPrefs.GetInt("FanTutorial") == 0 && _levelNumber == 35) ||
             (PlayerPrefs.GetInt("RocketTutorial") == 0 && _levelNumber == 27) || (PlayerPrefs.GetInt("JumpTutorial") == 0 && _levelNumber == 13))

@@ -159,19 +159,20 @@ public class PowerUpEventHandler : MonoBehaviour
                 outline.enabled = true;
             }
 
+        GameManager.Instance.rocketPowerUp = true;
+        
         while (!carSelected)
         {
-            
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+            if (InputManager.Instance.GetInputActions().Player.Click.ReadValue<float>() > 0)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                Vector2 mousePosition = InputManager.Instance.GetPositionAction().ReadValue<Vector2>();
+                Ray ray = Camera.main!.ScreenPointToRay(mousePosition);
+                if (Physics.Raycast(ray, out var hit) && hit.collider != null)
                 {
                     selectedBus = hit.collider.GetComponent<Bus>();
                     if (selectedBus != null)
                     {
                         carSelected = true;
-                        GameManager.Instance.rocketPowerUp = true;
                         foreach (var bus in LevelManager.Instance.GetCurrentLevel().gameObject.GetComponentsInChildren<Bus>())
                         {
                             var outline = bus.gameObject.GetComponent<Outline>();
