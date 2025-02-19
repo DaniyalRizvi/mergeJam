@@ -203,6 +203,10 @@ public class Passenger : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                PassengerAnimator.IsWalking(true);
+            }
 
             yield return null;
         }
