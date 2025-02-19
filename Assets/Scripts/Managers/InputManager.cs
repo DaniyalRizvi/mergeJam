@@ -24,6 +24,16 @@ public class InputManager : Singelton<InputManager>
 
     }
 
+    public InputAction GetPositionAction()
+    {
+        return _positionAction;
+    }
+
+    public GameInputActions GetInputActions()
+    {
+        return _inputActions;
+    }
+
     void OnEnable()
     {
         _inputActions.Player.Click.performed += OnClickPerformed; 
