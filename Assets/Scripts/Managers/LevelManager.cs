@@ -28,6 +28,7 @@ public class LevelManager : Singelton<LevelManager>
             _levelNumber = 0;
         }
 
+
         _levels = FindObjectsOfType<Level>().ToList();
         _levels.SortByName();
         Application.targetFrameRate = 1000;
