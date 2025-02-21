@@ -1,0 +1,389 @@
+fileFormatVersion: 2
+guid: 70bd4b9f7d1d4184db2c2609b92db059
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BUS Body
+    second: {fileID: 2100000, guid: 5e0c02529529e7647b195837a3970421, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BUSTOKENSTOP.001
+    second: {fileID: 2100000, guid: e0a9059d308a1784b9decfa4ee5d1726, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blue.001
+    second: {fileID: 2100000, guid: 4a268218f75914a46bdbad2c85b15aef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brown.001
+    second: {fileID: 2100000, guid: bdf1440fd686a3644a96b9f20aeba583, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Car body
+    second: {fileID: 2100000, guid: 0dcc99186a8c2f245955a76d1e7a7b86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Double DEcker bus
+    second: {fileID: 2100000, guid: b7997172c3fe2ef4ca85a82f37ba78e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gray.001
+    second: {fileID: 2100000, guid: 5a5dd76bb85aff14595b33ec275bf364, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Green.001
+    second: {fileID: 2100000, guid: 0c4ad8f44010eae49afcf6a377039306, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightBlue.001
+    second: {fileID: 2100000, guid: c6a3ccf5618a5ac4ebc302ae5053ecdb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #409.004
+    second: {fileID: 2100000, guid: c2306e0b66741b945bfca377a1778cb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #601.001
+    second: {fileID: 2100000, guid: 5f323bcc71eb42541a9d8333fd87923b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #737.001
+    second: {fileID: 2100000, guid: d39fbbe3c2dd5df4fb434ba76da29157, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #739.001
+    second: {fileID: 2100000, guid: d50df4bf411211842ab718b9a36a6c3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #740.001
+    second: {fileID: 2100000, guid: 59177a611088ea2478698feb297267da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.007
+    second: {fileID: 2100000, guid: 827d24a7315a51348b247748196845d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mini Bus.001
+    second: {fileID: 2100000, guid: a9e76111a665901439f4475c5ede6e2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pink.001
+    second: {fileID: 2100000, guid: 12848d785f67e2644aa2d16320e59220, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TYre & Window
+    second: {fileID: 2100000, guid: 6e2f8712b8443f244968a3e19174f81c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tyre &window
+    second: {fileID: 2100000, guid: ed8ae6cfb8153d04b8b80dfdb45f5885, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Van.001
+    second: {fileID: 2100000, guid: cc64bce0fa6bb5b45ab192cda415feb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WHITESTRIPS.004
+    second: {fileID: 2100000, guid: 898173f2c9d0e1748a049e8792e55b2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White
+    second: {fileID: 2100000, guid: 95607e17d706f12439da84d7c4bac99c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow.001
+    second: {fileID: 2100000, guid: d0c48afd8683e5248a122352b957728c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: barrrierrod.004
+    second: {fileID: 2100000, guid: bfce2d76ab3c0aa49b0d7c85266095e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bus_ticket.001
+    second: {fileID: 2100000, guid: a3951e56cd058cb419b6c072fd49357b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: desert rocks.001
+    second: {fileID: 2100000, guid: 198f12f55c2d6614694a8064c706f1c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: desert texture.001
+    second: {fileID: 2100000, guid: 35c32342fe8655448b30080fb4d29517, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: desert_curb.001
+    second: {fileID: 2100000, guid: cc82dc8a4ddd1734baf9fc3440d3b771, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: desertplanecolor.001
+    second: {fileID: 2100000, guid: 1fad91298839ef148b6aba34f7734708, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_folhas.001
+    second: {fileID: 2100000, guid: 611a15fbe76fee44ebad8768ad2c7bd8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_madeira.001
+    second: {fileID: 2100000, guid: 25d6e1bd1a3e83a48893de378ff80140, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_predio.001
+    second: {fileID: 2100000, guid: 35681fad668350149b414a5ed51654d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_rodape.001
+    second: {fileID: 2100000, guid: 033958ba42b5b5949a27b6a77b713fba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_texto.001
+    second: {fileID: 2100000, guid: 8fdfdf18d7885824380ebda965eecaa4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_toldo_01.001
+    second: {fileID: 2100000, guid: 57cef956d3e26a8449614c20089f002c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_toldo_02.001
+    second: {fileID: 2100000, guid: ec2083bac09a16a4e87f1c50b39807b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_tronco.001
+    second: {fileID: 2100000, guid: 80da926f4c251b341ba60f02dee4cf1a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_vaso.001
+    second: {fileID: 2100000, guid: 496054b990d8e3c468dff484d7aa2c11, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_vidro.001
+    second: {fileID: 2100000, guid: 7cb2878e6feaf4f479771f46f9824b34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: material.001
+    second: {fileID: 2100000, guid: 7db9acd676937d54282204391b8f731f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: queue board.004
+    second: {fileID: 2100000, guid: 38796763bb0d46b4dbe3cf2fa47a65db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: queueleft.004
+    second: {fileID: 2100000, guid: 3158db6c72a50b843be21c71d4db72fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: railinball.001
+    second: {fileID: 2100000, guid: 7c346470286cba044a7b8886aa981f65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: railing_strap.001
+    second: {fileID: 2100000, guid: 95f41922903e1804e9b2c119d13e0718, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: water.001
+    second: {fileID: 2100000, guid: 101baccbbf9c5464aa17260fd9248742, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BUS tire
+    second: {fileID: 2800000, guid: 2a371ce545e95b0499d25cb0127f583e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Bus red
+    second: {fileID: 2800000, guid: 287ad5719f8c16c458558277a7bc836f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: CAR Green
+    second: {fileID: 2800000, guid: 9aa438ad680247b49b79da482951b960, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Land_Basecolor
+    second: {fileID: 2800000, guid: 6c52d4e02fc762342a485c8e7a1b352d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Material.001_baseColor
+    second: {fileID: 2800000, guid: c3e4497dbaf15e445ad10099cd6ec534, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Mini Bus.green
+    second: {fileID: 2800000, guid: 1591dae18adc7a548baab376a5cae3ac, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: VAn red
+    second: {fileID: 2800000, guid: e4b56ca545b0b8c4cbd0719753a23c06, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: cactus_1__pbrs2a_diffuse
+    second: {fileID: 2800000, guid: c9b80123c7fb2534ab7a6b1c31b8f717, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: cactus_3__pbrs2a_diffuse
+    second: {fileID: 2800000, guid: 9a92e6f167c8ddf4aa443484fc89dfad, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: cactus_9__pbrs2a_diffuse
+    second: {fileID: 2800000, guid: 445cff2ba85064b418314ca0cdc00e7d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: car tire
+    second: {fileID: 2800000, guid: 93f15091bc0b8c444b02dd688f47a850, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.5
+    meshCompression: 2
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.5
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
