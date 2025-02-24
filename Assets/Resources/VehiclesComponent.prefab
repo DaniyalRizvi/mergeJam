@@ -76,8 +76,6 @@ GameObject:
   - component: {fileID: 4814762407977691828}
   - component: {fileID: 2621868428705798291}
   - component: {fileID: 2129460074125392424}
-  - component: {fileID: 993572473464214364}
-  - component: {fileID: 8230665823687268088}
   - component: {fileID: 2346096361529829066}
   m_Layer: 6
   m_Name: VehiclesComponent
@@ -172,71 +170,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.2501545, y: 1, z: 1.5004003}
   m_Center: {x: -0.024213314, y: 0, z: -0.008071065}
---- !u!114 &993572473464214364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705932653327973958}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fea0e15e72faaed4f9705a431e61d9de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 2
-  RotationSpeed: 2
-  BoundaryCollider: {fileID: 0}
-  Trails: []
-  TeleportFeedbacks: {fileID: 0}
---- !u!114 &8230665823687268088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705932653327973958}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e07de691a1179d4c8fc231dc7dcf219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CycleOption: 2
-  LoopInitialMovementDirection: 0
-  PathElements:
-  - PathElementPosition: {x: 0, y: 0, z: 0}
-    Delay: 1
-  - PathElementPosition: {x: 0, y: 0, z: -3}
-    Delay: 1
-  AlignmentMode: 0
-  MovementSpeed: 8
-  AccelerationType: 1
-  Acceleration:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  UpdateMode: 0
-  MinDistanceToGoal: 0.1
 --- !u!114 &2346096361529829066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +266,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e8b68c036219eb544a3b1f114a93cb96, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6ab66be86c62d2549929eab2b3e93afc, type: 2}
   m_sharedMaterial: {fileID: 4621200205589732911, guid: e8b68c036219eb544a3b1f114a93cb96, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -397,7 +330,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1500967966485639060
@@ -738,8 +671,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e8b68c036219eb544a3b1f114a93cb96, type: 2}
-  m_sharedMaterial: {fileID: 4621200205589732911, guid: e8b68c036219eb544a3b1f114a93cb96, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6ab66be86c62d2549929eab2b3e93afc, type: 2}
+  m_sharedMaterial: {fileID: -1232313953595123143, guid: 6ab66be86c62d2549929eab2b3e93afc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
