@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Bus : MonoBehaviour
 {
+    public MaterialScriptables materialScriptables;
     public VehicleRenderModels VehicleRenderModelsOnInitilization;
     public VehicleRenderModels VehicleRenderModels;
     public int capacity
@@ -54,12 +55,16 @@ public class Bus : MonoBehaviour
     public TMP_Text currentSizeText;
     public bool slotAssigned=false;
 
+    public MaterialObjects materials;
+
     public void Init()
     {
         currentSize = capacity;
         Rb = GetComponent<Rigidbody>();
+        materials=materialScriptables.colorBasedMaterials.Find(x=>x.busColor==busColor);
         UpdateVisual();  
-        VehicleRenderModelsOnInitilization.UpdateVisual(busColor.GetColor());
+        
+        VehicleRenderModelsOnInitilization.UpdateVisual(materials.materials);
         VehicleRenderModelsOnInitilization.ActiveVehicle(capacity);
         
     }
@@ -76,7 +81,7 @@ public class Bus : MonoBehaviour
 
     public void UpdateVisual()
     {
-        VehicleRenderModels.UpdateVisual(busColor.GetColor()); 
+        VehicleRenderModels.UpdateVisual(materials.materials); 
     }
 
     public void AssignSlot(Slot clickedSlot)
@@ -140,6 +145,7 @@ public class Bus : MonoBehaviour
         this.busColor = data.busColor;
         transform.position = data.position;
         AssignSlot(assignedSlot);
+        materials=materialScriptables.colorBasedMaterials.Find(x=>x.busColor==busColor);
         UpdateVisual();
     }
 

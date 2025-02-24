@@ -21,14 +21,13 @@ public class VehicleRenderModels : MonoBehaviour
             model.model.SetActive(false);
         }
     }
-    public void UpdateVisual(Color color)
+    public void UpdateVisual(List<Material> materials)
     {
-        foreach (var item in vehicleModels)
+        Debug.Log("Materials count:"+materials.Count);
+        for(int i=0;i<materials.Count;i++)
         {
-            var mat= item.model.GetComponent<Renderer>().materials;
-            mat[0].color = color;
-            //foreach (var mat in mats) mat.color=color; //item.model.GetComponent<Renderer>()..material.color = color;
-            item.model.GetComponent<Renderer>().SetMaterials(mat.ToList());
+            Debug.Log("Material: index:"+i+" name:");
+            vehicleModels[i].model.GetComponent<Renderer>().material=materials[i];
         }
     }
     public void ActiveVehicle(int Capacity)

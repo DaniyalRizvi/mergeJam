@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44ba034a7c5de54eaf3c50851503209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  materialScriptables: {fileID: 11400000, guid: c782885d0e7cdaa4a856170fe5ef021c, type: 2}
   VehicleRenderModelsOnInitilization: {fileID: 5180445394630371731}
   VehicleRenderModels: {fileID: 4032027567217758874}
   busColor: 0
@@ -124,6 +125,9 @@ MonoBehaviour:
   capacityText: {fileID: 4501516260806058452}
   currentSizeText: {fileID: 8860879333478522510}
   slotAssigned: 0
+  materials:
+    busColor: 0
+    materials: []
 --- !u!54 &2621868428705798291
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -425,7 +429,7 @@ Transform:
   m_GameObject: {fileID: 1500967966485639060}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12, y: 0, z: -2.5}
+  m_LocalPosition: {x: 3.4, y: 0, z: 0.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1585,6 +1589,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6884421657399700399, guid: dc66bd43ad8c8d14bb07acf29a4473f9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1871,6 +1879,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5758949942723387895, guid: 073025f6381d1f1439386c70c46994c5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8855859252404653093, guid: 073025f6381d1f1439386c70c46994c5, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1901,6 +1913,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3745816245550851050}
     m_Modifications:
+    - target: {fileID: 343885966006138880, guid: 682a6ce34427ef945aa17255940c0819, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 343885966006138880, guid: 682a6ce34427ef945aa17255940c0819, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5779119171689959870, guid: 682a6ce34427ef945aa17255940c0819, type: 3}
       propertyPath: m_Name
       value: Car
@@ -1975,6 +1995,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3745816245550851050}
     m_Modifications:
+    - target: {fileID: 343885966006138880, guid: 682a6ce34427ef945aa17255940c0819, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5779119171689959870, guid: 682a6ce34427ef945aa17255940c0819, type: 3}
       propertyPath: m_Name
       value: Car (1)
@@ -3325,6 +3349,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4987394822681539246, guid: 8227e15f3654c4c499bba3a235f088cd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8642258291598898251, guid: 8227e15f3654c4c499bba3a235f088cd, type: 3}
       propertyPath: m_Name
       value: Bus
@@ -3523,6 +3551,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3745816245550851050}
     m_Modifications:
+    - target: {fileID: 1270760255444388883, guid: 4b101b759265907428e09e4204329b1f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3545207946655290945, guid: 4b101b759265907428e09e4204329b1f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

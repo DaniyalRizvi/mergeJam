@@ -186,8 +186,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480142376751017705}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.17419113, z: -0, w: -0.9847119}
+  m_LocalPosition: {x: 0.009124722, y: 0, z: 0.0011599411}
   m_LocalScale: {x: 0.95, y: 0.95, z: 0.95}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -195,7 +195,7 @@ Transform:
   - {fileID: 2502560394427976339}
   - {fileID: 3260928729312943081}
   m_Father: {fileID: 4110351949404556995}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 339.937, z: 0}
 --- !u!95 &2186859788459013152
 Animator:
   serializedVersion: 5
@@ -491,7 +491,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6787013957721527270, guid: 0ed9259ea458caa458bb8c34d64f1541, type: 3}
+  - {fileID: 2100000, guid: a4cfaf2cab97a984e8b3fbca416f30bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -611,9 +611,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2521355150915932600}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.57, y: 0, z: -7.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.4850245, y: 2.4850245, z: 2.4850245}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6510194184840695984}
@@ -684,7 +684,11 @@ MonoBehaviour:
   PassengerAnimator: {fileID: 4338051661552728038}
   passengerColor: 1
   hasBoarded: 0
-  id: 
+  IsBoarding: 0
+  vfx: {fileID: 0}
+  id: 0
+  _selectedBus: {fileID: 0}
+  myPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &2622495494360606425
 GameObject:
   m_ObjectHideFlags: 0
