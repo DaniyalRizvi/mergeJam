@@ -100,6 +100,11 @@ MonoBehaviour:
   PassengerAnimator: {fileID: 2589550496543625236}
   passengerColor: 0
   hasBoarded: 0
+  IsBoarding: 0
+  vfx: {fileID: 0}
+  id: 0
+  _selectedBus: {fileID: 0}
+  myPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &4792156129256215026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108,6 +113,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8017802146227044687}
     m_Modifications:
+    - target: {fileID: 751535467568528894, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e8a898175f55a4428dac83b281bd37b, type: 2}
     - target: {fileID: 7020767572927463910, guid: 5c0c589a7ac76634aa480dd96b2d0542, type: 3}
       propertyPath: Animator
       value: 
