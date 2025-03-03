@@ -47,6 +47,7 @@ public class Level : MonoBehaviour
         foreach (var busType in busTypes)
         {
             var bus = Instantiate(prefab, GetRandomSpawnPoint(spawnPoint), Quaternion.identity).GetComponent<Bus>();
+            //var bus = Instantiate(prefab, spawnPoint.transform.position, Quaternion.identity).GetComponent<Bus>();
 
             bus.transform.SetParent(spawnPoint, true);
             bus.busColor = busType.color;
@@ -63,6 +64,12 @@ public class Level : MonoBehaviour
                 outline.enabled = false;
             }
         }
+
+        if (GetComponentInChildren<RoofPlane>() != null)
+        {
+            var roofPlane = GetComponentInChildren<RoofPlane>().gameObject;
+            roofPlane.SetActive(false);
+        }
     }
 
     public Vector3 GetRandomSpawnPoint(Transform spawnPoint)
@@ -74,6 +81,7 @@ public class Level : MonoBehaviour
         float z = Mathf.Sin(phi) * Mathf.Sin(theta);
         float y = Mathf.Cos(phi);
 
+        //float range=8f;
         Vector3 randomDirection = new Vector3(x, y, z) * range;
         return spawnPoint.position + new Vector3(0, range, 0) + randomDirection;
     }

@@ -50,7 +50,7 @@ public class GameLoadingController : MonoBehaviour
 
         LoadingImage.DOFillAmount(1, LoadingTime).OnComplete(() =>
         {
-            ByPassTutorials();
+            //ByPassTutorials();
             Debug.Log("LevelTutorialCompleted: "+PlayerPrefs.GetInt("LevelTutorialCompleted"));
 
             Debug.Log("Actual Current LEvel: "+PlayerPrefs.GetInt("ActualCurrentLevel"));

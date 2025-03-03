@@ -66,7 +66,7 @@ public class LevelManager : Singelton<LevelManager>
         }
 
         
-            PowerupHandler.Instance.SetPanel();
+        PowerupHandler.Instance.SetPanel();
         
         GameManager.Instance.InitializePassengerPositions();
     }
