@@ -983,7 +983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b3de7e169faae4f89505370fa432f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levels: []
+  _levels:
+  - {fileID: 606434553}
   passengerRef: {fileID: 0}
 --- !u!4 &86884404
 Transform:
@@ -20768,7 +20769,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -22504,6 +22505,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInitialized: 0
+  powerHandlerList:
+  - {fileID: 1993850796}
+  - {fileID: 1635941624}
+  - {fileID: 742394599}
 --- !u!4 &777910086
 Transform:
   m_ObjectHideFlags: 0

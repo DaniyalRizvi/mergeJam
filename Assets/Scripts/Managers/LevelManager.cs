@@ -28,9 +28,9 @@ public class LevelManager : Singelton<LevelManager>
         }
 
 
-        _levels = FindObjectsOfType<Level>().ToList();
-        _levels.SortByName();
-        Application.targetFrameRate = 1000;
+        //_levels = FindObjectsOfType<Level>().ToList();
+        //_levels.SortByName();
+        //Application.targetFrameRate = 1000;
         OnLevelComplete += OnLevelCompleted;
         OnLevelRestart += RestartLevel;
         LoadLevel(_levelNumber);
@@ -40,9 +40,9 @@ public class LevelManager : Singelton<LevelManager>
     {
         foreach (var level in _levels)
         {
-            level.SetActiveState(false);
+            level.gameObject.SetActive(false);
         }
-        _levels[levelNumber].SetActiveState(true);
+        _levels[levelNumber].gameObject.SetActive(true);
         _levels[levelNumber].Init();
 
         if(_levels[levelNumber].GetComponent<LevelTimeComponent>())

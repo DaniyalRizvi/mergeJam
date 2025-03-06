@@ -8,6 +8,7 @@ public class PowerUpsManager : Singelton<PowerUpsManager>
 {
     public bool isInitialized = false;
     private Dictionary<PowerUpType, int> _powerUps = new();
+    public List<PowerUpEventHandler> powerHandlerList;
 
     private void Start()
     {
@@ -60,7 +61,8 @@ public class PowerUpsManager : Singelton<PowerUpsManager>
     public void AddPowerUp(PowerUpType powerUpType, int amount)
     {
         _powerUps[powerUpType]+= amount;
-        FindObjectsOfType<PowerUpEventHandler>().ToList().FirstOrDefault(i => i.powerUpType == powerUpType)?.SetText();
+        //FindObjectsOfType<PowerUpEventHandler>().ToList().FirstOrDefault(i => i.powerUpType == powerUpType)?.SetText();
+        powerHandlerList.FirstOrDefault(i => i.powerUpType == powerUpType)?.SetText();
     }
     
     public int GetPowerUpAmount(PowerUpType powerUpType) => _powerUps[powerUpType];
